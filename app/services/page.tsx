@@ -47,7 +47,7 @@ export default function ServicesPage() {
       <div className="noise-overlay" />
       <Navbar />
 
-      <div className="relative mx-auto flex w-full max-w-7xl flex-col px-6 pb-20 pt-4 sm:px-8 md:pt-6 lg:px-12">
+      <div className="relative mx-auto flex w-full max-w-7xl flex-col px-6 pb-2 pt-4 sm:px-8 md:pt-6 lg:px-12">
         <Breadcrumbs items={[{ label: "Home", href: "/" }, { label: "Services" }]} />
         <ServicesOverview />
         <ServiceCatalog />

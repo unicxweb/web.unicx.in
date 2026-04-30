@@ -27,14 +27,13 @@ export const serviceCategories = [
       "Social Media Marketing",
       "Instagram Ads",
       "Facebook Ads",
-      "LinkedIn Marketing",
       "Google Ads",
       "Search Ads",
       "Display Ads",
     ],
   },
   {
-    name: "Development",
+    name: "App Development",
     description:
       "Mobile-first product development across native and hybrid experiences with strong usability foundations.",
     imageLabel: "App Preview",

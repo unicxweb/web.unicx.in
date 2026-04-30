@@ -3,6 +3,24 @@
 import Link from "next/link";
 import { motion } from "framer-motion";
 
+function ArrowRightIcon() {
+  return (
+    <svg
+      aria-hidden="true"
+      viewBox="0 0 24 24"
+      className="h-4 w-4"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="1.8"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    >
+      <path d="M5 12h14" />
+      <path d="m13 5 7 7-7 7" />
+    </svg>
+  );
+}
+
 export function CTA() {
   return (
     <section id="contact" className="pb-20 pt-24 sm:pb-24 sm:pt-32">
@@ -26,18 +44,17 @@ export function CTA() {
             </p>
           </div>
 
-          <motion.div
-            whileHover={{ y: -2, scale: 1.015 }}
-            whileTap={{ scale: 0.99 }}
-            className="inline-flex w-full sm:w-auto"
-          >
+          <div className="relative inline-flex w-full sm:w-auto">
             <Link
               href="/contact"
-              className="inline-flex w-full items-center justify-center rounded-full border border-white/15 bg-white px-8 py-4 text-[11px] font-semibold uppercase tracking-[0.34em] text-slate-950 shadow-[0_0_0_rgba(255,255,255,0)] transition-shadow duration-500 hover:shadow-[0_0_36px_rgba(255,255,255,0.12)] sm:w-auto"
+              className="relative inline-flex items-center gap-2 overflow-hidden rounded-full border border-white/15 bg-white px-7 py-3.5 text-[11px] font-semibold uppercase tracking-[0.34em] text-slate-950 transition hover:shadow-[0_0_30px_rgba(255,255,255,0.1)]"
             >
-              Get Started
+              <span className="relative z-10">
+                <ArrowRightIcon />
+              </span>
+              <span className="relative z-10">Get Started</span>
             </Link>
-          </motion.div>
+          </div>
         </div>
       </motion.div>
     </section>

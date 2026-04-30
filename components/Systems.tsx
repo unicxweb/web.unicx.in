@@ -9,28 +9,28 @@ const systems = [
     description:
       "UI/UX, infographics, web design, mobile app design, logo systems, and brand graphics.",
     items: ["UI/UX", "Brand", "Web", "Mobile"],
-    href: "/services#service-1",
+    href: "/services/design",
   },
   {
     title: "Marketing",
     description:
       "SEO, paid ads, social campaigns, and channel strategy built to convert attention into demand.",
     items: ["SEO", "Paid Ads", "Social", "Strategy"],
-    href: "/services#service-2",
+    href: "/services/marketing",
   },
   {
     title: "App Development",
     description:
       "Android, iOS, hybrid apps, and PWAs shaped around usability, performance, and scale.",
     items: ["Android", "iOS", "Hybrid", "PWA"],
-    href: "/services#service-3",
+    href: "/services/app-development",
   },
   {
     title: "Website Development",
     description:
       "Static sites, dynamic builds, ecommerce platforms, landing pages, and custom web solutions.",
     items: ["Static", "Dynamic", "Ecommerce", "Custom"],
-    href: "/services#service-4",
+    href: "/services/website-development",
   },
 ];
 
@@ -119,46 +119,37 @@ export function Systems() {
               delay: index * 0.08,
               ease: [0.22, 1, 0.36, 1],
             }}
-            whileHover={{ y: -4 }}
             className="group"
           >
-            <Link
-              href={system.href}
-              className="soft-border relative block overflow-hidden rounded-[28px] border border-white/10 bg-white/[0.025] p-8 shadow-[0_18px_60px_rgba(0,0,0,0.14)] transition duration-300 hover:border-white/15 hover:bg-white/[0.035]"
-            >
-              <div className="absolute inset-0 opacity-0 transition duration-500 group-hover:opacity-100">
-                <div className="absolute right-0 top-0 h-28 w-28 rounded-full bg-white/7 blur-3xl" />
-              </div>
-
-              <div className="relative">
-                <div className="flex items-center justify-between gap-4">
-                  <div className="text-[10px] font-semibold uppercase tracking-[0.28em] text-slate-500">
-                    0{index + 1}
-                  </div>
-                  <span className="text-slate-500 transition group-hover:text-slate-300">
-                    <ArrowRightIcon />
-                  </span>
-                </div>
-
-                <h3 className="mt-6 text-[2rem] font-semibold tracking-[-0.05em] text-white">
-                  {system.title}
-                </h3>
-                <p className="mt-4 max-w-xl text-[15px] leading-7 text-slate-400">
-                  {system.description}
-                </p>
-
-                <div className="mt-7 flex flex-wrap gap-3">
-                  {system.items.map((item) => (
-                    <span
-                      key={item}
-                      className="rounded-full border border-white/10 bg-white/[0.03] px-4 py-2 text-[12px] font-medium text-slate-200"
-                    >
-                      {item}
+            <div className="soft-border relative overflow-hidden rounded-[28px] border border-white/10 bg-white/[0.025] p-8 shadow-[0_18px_60px_rgba(0,0,0,0.14)] transition hover:border-white/20 hover:bg-white/[0.05]">
+              <Link href={system.href} className="flex flex-col">
+                <div className="relative">
+                  <div className="flex items-center justify-between gap-4">
+                    <div className="text-[10px] font-semibold uppercase tracking-[0.28em] text-slate-500">
+                      0{index + 1}
+                    </div>
+                    <span className="text-slate-500 transition group-hover:text-slate-300">
+                      <ArrowRightIcon />
                     </span>
-                  ))}
+                  </div>
+
+                  <h3 className="mt-6 text-[2rem] font-semibold tracking-[-0.05em] text-white">
+                    {system.title}
+                  </h3>
+                  <p className="mt-4 max-w-xl text-[15px] leading-7 text-slate-400">
+                    {system.description}
+                  </p>
+                  
+                  <div className="mt-6 grid gap-2 sm:grid-cols-2 lg:grid-cols-4">
+                    {system.items.map((item) => (
+                      <div key={item} className="rounded-full border border-white/20 bg-white/[0.03] px-1 py-2 text-[11px] font-medium text-white text-center min-w-0">
+                        {item}
+                      </div>
+                    ))}
+                  </div>
                 </div>
-              </div>
-            </Link>
+              </Link>
+            </div>
           </motion.article>
         ))}
       </div>

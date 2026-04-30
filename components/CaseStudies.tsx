@@ -56,8 +56,7 @@ export function CaseStudies() {
               delay: index * 0.08,
               ease: [0.22, 1, 0.36, 1],
             }}
-            whileHover={{ y: -5, scale: 1.008 }}
-            className="soft-border relative overflow-hidden rounded-[30px] border border-white/10 bg-white/[0.025] p-9 shadow-[0_20px_70px_rgba(0,0,0,0.16)]"
+            className="soft-border relative overflow-hidden rounded-[30px] border border-white/10 bg-white/[0.025] p-9 shadow-[0_20px_70px_rgba(0,0,0,0.16)] transition hover:border-white/20 hover:bg-white/[0.05]"
           >
             <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(255,255,255,0.06),transparent_36%)]" />
             <div className="relative flex h-full min-h-[300px] flex-col justify-between">

@@ -1,7 +1,41 @@
+import { serviceCategories } from '@/lib/site-data'
+
 export const dynamic = 'force-static'
+
+function generateServiceUrls(): string {
+  const baseUrl = 'https://web.unicx.in'
+  const urls: string[] = []
+  
+  // Add service category pages
+  serviceCategories.forEach(category => {
+    const categorySlug = category.name.toLowerCase().replace(/\s+/g, '-')
+    urls.push(`
+  <url>
+    <loc>${baseUrl}/services/${categorySlug}</loc>
+    <lastmod>${new Date().toISOString()}</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>`)
+    
+    // Add individual service pages
+    category.items.forEach(service => {
+      const serviceSlug = service.toLowerCase().replace(/\s+/g, '-').replace(/[^\w\-]/g, '')
+      urls.push(`
+  <url>
+    <loc>${baseUrl}/services/${categorySlug}/${serviceSlug}</loc>
+    <lastmod>${new Date().toISOString()}</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>`)
+    })
+  })
+  
+  return urls.join('')
+}
 
 export function GET() {
   const baseUrl = 'https://web.unicx.in'
+  const serviceUrls = generateServiceUrls()
   
   const sitemap = `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
@@ -16,7 +50,7 @@ export function GET() {
     <lastmod>${new Date().toISOString()}</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
-  </url>
+  </url>${serviceUrls}
   <url>
     <loc>${baseUrl}/work</loc>
     <lastmod>${new Date().toISOString()}</lastmod>

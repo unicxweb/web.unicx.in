@@ -45,22 +45,17 @@ export function Hero() {
         </p>
 
         <div className="mt-6 flex items-center md:mt-5">
-          <motion.div
-            whileHover={{ y: -2, scale: 1.025 }}
-            whileTap={{ scale: 0.99 }}
-            className="group relative inline-flex"
-          >
+          <div className="relative inline-flex">
             <Link
               href="/contact"
-              className="relative inline-flex items-center gap-2 overflow-hidden rounded-full border border-white/15 bg-white px-7 py-3.5 text-[11px] font-semibold uppercase tracking-[0.34em] text-slate-950 shadow-[0_0_0_rgba(255,255,255,0)] transition-shadow duration-500 hover:shadow-[0_0_36px_rgba(255,255,255,0.12)]"
+              className="relative inline-flex items-center gap-2 overflow-hidden rounded-full border border-white/15 bg-white px-7 py-3.5 text-[11px] font-semibold uppercase tracking-[0.34em] text-slate-950 transition hover:shadow-[0_0_30px_rgba(255,255,255,0.1)]"
             >
-              <span className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(255,255,255,0.3),transparent_62%)] opacity-0 blur-xl transition duration-500 group-hover:opacity-100" />
               <span className="relative z-10">
                 <ArrowRightIcon />
               </span>
               <span className="relative z-10">Get Started</span>
             </Link>
-          </motion.div>
+          </div>
         </div>
       </motion.div>
 

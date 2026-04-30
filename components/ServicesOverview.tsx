@@ -120,7 +120,7 @@ function CheckStackIcon() {
 
 export function ServicesOverview() {
   return (
-    <section className="pt-24 sm:pt-32">
+    <section className="pt-10 sm:pt-12 lg:pt-14">
       <div className="max-w-5xl">
         <div className="relative">
           <div className="pointer-events-none absolute -left-8 top-6 h-24 w-24 rounded-full bg-white/6 blur-3xl" />
@@ -136,20 +136,28 @@ export function ServicesOverview() {
           </p>
 
           <div className="mt-10 flex flex-col gap-4 sm:flex-row">
-            <Link
-              href="/contact"
-              className="inline-flex items-center justify-center gap-2 rounded-full border border-white/15 bg-white px-8 py-4 text-[11px] font-semibold uppercase tracking-[0.34em] text-slate-950 transition hover:shadow-[0_0_36px_rgba(255,255,255,0.12)]"
-            >
-              <ArrowRightIcon />
-              Start A Project
-            </Link>
-            <a
-              href="#service-catalog"
-              className="inline-flex items-center justify-center gap-2 rounded-full border border-white/10 bg-white/[0.03] px-8 py-4 text-[11px] font-semibold uppercase tracking-[0.34em] text-white transition hover:border-white/20 hover:bg-white/[0.06]"
-            >
-              <LayersIcon />
-              View Services
-            </a>
+            <div className="relative inline-flex">
+              <Link
+                href="/contact"
+                className="relative inline-flex items-center gap-2 overflow-hidden rounded-full border border-white/15 bg-white px-7 py-3.5 text-[11px] font-semibold uppercase tracking-[0.34em] text-slate-950 transition hover:shadow-[0_0_30px_rgba(255,255,255,0.1)]"
+              >
+                <span className="relative z-10">
+                  <ArrowRightIcon />
+                </span>
+                <span className="relative z-10">Start A Project</span>
+              </Link>
+            </div>
+            <div className="relative inline-flex">
+              <a
+                href="#service-catalog"
+                className="relative inline-flex items-center gap-2 overflow-hidden rounded-full border border-white/10 bg-white/10 px-7 py-3.5 text-[11px] font-semibold uppercase tracking-[0.34em] text-white transition hover:border-white/20 hover:bg-white/[0.06]"
+              >
+                <span className="relative z-10">
+                  <LayersIcon />
+                </span>
+                <span className="relative z-10">View Services</span>
+              </a>
+            </div>
           </div>
 
           <div className="mt-10 border-t border-white/10 pt-8">
@@ -231,9 +239,9 @@ export function ServicesOverview() {
           </div>
           <div className="mt-5 grid gap-3 sm:grid-cols-2">
             {serviceCategories.map((category, index) => (
-              <a
+              <Link
                 key={category.name}
-                href={`#service-${index + 1}`}
+                href={`/services/${category.name.toLowerCase().replace(/\s+/g, '-')}`}
                 className="flex items-center justify-between rounded-[18px] border border-white/10 bg-white/[0.03] px-4 py-4 transition hover:border-white/20 hover:bg-white/[0.05]"
               >
                 <div>
@@ -248,7 +256,7 @@ export function ServicesOverview() {
                   <span>{category.items.length}</span>
                   <ArrowRightIcon />
                 </div>
-              </a>
+              </Link>
             ))}
           </div>
         </aside>

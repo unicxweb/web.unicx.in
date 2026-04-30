@@ -1,5 +1,4 @@
 import { Capabilities } from "@/components/Capabilities";
-import { CaseStudies } from "@/components/CaseStudies";
 import { CTA } from "@/components/CTA";
 import CookieConsent from "@/components/CookieConsent";
 import { EngagementModels } from "@/components/EngagementModels";
@@ -8,6 +7,7 @@ import { Hero } from "@/components/Hero";
 import { HomeFAQ } from "@/components/HomeFAQ";
 import { HowItWorks } from "@/components/HowItWorks";
 import { Navbar } from "@/components/Navbar";
+import { SelectedWork } from "@/components/SelectedWork";
 import { Systems } from "@/components/Systems";
 import { WhoItsFor } from "@/components/WhoItsFor";
 import { Metadata } from "next";
@@ -47,15 +47,15 @@ export default function HomePage() {
 
       <Navbar />
 
-      <div className="relative mx-auto flex w-full max-w-7xl flex-col px-6 pb-20 pt-4 sm:px-8 md:pt-6 lg:px-12">
+      <div className="relative mx-auto flex w-full max-w-7xl flex-col px-6 pb-2 pt-4 sm:px-8 md:pt-6 lg:px-12">
         <Hero />
         <WhoItsFor />
         <Systems />
         <Capabilities />
+        <SelectedWork />
         <EngagementModels />
         <HowItWorks />
         <HomeFAQ />
-        <CaseStudies />
         <CTA />
         <Footer />
       </div>

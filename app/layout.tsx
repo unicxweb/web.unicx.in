@@ -85,7 +85,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
       <head>
         <StructuredData />
       </head>
-      <body className={`${inter.variable} bg-ink text-foreground antialiased`}>
+      <body className={`${inter.variable} bg-ink text-foreground antialiased`} suppressHydrationWarning>
         <CookieProvider>
           <GoogleAnalytics />
           {children}

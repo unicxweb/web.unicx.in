@@ -90,7 +90,7 @@ export default function ContactPage() {
       <div className="noise-overlay" />
       <Navbar />
 
-      <div className="relative mx-auto flex w-full max-w-7xl flex-col px-6 pb-20 pt-10 sm:px-8 lg:px-12">
+      <div className="relative mx-auto flex w-full max-w-7xl flex-col px-6 pb-2 pt-10 sm:px-8 lg:px-12">
         <Breadcrumbs items={[{ label: "Home", href: "/" }, { label: "Contact" }]} />
         <section className="border-b border-white/10 pb-14 pt-24 sm:pb-16">
           <div className="grid gap-12 lg:grid-cols-[minmax(0,1.1fr)_minmax(280px,0.9fr)] lg:items-end">

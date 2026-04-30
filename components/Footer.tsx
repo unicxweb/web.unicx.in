@@ -4,8 +4,8 @@ import Link from "next/link";
 
 export function Footer() {
   return (
-    <footer className="border-t border-white/10 pb-12 pt-10">
-      <div className="grid gap-10 md:grid-cols-[minmax(0,1.2fr)_repeat(4,minmax(0,1fr))] md:gap-8">
+    <footer className="border-t border-white/10 pb-2 pt-10">
+      <div className="grid gap-6 md:grid-cols-[minmax(0,1.2fr)_repeat(4,minmax(0,1fr))] md:gap-12">
         <div className="max-w-sm text-center md:text-left">
           <div className="text-[13px] font-semibold uppercase tracking-[0.46em] text-white/90">
             UNICX
@@ -13,10 +13,12 @@ export function Footer() {
           <div className="mt-2 text-[11px] font-medium uppercase tracking-[0.3em] text-slate-400">
             UniConsultX Solutions Private Limited
           </div>
-          <p className="mt-5 text-[15px] leading-7 text-slate-400">
-            Premium digital services across design, marketing, websites, and
-            app development.
-          </p>
+          <div className="mt-6 relative">
+            <p className="text-[15px] leading-7 text-white/90 font-light tracking-wide relative inline-block">
+              Transforming ideas into exceptional digital experiences through design, marketing, and development excellence.
+              <span className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-white/60 to-transparent"></span>
+            </p>
+          </div>
         </div>
 
         <div className="text-center md:text-left">
@@ -36,6 +38,9 @@ export function Footer() {
             <Link href="/about" className="transition hover:text-white">
               About
             </Link>
+            <Link href="/careers" className="transition hover:text-white">
+              Careers
+            </Link>
             <Link href="/contact" className="transition hover:text-white">
               Contact
             </Link>
@@ -47,10 +52,18 @@ export function Footer() {
             Core Services
           </div>
           <div className="mt-5 flex flex-col gap-3 text-[11px] font-medium uppercase tracking-[0.3em] text-slate-400">
-            <span>Design</span>
-            <span>Marketing</span>
-            <span>App Development</span>
-            <span>Website Development</span>
+            <Link href="/services/design" className="transition hover:text-white">
+              Design
+            </Link>
+            <Link href="/services/marketing" className="transition hover:text-white">
+              Marketing
+            </Link>
+            <Link href="/services/app-development" className="transition hover:text-white">
+              App Development
+            </Link>
+            <Link href="/services/website-development" className="transition hover:text-white">
+              Website Development
+            </Link>
           </div>
         </div>
 
@@ -100,7 +113,7 @@ export function Footer() {
               className="flex items-center gap-2 transition hover:text-white"
             >
               <svg className="h-4 w-4" fill="currentColor" viewBox="0 0 24 24">
-                <path d="M12 0C5.373 0 0 5.372 0 12c0 5.084 3.163 9.426 7.627 11.174-.105-.949-.2-2.405.042-3.441.218-.937 1.407-5.965 1.407-5.965s-.359-.719-.359-1.782c0-1.668.967-2.914 2.171-2.914 1.023 0 1.518.769 1.518 1.69 0 1.029-.655 2.568-.994 3.995-.284 1.219.605 2.211 1.375 2.211 1.58 0 2.964-1.646 2.964-4.031 0-2.115-1.511-3.6-3.766-3.6-2.551 0-4.028 1.657-4.028 3.6 0 .894.651 1.892 1.575 2.33.196.094.299.316.299.658 0 .67-.53 1.612-.563 1.943-.054.468-.394.801-.874.801-1.002 0-1.782-1.115-1.782-2.497 0-1.778 1.352-3.486 3.283-3.486 3.026 0 4.444 2.035 4.444 3.83 0 2.42-1.529 4.114-3.54 4.5-.354.062-.714.091-1.074.091-.262 0-.524-.015-.784-.045.524 1.523 2.032 2.64 3.833 2.647 1.701.007 3.226-.626 4.382-1.637 1.155-1.011 1.862-2.379 1.862-3.878 0-5.842-4.613-10.594-10.594-10.594-5.822 0-10.594 4.752-10.594 10.594 0 1.785.445 3.447 1.228 4.826z"/>
+                <path d="M12 2C6.477 2 2 6.477 2 12c0 4.237 2.636 7.855 6.356 9.312-.088-.791-.167-2.005.035-2.868.181-.78 1.172-4.97 1.172-4.97s-.299-.6-.299-1.486c0-1.39.806-2.428 1.81-2.428.852 0 1.264.64 1.264 1.408 0 .858-.546 2.14-.828 3.33-.236.995.5 1.807 1.48 1.807 1.778 0 3.144-1.874 3.144-4.58 0-2.393-1.72-4.068-4.177-4.068-2.845 0-4.515 2.135-4.515 4.34 0 .859.331 1.781.745 2.281a.3.3 0 01.069.288l-.278 1.133c-.044.183-.145.223-.335.134-1.249-.581-2.03-2.407-2.03-3.874 0-3.154 2.292-6.052 6.608-6.052 3.469 0 6.165 2.473 6.165 5.776 0 3.447-2.173 6.22-5.19 6.22-1.013 0-1.965-.525-2.291-1.148l-.623 2.378c-.226.869-.835 1.958-1.244 2.621.937.29 1.931.446 2.962.446 5.523 0 10-4.477 10-10S17.523 2 12 2z"/>
               </svg>
               Pinterest
             </a>
@@ -126,11 +139,22 @@ export function Footer() {
               </svg>
               LinkedIn
             </a>
+            <a
+              href="https://github.com/unicx"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center gap-2 transition hover:text-white"
+            >
+              <svg className="h-4 w-4" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+              </svg>
+              GitHub
+            </a>
           </div>
         </div>
       </div>
       
-      <div className="mt-16 border-t border-white/5 pt-8">
+      <div className="mt-16 border-t border-white/40 p-6">
         <div className="flex flex-col gap-6 text-center md:flex-row md:justify-between">
           <p className="text-[11px] text-slate-500">
             © 2026 UNICX. All rights reserved.
@@ -155,7 +179,7 @@ export function Footer() {
                 Cookie Settings
               </button>
               <span className="hidden text-[11px] text-slate-600 md:inline">•</span>
-              <Link href="/sitemap.xml" className="text-[11px] text-slate-500 transition hover:text-white">
+              <Link href="/sitemap" className="text-[11px] text-slate-500 transition hover:text-white">
                 Sitemap
               </Link>
             </div>

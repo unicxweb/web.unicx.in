@@ -5,18 +5,22 @@ import { usePathname } from "next/navigation";
 import { motion } from "framer-motion";
 import { useEffect, useState } from "react";
 import { cn } from "@/lib/utils";
+import { serviceCategories } from "@/lib/site-data";
 
 const navItems = [
   { label: "Home", href: "/" },
   { label: "Services", href: "/services" },
   { label: "Work", href: "/work" },
   { label: "About", href: "/about" },
+  { label: "Careers", href: "/careers" },
   { label: "Contact", href: "/contact" },
 ];
 
 export function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isServicesDropdownOpen, setIsServicesDropdownOpen] = useState(false);
+  const [activeCategory, setActiveCategory] = useState<string | null>(null);
   const pathname = usePathname();
 
   useEffect(() => {
@@ -64,17 +68,145 @@ export function Navbar() {
 
           <div className="hidden items-center gap-8 md:flex">
             {navItems.map((item) => (
-              <Link
-                key={item.href}
-                href={item.href}
-                className={cn(
-                  "group relative text-[10px] font-medium uppercase tracking-[0.36em] transition hover:text-white",
-                  pathname === item.href ? "text-white" : "text-slate-400"
-                )}
-              >
-                {item.label}
-                <span className="absolute -bottom-2 left-0 h-px w-full origin-left scale-x-0 bg-gradient-to-r from-white/0 via-white/90 to-white/0 transition-transform duration-300 group-hover:scale-x-100" />
-              </Link>
+              item.label === "Services" ? (
+                <div
+                  key={item.href}
+                  className="relative flex items-center"
+                  onMouseEnter={() => setIsServicesDropdownOpen(true)}
+                  onMouseLeave={() => {
+                    setIsServicesDropdownOpen(false);
+                    setActiveCategory(null);
+                  }}
+                >
+                  <button
+                    className={cn(
+                      "group relative text-[10px] font-medium uppercase tracking-[0.36em] transition hover:text-white flex items-center gap-1",
+                      pathname.startsWith("/services") ? "text-white" : "text-slate-400"
+                    )}
+                  >
+                    {item.label}
+                    <svg
+                      className={cn(
+                        "h-3 w-3 transition-transform duration-200",
+                        isServicesDropdownOpen && "rotate-180"
+                      )}
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M19 9l-7 7-7-7"
+                      />
+                    </svg>
+                    <span className="absolute -bottom-2 left-0 h-px w-full origin-left scale-x-0 bg-gradient-to-r from-white/0 via-white/90 to-white/0 transition-transform duration-300 group-hover:scale-x-100" />
+                  </button>
+
+                  <motion.div
+                    initial={false}
+                    animate={{
+                      opacity: isServicesDropdownOpen ? 1 : 0,
+                      y: isServicesDropdownOpen ? 0 : -8,
+                      scale: isServicesDropdownOpen ? 1 : 0.95,
+                      pointerEvents: isServicesDropdownOpen ? "auto" : "none",
+                    }}
+                    transition={{ 
+                      duration: 0.2, 
+                      ease: [0.25, 0.46, 0.45, 0.94],
+                      opacity: { duration: 0.15 },
+                      scale: { duration: 0.2 }
+                    }}
+                    className="absolute top-full left-0 mt-2 w-80 rounded-[20px] border border-white/10 bg-black/95 backdrop-blur-xl shadow-[0_20px_60px_rgba(0,0,0,0.3)]"
+                  >
+                    <div className="p-3">
+                      <Link
+                        href="/services"
+                        className="block rounded-[12px] px-4 py-3 text-[11px] font-medium uppercase tracking-[0.3em] text-slate-300 transition-all duration-200 hover:bg-white/[0.08] hover:text-white hover:translate-x-1"
+                      >
+                        All Services
+                      </Link>
+                      <div className="my-2 border-t border-white/10" />
+                      {serviceCategories.map((category) => {
+                        const categorySlug = category.name.toLowerCase().replace(/\s+/g, '-');
+                        return (
+                          <div
+                            key={category.name}
+                            className="relative"
+                            onMouseEnter={() => setActiveCategory(category.name)}
+                            onMouseLeave={() => setActiveCategory(null)}
+                          >
+                            <div className="flex items-center justify-between rounded-[12px] px-4 py-3 text-[11px] font-medium uppercase tracking-[0.3em] text-slate-300 transition-all duration-200 hover:bg-white/[0.08] hover:text-white hover:translate-x-1">
+                              <span>{category.name}</span>
+                              <svg
+                                className="h-3 w-3 text-slate-400 transition-transform duration-200 group-hover:translate-x-1"
+                                fill="none"
+                                stroke="currentColor"
+                                viewBox="0 0 24 24"
+                              >
+                                <path
+                                  strokeLinecap="round"
+                                  strokeLinejoin="round"
+                                  strokeWidth={2}
+                                  d="M9 5l7 7-7 7"
+                                />
+                              </svg>
+                            </div>
+
+                            <motion.div
+                              initial={false}
+                              animate={{
+                                opacity: activeCategory === category.name ? 1 : 0,
+                                x: activeCategory === category.name ? 0 : -8,
+                                scale: activeCategory === category.name ? 1 : 0.95,
+                                pointerEvents: activeCategory === category.name ? "auto" : "none",
+                              }}
+                              transition={{ 
+                                duration: 0.18, 
+                                ease: [0.25, 0.46, 0.45, 0.94],
+                                opacity: { duration: 0.12 },
+                                scale: { duration: 0.18 }
+                              }}
+                              className="absolute top-0 left-full ml-2 w-64 rounded-[20px] border border-white/10 bg-black/95 backdrop-blur-xl shadow-[0_20px_60px_rgba(0,0,0,0.3)]"
+                            >
+                              <div className="p-3">
+                                <div className="mb-2 text-[10px] font-semibold uppercase tracking-[0.3em] text-slate-500">
+                                  {category.name}
+                                </div>
+                                {category.items.map((service) => {
+                                  const serviceSlug = service.toLowerCase().replace(/\s+/g, '-').replace(/[^\w\-]/g, '');
+                                  return (
+                                    <Link
+                                      key={service}
+                                      href={`/services/${categorySlug}/${serviceSlug}`}
+                                      className="block rounded-[8px] px-3 py-2 text-[10px] font-medium uppercase tracking-[0.3em] text-slate-300 transition-all duration-200 hover:bg-white/[0.08] hover:text-white hover:translate-x-1"
+                                    >
+                                      {service}
+                                    </Link>
+                                  );
+                                })}
+                              </div>
+                            </motion.div>
+                          </div>
+                        );
+                      })}
+                    </div>
+                  </motion.div>
+                </div>
+              ) : (
+                <Link
+                  key={item.href}
+                  href={item.href}
+                  className={cn(
+                    "group relative text-[10px] font-medium uppercase tracking-[0.36em] transition hover:text-white",
+                    pathname === item.href ? "text-white" : "text-slate-400"
+                  )}
+                >
+                  {item.label}
+                  <span className="absolute -bottom-2 left-0 h-px w-full origin-left scale-x-0 bg-gradient-to-r from-white/0 via-white/90 to-white/0 transition-transform duration-300 group-hover:scale-x-100" />
+                </Link>
+              )
             ))}
 
             <Link
@@ -89,7 +221,7 @@ export function Navbar() {
                 href="https://x.com/unicx"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-slate-400 transition hover:text-white hover:scale-110"
+                className="text-slate-400 transition-all duration-300 ease-out hover:text-white hover:scale-125 hover:rotate-6 active:scale-110"
                 aria-label="X"
               >
                 <svg className="h-4 w-4" fill="currentColor" viewBox="0 0 24 24">
@@ -100,7 +232,7 @@ export function Navbar() {
                 href="https://linkedin.com/company/unicx"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-slate-400 transition hover:text-white hover:scale-110"
+                className="text-slate-400 transition-all duration-300 ease-out hover:text-white hover:scale-125 hover:-rotate-6 active:scale-110"
                 aria-label="LinkedIn"
               >
                 <svg className="h-4 w-4" fill="currentColor" viewBox="0 0 24 24">
@@ -111,7 +243,7 @@ export function Navbar() {
                 href="https://instagram.com/unicx"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-slate-400 transition hover:text-white hover:scale-110"
+                className="text-slate-400 transition-all duration-300 ease-out hover:text-white hover:scale-125 hover:rotate-12 active:scale-110"
                 aria-label="Instagram"
               >
                 <svg className="h-4 w-4" fill="currentColor" viewBox="0 0 24 24">
@@ -164,17 +296,47 @@ export function Navbar() {
           <div className="border-t border-white/10 pt-4">
             <div className="flex flex-col gap-4">
               {navItems.map((item) => (
-                <Link
-                  key={item.href}
-                  href={item.href}
-                  onClick={() => setIsMenuOpen(false)}
-                  className={cn(
-                    "text-[10px] font-medium uppercase tracking-[0.36em] transition hover:text-white",
-                    pathname === item.href ? "text-white" : "text-slate-300"
-                  )}
-                >
-                  {item.label}
-                </Link>
+                item.label === "Services" ? (
+                  <div key={item.href} className="space-y-2">
+                    <Link
+                      href="/services"
+                      onClick={() => setIsMenuOpen(false)}
+                      className={cn(
+                        "text-[10px] font-medium uppercase tracking-[0.36em] transition hover:text-white",
+                        pathname === "/services" ? "text-white" : "text-slate-300"
+                      )}
+                    >
+                      {item.label}
+                    </Link>
+                    <div className="ml-4 space-y-1">
+                      {serviceCategories.map((category) => {
+                        const categorySlug = category.name.toLowerCase().replace(/\s+/g, '-');
+                        return (
+                          <Link
+                            key={category.name}
+                            href={`/services/${categorySlug}`}
+                            onClick={() => setIsMenuOpen(false)}
+                            className="block text-[9px] font-medium uppercase tracking-[0.3em] text-slate-400 transition hover:text-white"
+                          >
+                            {category.name}
+                          </Link>
+                        );
+                      })}
+                    </div>
+                  </div>
+                ) : (
+                  <Link
+                    key={item.href}
+                    href={item.href}
+                    onClick={() => setIsMenuOpen(false)}
+                    className={cn(
+                      "text-[10px] font-medium uppercase tracking-[0.36em] transition hover:text-white",
+                      pathname === item.href ? "text-white" : "text-slate-300"
+                    )}
+                  >
+                    {item.label}
+                  </Link>
+                )
               ))}
               <Link
                 href="/contact"

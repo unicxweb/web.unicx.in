@@ -2,7 +2,7 @@ import Link from "next/link";
 import { serviceCategories } from "@/lib/site-data";
 
 const deliveryPoints = [
-  "Strategy, design, and implementation in one flow",
+  "Strategy, graphic design, and implementation in one flow",
   "Clear scope across brand, growth, product, and web",
   "Project-based or ongoing partner support",
 ];
@@ -127,7 +127,7 @@ export function ServicesOverview() {
           <div className="pointer-events-none absolute right-8 top-0 h-32 w-32 rounded-full bg-white/5 blur-3xl" />
           <div className="section-label">Services</div>
           <h1 className="max-w-4xl text-[clamp(3rem,7vw,5.2rem)] font-semibold uppercase leading-[0.92] tracking-[-0.065em] text-white">
-            Design, growth, apps, and websites under one roof.
+            Graphic design, growth, apps, and websites under one roof.
           </h1>
           <p className="mt-8 max-w-2xl text-[15px] leading-8 text-slate-400 sm:text-lg">
             UNICX delivers premium digital services for brands that need

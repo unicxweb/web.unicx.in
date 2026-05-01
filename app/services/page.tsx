@@ -8,30 +8,30 @@ import { ServicesFAQ } from "@/components/ServicesFAQ";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Web Design & Development Services | Professional Digital Solutions | UNICX",
-  description: "Complete web design and development services including UI/UX design, responsive websites, e-commerce solutions, and custom web applications. Professional digital services for business growth.",
+  title: "Web Graphic Design & Development Services | Professional Digital Solutions | UNICX",
+  description: "Complete web graphic design and development services including UI/UX design, responsive websites, e-commerce solutions, and custom web applications. Professional digital services for business growth.",
   keywords: [
-    "web design services",
+    "web graphic design services",
     "website development",
-    "UI/UX design",
-    "responsive web design",
+    "UI/UX graphic design",
+    "responsive web graphic design",
     "e-commerce development",
     "custom web applications",
-    "professional web design",
+    "professional web graphic design",
     "web development company",
-    "business website design",
-    "modern web solutions"
+    "business website graphic design",
+    "modern web graphic solutions"
   ],
   openGraph: {
-    title: "Web Design & Development Services | Professional Digital Solutions | UNICX",
-    description: "Complete web design and development services including UI/UX design, responsive websites, e-commerce solutions, and custom web applications.",
+    title: "Web Graphic Design & Development Services | Professional Digital Solutions | UNICX",
+    description: "Complete web graphic design and development services including UI/UX design, responsive websites, e-commerce solutions, and custom web applications.",
     url: "https://web.unicx.in/services",
     images: [
       {
         url: "/og-services.jpg",
         width: 1200,
         height: 630,
-        alt: "UNICX Web Design Services",
+        alt: "UNICX Web Graphic Design Services",
       },
     ],
   },

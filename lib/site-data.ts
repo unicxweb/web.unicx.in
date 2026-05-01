@@ -1,17 +1,53 @@
 export const serviceCategories = [
   {
-    name: "Design",
+    name: "Graphic Design",
     description:
       "Premium visual systems, product interfaces, and brand assets built for clarity and trust.",
-    imageLabel: "Design Preview",
+    imageLabel: "Graphic Design Preview",
     imageSrc: "",
     items: [
       "UI/UX Design",
+      "Logo & Branding",
+      "Social Media Creatives",
+      "Company Profiles & Presentations",
+      "Motion Graphics & Video",
       "Infographics",
-      "Web Design",
-      "Mobile App Design",
-      "Logo Design",
-      "Graphics Design",
+    ],
+  },
+  {
+    name: "Website Development",
+    description:
+      "Business websites and custom builds focused on presentation, performance, and measurable outcomes.",
+    imageLabel: "Website Preview",
+    imageSrc: "",
+    items: [
+      "Static Websites",
+      "Dynamic Websites",
+      "Custom Web Solutions",
+      "Ecommerce Websites",
+      "Landing Pages",
+    ],
+  },
+  {
+    name: "App Development",
+    description:
+      "Mobile-first product development across native and hybrid experiences with strong usability foundations.",
+    imageLabel: "App Preview",
+    imageSrc: "",
+    items: ["Android Apps", "iOS Apps", "Hybrid Apps", "Progressive Web Apps (PWA)"],
+  },
+  {
+    name: "Software Development",
+    description:
+      "Custom software solutions and enterprise applications built for scalability, performance, and business growth.",
+    imageLabel: "Software Development Preview",
+    imageSrc: "",
+    items: [
+      "CRM & ERP Solutions",
+      "Custom Software Development",
+      "Desktop Applications",
+      "Enterprise Solutions",
+      "SaaS Applications",
     ],
   },
   {
@@ -21,37 +57,11 @@ export const serviceCategories = [
     imageLabel: "Marketing Preview",
     imageSrc: "",
     items: [
-      "OnPage SEO",
-      "OffPage SEO",
+      "On-Page SEO",
+      "Off-Page SEO",
       "Technical SEO",
       "Social Media Marketing",
-      "Instagram Ads",
-      "Facebook Ads",
-      "Google Ads",
-      "Search Ads",
-      "Display Ads",
-    ],
-  },
-  {
-    name: "App Development",
-    description:
-      "Mobile-first product development across native and hybrid experiences with strong usability foundations.",
-    imageLabel: "App Preview",
-    imageSrc: "",
-    items: ["Android Apps", "iOS Apps", "Hybrid Apps", "PWA"],
-  },
-  {
-    name: "Website Development",
-    description:
-      "Business websites and custom builds focused on presentation, performance, and measurable outcomes.",
-    imageLabel: "Website Preview",
-    imageSrc: "",
-    items: [
-      "Static Website",
-      "Dynamic Website",
-      "Custom Web Solutions",
-      "Ecommerce Website",
-      "Landing Pages",
+      "Paid Advertising (Google, Facebook, Instagram)",
     ],
   },
 ];
@@ -78,6 +88,6 @@ export const caseStudies = [
 export const companyPrinciples = [
   "Clarity over clutter",
   "Premium execution at every layer",
-  "Design and growth should work together",
+  "Graphic design and growth should work together",
   "Systems must support long-term scale",
 ];

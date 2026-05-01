@@ -14,19 +14,19 @@ const inter = Inter({
 
 export const metadata: Metadata = {
   title: {
-    default: "UNICX Web Design | Professional Website Development Services",
-    template: "%s | UNICX Web Design"
+    default: "UNICX Web Graphic Design | Professional Website Development Services",
+    template: "%s | UNICX Web Graphic Design"
   },
   description:
-    "UNICX offers professional web design and development services. We create custom, responsive websites that drive business growth. Expert web developers delivering quality solutions.",
+    "UNICX offers professional web graphic design and development services. We create custom, responsive websites that drive business growth. Expert web developers delivering quality solutions.",
   keywords: [
-    "web design",
+    "web graphic design",
     "website development",
-    "custom web design",
+    "custom web graphic design",
     "professional web development",
-    "responsive web design",
+    "responsive web graphic design",
     "e-commerce websites",
-    "web design services",
+    "web graphic design services",
     "website development company"
   ],
   authors: [{ name: "UNICX" }],
@@ -45,22 +45,22 @@ export const metadata: Metadata = {
     type: "website",
     locale: "en_US",
     url: "https://web.unicx.in",
-    siteName: "UNICX Web Design",
-    title: "UNICX Web Design | Professional Website Development Services",
-    description: "UNICX offers professional web design and development services. We create custom, responsive websites that drive business growth.",
+    siteName: "UNICX Web Graphic Design",
+    title: "UNICX Web Graphic Design | Professional Website Development Services",
+    description: "UNICX offers professional web graphic design and development services. We create custom, responsive websites that drive business growth.",
     images: [
       {
         url: "/og-image.jpg",
         width: 1200,
         height: 630,
-        alt: "UNICX Web Design Services",
+        alt: "UNICX Web Graphic Design Services",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "UNICX Web Design | Professional Website Development Services",
-    description: "UNICX offers professional web design and development services. We create custom, responsive websites that drive business growth.",
+    title: "UNICX Web Graphic Design | Professional Website Development Services",
+    description: "UNICX offers professional web graphic design and development services. We create custom, responsive websites that drive business growth.",
     images: ["/og-image.jpg"],
   },
   robots: {

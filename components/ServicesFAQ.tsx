@@ -5,11 +5,11 @@ import { useState } from "react";
 
 const faqs = [
   {
-    question: "What web design services do you offer?",
-    answer: "We offer comprehensive web design services including UI/UX design, responsive web design, e-commerce website development, custom web applications, landing pages, and website redesign. Our team creates visually stunning, user-friendly websites that drive business growth."
+    question: "What web graphic design services do you offer?",
+    answer: "We offer comprehensive web graphic design services including UI/UX design, responsive web design, e-commerce website development, custom web applications, landing pages, and website redesign. Our team creates visually stunning, user-friendly websites that drive business growth."
   },
   {
-    question: "How long does a typical web design project take?",
+    question: "How long does a typical web graphic design project take?",
     answer: "Project timelines vary based on complexity. A standard business website typically takes 4-8 weeks, while e-commerce platforms may require 8-12 weeks. Custom web applications can take 3-6 months. We provide detailed timelines during our initial consultation."
   },
   {
@@ -29,7 +29,7 @@ const faqs = [
     answer: "Yes, we implement SEO best practices during development including proper meta tags, structured data, fast loading speeds, and mobile optimization. We also offer ongoing SEO services to improve your search engine rankings and organic traffic."
   },
   {
-    question: "What is your web design process?",
+    question: "What is your web graphic design process?",
     answer: "Our process includes: 1) Discovery and strategy, 2) Wireframing and design, 3) Development and testing, 4) Launch and deployment, 5) Training and support. We maintain clear communication throughout the project and involve you at each stage."
   },
   {
@@ -78,10 +78,10 @@ export function ServicesFAQ() {
       >
         <div className="section-label">Frequently Asked Questions</div>
         <h2 className="mx-auto max-w-3xl text-[clamp(2.1rem,4.4vw,3.7rem)] font-semibold uppercase leading-[0.98] tracking-[-0.04em] text-white">
-          Everything you need to know about our web design services
+          Everything you need to know about our web graphic design services
         </h2>
         <p className="mx-auto mt-5 max-w-2xl text-[15px] leading-7 text-slate-400 sm:text-[17px] sm:leading-8">
-          Get answers to common questions about our web design and development process, 
+          Get answers to common questions about our web graphic design and development process, 
           technologies, and how we can help your business grow online.
         </p>
       </motion.div>

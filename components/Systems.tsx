@@ -5,11 +5,11 @@ import { motion } from "framer-motion";
 
 const systems = [
   {
-    title: "Design",
+    title: "Graphic Design",
     description:
       "UI/UX, infographics, web design, mobile app design, logo systems, and brand graphics.",
     items: ["UI/UX", "Brand", "Web", "Mobile"],
-    href: "/services/design",
+    href: "/services/graphic-design",
   },
   {
     title: "Marketing",

@@ -2,8 +2,8 @@ export default function StructuredData() {
   const businessSchema = {
     "@context": "https://schema.org",
     "@type": "ProfessionalService",
-    "name": "UNICX Web Design",
-    "description": "Professional web design and development services. We create custom, responsive websites that drive business growth.",
+    "name": "UNICX Web Graphic Design",
+    "description": "Professional web graphic design and development services. We create custom, responsive websites that drive business growth.",
     "url": "https://web.unicx.in",
     "logo": "https://web.unicx.in/logo.png",
     "image": "https://web.unicx.in/og-image.jpg",
@@ -43,8 +43,8 @@ export default function StructuredData() {
           "@type": "Offer",
           "itemOffered": {
             "@type": "Service",
-            "name": "Web Design",
-            "description": "Custom web design services with modern UI/UX"
+            "name": "Web Graphic Design",
+            "description": "Custom web graphic design services with modern UI/UX"
           }
         },
         {
@@ -67,8 +67,8 @@ export default function StructuredData() {
           "@type": "Offer",
           "itemOffered": {
             "@type": "Service",
-            "name": "Responsive Design",
-            "description": "Mobile-friendly responsive web design"
+            "name": "Responsive Graphic Design",
+            "description": "Mobile-friendly responsive web graphic design"
           }
         }
       ]
@@ -78,10 +78,10 @@ export default function StructuredData() {
       "name": "India"
     },
     "serviceType": [
-      "Web Design",
+      "Web Graphic Design",
       "Website Development", 
       "E-commerce Development",
-      "Responsive Design",
+      "Responsive Graphic Design",
       "UI/UX Design"
     ],
     "aggregateRating": {
@@ -94,9 +94,9 @@ export default function StructuredData() {
   const websiteSchema = {
     "@context": "https://schema.org",
     "@type": "WebSite",
-    "name": "UNICX Web Design",
+    "name": "UNICX Web Graphic Design",
     "url": "https://web.unicx.in",
-    "description": "Professional web design and development services",
+    "description": "Professional web graphic design and development services",
     "potentialAction": {
       "@type": "SearchAction",
       "target": {

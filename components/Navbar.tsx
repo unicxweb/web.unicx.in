@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { motion } from "framer-motion";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import { cn } from "@/lib/utils";
 import { serviceCategories } from "@/lib/site-data";
 
@@ -22,6 +22,8 @@ export function Navbar() {
   const [isServicesDropdownOpen, setIsServicesDropdownOpen] = useState(false);
   const [activeCategory, setActiveCategory] = useState<string | null>(null);
   const pathname = usePathname();
+  const dropdownTimeoutRef = useRef<NodeJS.Timeout | null>(null);
+  const categoryTimeoutRef = useRef<NodeJS.Timeout | null>(null);
 
   useEffect(() => {
     const onScroll = () => setIsScrolled(window.scrollY > 18);
@@ -41,6 +43,17 @@ export function Navbar() {
 
     window.addEventListener("resize", onResize);
     return () => window.removeEventListener("resize", onResize);
+  }, []);
+
+  useEffect(() => {
+    return () => {
+      if (dropdownTimeoutRef.current) {
+        clearTimeout(dropdownTimeoutRef.current);
+      }
+      if (categoryTimeoutRef.current) {
+        clearTimeout(categoryTimeoutRef.current);
+      }
+    };
   }, []);
 
   return (
@@ -72,10 +85,18 @@ export function Navbar() {
                 <div
                   key={item.href}
                   className="relative flex items-center"
-                  onMouseEnter={() => setIsServicesDropdownOpen(true)}
+                  onMouseEnter={() => {
+                    if (dropdownTimeoutRef.current) {
+                      clearTimeout(dropdownTimeoutRef.current);
+                      dropdownTimeoutRef.current = null;
+                    }
+                    setIsServicesDropdownOpen(true);
+                  }}
                   onMouseLeave={() => {
-                    setIsServicesDropdownOpen(false);
-                    setActiveCategory(null);
+                    dropdownTimeoutRef.current = setTimeout(() => {
+                      setIsServicesDropdownOpen(false);
+                      setActiveCategory(null);
+                    }, 150);
                   }}
                 >
                   <button
@@ -118,7 +139,19 @@ export function Navbar() {
                       opacity: { duration: 0.15 },
                       scale: { duration: 0.2 }
                     }}
-                    className="absolute top-full left-0 mt-2 w-80 rounded-[20px] border border-white/10 bg-black/95 backdrop-blur-xl shadow-[0_20px_60px_rgba(0,0,0,0.3)]"
+                    className="absolute top-full left-0 mt-7 w-80 rounded-[20px] border border-white/10 bg-black/95 backdrop-blur-xl shadow-[0_20px_60px_rgba(0,0,0,0.3)]"
+                    onMouseEnter={() => {
+                      if (dropdownTimeoutRef.current) {
+                        clearTimeout(dropdownTimeoutRef.current);
+                        dropdownTimeoutRef.current = null;
+                      }
+                    }}
+                    onMouseLeave={() => {
+                      dropdownTimeoutRef.current = setTimeout(() => {
+                        setIsServicesDropdownOpen(false);
+                        setActiveCategory(null);
+                      }, 150);
+                    }}
                   >
                     <div className="p-3">
                       <Link
@@ -134,8 +167,18 @@ export function Navbar() {
                           <div
                             key={category.name}
                             className="relative"
-                            onMouseEnter={() => setActiveCategory(category.name)}
-                            onMouseLeave={() => setActiveCategory(null)}
+                            onMouseEnter={() => {
+                            if (categoryTimeoutRef.current) {
+                              clearTimeout(categoryTimeoutRef.current);
+                              categoryTimeoutRef.current = null;
+                            }
+                            setActiveCategory(category.name);
+                          }}
+                          onMouseLeave={() => {
+                            categoryTimeoutRef.current = setTimeout(() => {
+                              setActiveCategory(null);
+                            }, 150);
+                          }}
                           >
                             <div className="flex items-center justify-between rounded-[12px] px-4 py-3 text-[11px] font-medium uppercase tracking-[0.3em] text-slate-300 transition-all duration-200 hover:bg-white/[0.08] hover:text-white hover:translate-x-1">
                               <span>{category.name}</span>
@@ -168,7 +211,18 @@ export function Navbar() {
                                 opacity: { duration: 0.12 },
                                 scale: { duration: 0.18 }
                               }}
-                              className="absolute top-0 left-full ml-2 w-64 rounded-[20px] border border-white/10 bg-black/95 backdrop-blur-xl shadow-[0_20px_60px_rgba(0,0,0,0.3)]"
+                              className="absolute top-0 left-full w-64 rounded-[20px] border border-white/10 bg-black/95 backdrop-blur-xl shadow-[0_20px_60px_rgba(0,0,0,0.3)]"
+                              onMouseEnter={() => {
+                                if (categoryTimeoutRef.current) {
+                                  clearTimeout(categoryTimeoutRef.current);
+                                  categoryTimeoutRef.current = null;
+                                }
+                              }}
+                              onMouseLeave={() => {
+                                categoryTimeoutRef.current = setTimeout(() => {
+                                  setActiveCategory(null);
+                                }, 150);
+                              }}
                             >
                               <div className="p-3">
                                 <div className="mb-2 text-[10px] font-semibold uppercase tracking-[0.3em] text-slate-500">

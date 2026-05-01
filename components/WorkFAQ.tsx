@@ -6,7 +6,7 @@ import { AnimatePresence, motion } from "framer-motion";
 const workFaqs = [
   {
     question: "How do you approach new projects?",
-    answer: "We start with understanding your business goals and user needs, then develop a strategy that aligns design, technology, and marketing objectives. Every project begins with clarity on success metrics.",
+    answer: "We start with understanding your business goals and user needs, then develop a strategy that aligns graphic design, technology, and marketing objectives. Every project begins with clarity on success metrics.",
   },
   {
     question: "What types of projects do you take on?",

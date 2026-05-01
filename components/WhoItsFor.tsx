@@ -13,7 +13,7 @@ const audiences = [
   {
     title: "Teams needing execution across multiple fronts",
     description:
-      "When design, marketing, web, and app work cannot stay fragmented because every channel now affects conversion and trust.",
+      "When graphic design, marketing, web, and app work cannot stay fragmented because every channel now affects conversion and trust.",
   },
   {
     title: "Brands preparing for a launch, reposition, or growth push",

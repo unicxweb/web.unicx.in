@@ -2,21 +2,21 @@ export default function StructuredData() {
   const businessSchema = {
     "@context": "https://schema.org",
     "@type": "ProfessionalService",
-    "name": "UNICX Web Graphic Design",
+    "name": "studio.unicx Web Graphic Design",
     "description": "Professional web graphic design and development services. We create custom, responsive websites that drive business growth.",
-    "url": "https://web.unicx.in",
-    "logo": "https://web.unicx.in/logo.png",
-    "image": "https://web.unicx.in/og-image.jpg",
+    "url": "https://studio.unicx.in",
+    "logo": "https://studio.unicx.in/logo.png",
+    "image": "https://studio.unicx.in/og-image.jpg",
     "sameAs": [
-      "https://twitter.com/unicx",
-      "https://linkedin.com/company/unicx",
-      "https://facebook.com/unicx"
+      "https://twitter.com/studio.unicx",
+      "https://linkedin.com/company/studio.unicx",
+      "https://facebook.com/studio.unicx"
     ],
     "contactPoint": {
       "@type": "ContactPoint",
       "telephone": "+91-XXXXXXXXXX",
       "contactType": "customer service",
-      "email": "hello@unicx.in",
+      "email": "hello@studio.unicx.in",
       "availableLanguage": ["English"]
     },
     "address": {
@@ -94,14 +94,14 @@ export default function StructuredData() {
   const websiteSchema = {
     "@context": "https://schema.org",
     "@type": "WebSite",
-    "name": "UNICX Web Graphic Design",
-    "url": "https://web.unicx.in",
+    "name": "studio.unicx Web Graphic Design",
+    "url": "https://studio.unicx.in",
     "description": "Professional web graphic design and development services",
     "potentialAction": {
       "@type": "SearchAction",
       "target": {
         "@type": "EntryPoint",
-        "urlTemplate": "https://web.unicx.in/search?q={search_term_string}"
+        "urlTemplate": "https://studio.unicx.in/search?q={search_term_string}"
       },
       "query-input": "required name=search_term_string"
     }

@@ -32,7 +32,7 @@ body {
   min-height: 100vh;
   background: #000000;
   color: var(--foreground);
-  font-family: var(--font-sans), sans-serif;
+  font-family: 'JetBrains Mono', 'Consolas', 'Monaco', monospace;
   text-rendering: optimizeLegibility;
 }
 

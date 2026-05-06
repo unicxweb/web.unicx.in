@@ -5,9 +5,9 @@ import { serviceCategories } from "@/lib/site-data";
 import Link from "next/link";
 
 export const metadata = {
-  title: "Sitemap | UNICX",
-  description: "Complete site structure and navigation overview of UNICX website",
-  keywords: ["sitemap", "site structure", "navigation", "UNICX"],
+  title: "Sitemap | studio.unicx",
+  description: "Complete site structure and navigation overview of studio.unicx website",
+  keywords: ["sitemap", "site structure", "navigation", "studio.unicx"],
 };
 
 export default function SitemapPage() {

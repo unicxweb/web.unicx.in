@@ -2,7 +2,7 @@ User-agent: *
 Allow: /
 
 # Sitemap
-Sitemap: https://web.unicx.in/sitemap.xml
+Sitemap: https://studio.unicx.in/sitemap.xml
 
 # Block common non-content paths
 Disallow: /api/

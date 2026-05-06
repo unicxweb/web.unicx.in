@@ -10,13 +10,13 @@ import { WorkFAQ } from "@/components/WorkFAQ";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Web Design Portfolio | Case Studies & Projects | UNICX",
-  description: "Explore UNICX's web design portfolio featuring successful case studies, custom website projects, and digital solutions. See our work in web development, UI/UX design, and digital transformation.",
+  title: "Web Design Portfolio | Case Studies & Projects | studio.unicx",
+  description: "Explore studio.unicx's web design portfolio featuring successful case studies, custom website projects, and digital solutions. See our work in web development, UI/UX design, and digital transformation.",
   keywords: [
     "web design portfolio",
     "website case studies",
     "web development projects",
-    "UNICX portfolio",
+    "studio.unicx portfolio",
     "web design examples",
     "website design samples",
     "digital projects",
@@ -25,15 +25,15 @@ export const metadata: Metadata = {
     "professional web design work"
   ],
   openGraph: {
-    title: "Web Design Portfolio | Case Studies & Projects | UNICX",
-    description: "Explore UNICX's web design portfolio featuring successful case studies and custom website projects.",
-    url: "https://web.unicx.in/work",
+    title: "Web Design Portfolio | Case Studies & Projects | studio.unicx",
+    description: "Explore studio.unicx's web design portfolio featuring successful case studies and custom website projects.",
+    url: "https://studio.unicx.in/work",
     images: [
       {
         url: "/og-work.jpg",
         width: 1200,
         height: 630,
-        alt: "UNICX Web Design Portfolio",
+        alt: "studio.unicx Web Design Portfolio",
       },
     ],
   },
@@ -54,7 +54,7 @@ export default function WorkPage() {
         <PageIntro
           eyebrow="Work"
           title="Selected outcomes shaped through strategy and execution."
-          description="A closer view into how UNICX approaches product clarity, marketing performance, and conversion-focused design systems."
+          description="A closer view into how studio.unicx approaches product clarity, marketing performance, and conversion-focused design systems."
           ctaLabel="Discuss Your Project"
           ctaHref="/contact"
         />

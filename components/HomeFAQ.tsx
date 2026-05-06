@@ -5,9 +5,9 @@ import { AnimatePresence, motion } from "framer-motion";
 
 const faqs = [
   {
-    question: "What does UNICX actually do?",
+    question: "What does studio.unicx actually do?",
     answer:
-      "UNICX combines design, marketing, app development, and website development into one connected digital partner.",
+      "studio.unicx combines design, marketing, app development, and website development into one connected digital partner.",
   },
   {
     question: "Can you handle only one part of a project?",

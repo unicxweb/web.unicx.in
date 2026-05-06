@@ -1,0 +1,27 @@
+# Custom 404 Error Page for subdomain
+ErrorDocument 404 /404.html
+
+# Enable URL rewriting
+RewriteEngine On
+
+# Handle Next.js static assets first
+RewriteRule ^_next/(.*)$ /_next/$1 [L]
+RewriteRule ^static/(.*)$ /static/$1 [L]
+
+# Serve existing files and directories
+RewriteCond %{REQUEST_FILENAME} -f [OR]
+RewriteCond %{REQUEST_FILENAME} -d
+RewriteRule ^ - [L]
+
+# Handle specific app routes
+RewriteCond %{REQUEST_URI} ^/(about|careers|contact|privacy|terms|work|services|sitemap)/?$
+RewriteRule ^(.*)$ /index.html [L]
+
+# Handle 404 page specifically
+RewriteCond %{REQUEST_URI} ^/404/?$
+RewriteRule ^.*$ /404.html [L]
+
+# All other non-existent pages should show 404
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^.*$ /404.html [L]

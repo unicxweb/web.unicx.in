@@ -130,7 +130,7 @@ export function ServicesOverview() {
             Graphic design, growth, apps, and websites under one roof.
           </h1>
           <p className="mt-8 max-w-2xl text-[15px] leading-8 text-slate-400 sm:text-lg">
-            UNICX delivers premium digital services for brands that need
+            studio.unicx delivers premium digital services for brands that need
             sharper positioning, stronger experiences, and systems that convert
             attention into momentum.
           </p>

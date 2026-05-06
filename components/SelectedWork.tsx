@@ -76,18 +76,18 @@ const caseStudies = [
   },
   {
     id: 3,
-    company: "UNICX",
+    company: "studio.unicx",
     logo: "UX",
     testimonial: "The attention to detail and user experience excellence exceeded our expectations completely.",
     author: "Emily Watson",
-    authorTitle: "CTO, UNICX",
+    authorTitle: "CTO, studio.unicx",
     authorAvatar: "EW",
     metric: "89% user satisfaction",
-    imageLabel: "UNICX",
-    imageSrc: "https://www.unicx.in/",
+    imageLabel: "studio.unicx",
+    imageSrc: "https://unicx.in/",
     description:
       "Built a scalable design system that reduced development time while improving user satisfaction metrics.",
-    link: "https://www.unicx.in/",
+    link: "https://unicx.in/",
   },
 ];
 
@@ -131,7 +131,7 @@ function LiveSitePreview({
   return (
     <div
       ref={frameRef}
-      className="relative w-full aspect-[16/10] rounded-[12px] overflow-hidden backdrop-blur-xl bg-gradient-to-br from-white/[0.08] via-white/[0.05] to-white/[0.02] border border-white/[0.08] shadow-[0_30px_80px_rgba(0,0,0,0.4),0_0_120px_rgba(255,255,255,0.1)]"
+      className="relative w-full aspect-[16/10] overflow-hidden rounded-lg border border-white/20 bg-black"
     >
       {src ? (
         <div className="absolute inset-0 flex items-center justify-center">
@@ -270,11 +270,11 @@ export function SelectedWork({ showTitle = true, className = "" }: SelectedWorkP
               onMouseLeave={() => setIsAutoPlaying(true)}
             >
                 {/* Two-Column Hero Card with Glassmorphism */}
-                <div className="group relative h-full rounded-[12px] overflow-hidden backdrop-blur-xl bg-gradient-to-br from-white/[0.08] via-white/[0.05] to-white/[0.02] border border-white/[0.08]">
+                <div className="group relative h-full overflow-hidden rounded-lg border border-white/20 bg-black">
                   
                   <div className="relative flex h-full">
                     {/* Left Half - Testimonial with Glassmorphism */}
-                    <div className="w-1/2 p-12 lg:p-16 flex flex-col justify-between backdrop-blur-md bg-black border-r border-white/[0.05] relative">
+                    <div className="w-1/2 p-12 lg:p-16 flex flex-col justify-between bg-black border-r border-white/10 relative">
                       <div className="flex h-full flex-col justify-between">
                         <div className="relative z-10">
                           <div className="flex items-center gap-4 mb-8">
@@ -331,7 +331,7 @@ export function SelectedWork({ showTitle = true, className = "" }: SelectedWorkP
                     </div>
                     
                     {/* Right Half - Laptop Screen Preview */}
-                    <div className="w-1/2 relative backdrop-blur-md bg-gradient-to-br from-slate-800/40 to-slate-900/60 p-8 lg:p-12 flex items-center justify-center overflow-hidden transition-all duration-500 ease-[cubic-bezier(0.4,0,0.2,1)]">
+                    <div className="w-1/2 relative bg-black p-8 lg:p-12 flex items-center justify-center overflow-hidden transition-all duration-500 ease-[cubic-bezier(0.4,0,0.2,1)]">
                       {/* Background zoom layer */}
                       <div className="absolute inset-0 transition-transform duration-500 ease-[cubic-bezier(0.4,0,0.2,1)] group-hover:scale-[1.05]">
                         {/* High-end floating gradient with auto-changing colors */}
@@ -350,7 +350,7 @@ export function SelectedWork({ showTitle = true, className = "" }: SelectedWorkP
                         </div>
                       </div>
                       {/* Stable preview window */}
-                      <div className="relative w-full max-w-xl aspect-[16/10] overflow-hidden rounded-[12px]">
+                      <div className="relative w-full max-w-xl aspect-[16/10] overflow-hidden rounded-lg">
                         <LivePreviewStack activeIndex={currentIndex} />
                       </div>
                     </div>
@@ -420,12 +420,12 @@ export function SelectedWork({ showTitle = true, className = "" }: SelectedWorkP
         <div className="absolute inset-0 pointer-events-none">
           {/* Previous card preview */}
           <div className="absolute left-0 top-1/2 -translate-y-1/2 w-1/3 opacity-20 blur-md">
-            <div className="h-[350px] rounded-[12px] backdrop-blur-xl bg-gradient-to-br from-white/[0.05] via-white/[0.02] to-transparent border border-white/[0.05] shadow-[0_0_60px_rgba(255,255,255,0.05)]" />
+            <div className="h-[350px] rounded-lg border border-white/20 bg-black" />
           </div>
           
           {/* Next card preview */}
           <div className="absolute right-0 top-1/2 -translate-y-1/2 w-1/3 opacity-20 blur-md">
-            <div className="h-[350px] rounded-[12px] backdrop-blur-xl bg-gradient-to-br from-white/[0.05] via-white/[0.02] to-transparent border border-white/[0.05] shadow-[0_0_60px_rgba(255,255,255,0.05)]" />
+            <div className="h-[350px] rounded-lg border border-white/20 bg-black" />
           </div>
         </div>
       </div>

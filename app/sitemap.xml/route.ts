@@ -3,7 +3,7 @@ import { serviceCategories } from '@/lib/site-data'
 export const dynamic = 'force-static'
 
 function generateServiceUrls(): string {
-  const baseUrl = 'https://web.unicx.in'
+  const baseUrl = 'https://studio.unicx.in'
   const urls: string[] = []
   
   // Add service category pages
@@ -34,7 +34,7 @@ function generateServiceUrls(): string {
 }
 
 export function GET() {
-  const baseUrl = 'https://web.unicx.in'
+  const baseUrl = 'https://studio.unicx.in'
   const serviceUrls = generateServiceUrls()
   
   const sitemap = `<?xml version="1.0" encoding="UTF-8"?>

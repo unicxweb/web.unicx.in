@@ -91,7 +91,7 @@ export function Systems() {
         <div className="max-w-2xl lg:justify-self-end">
           <p className="text-[15px] leading-8 text-slate-400 sm:text-[17px]">
             From brand identity and growth marketing to apps and websites,
-            UNICX brings strategy, execution, and polish into one clear delivery
+            studio.unicx brings strategy, execution, and polish into one clear delivery
             model.
           </p>
           <div className="mt-8">

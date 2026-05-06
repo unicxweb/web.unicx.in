@@ -39,7 +39,7 @@ export function Hero() {
           Where Design, Marketing, Apps, and Web Work Together.
         </h1>
         <p className="mt-5 max-w-[38rem] text-[14px] leading-6 text-slate-400 sm:text-[16px] sm:leading-7">
-          UNICX brings strategy, design, marketing, app development, and
+          studio.unicx brings strategy, design, marketing, app development, and
           website execution into one connected system for modern growth-focused
           brands.
         </p>
@@ -74,7 +74,7 @@ export function Hero() {
           className="relative w-full max-w-[460px] md:max-w-[340px] lg:max-w-[440px]"
         >
           <MediaFrame
-            alt="UNICX hero visual"
+            alt="studio.unicx hero visual"
             label="System Preview"
             aspectClassName="aspect-[1.08]"
             className="rounded-[32px] shadow-card"

@@ -65,9 +65,9 @@ export function Navbar() {
     >
       <nav
         className={cn(
-          "mx-auto w-full max-w-7xl rounded-[32px] border px-5 py-3 transition-all duration-500 sm:px-7",
+          "mx-auto w-full max-w-7xl rounded-lg border px-5 py-3 transition-all duration-500 sm:px-7",
           isScrolled
-            ? "border-white/10 bg-black/20 shadow-[0_18px_60px_rgba(0,0,0,0.12)] backdrop-blur-xl"
+            ? "border-white/20 bg-black"
             : "border-white/0 bg-transparent"
         )}
       >
@@ -76,7 +76,7 @@ export function Navbar() {
             href="/"
             className="text-[13px] font-semibold uppercase tracking-[0.46em] text-white/90 transition hover:text-white"
           >
-            UNICX
+            studio.unicx
           </Link>
 
           <div className="hidden items-center gap-8 md:flex">
@@ -101,8 +101,7 @@ export function Navbar() {
                 >
                   <button
                     className={cn(
-                      "group relative text-[10px] font-medium uppercase tracking-[0.36em] transition hover:text-white flex items-center gap-1",
-                      pathname.startsWith("/services") ? "text-white" : "text-slate-400"
+                      "flex items-center gap-1 font-mono text-[11px] uppercase tracking-[0.25rem] text-white transition-colors hover:text-gray-400"
                     )}
                   >
                     {item.label}
@@ -122,7 +121,6 @@ export function Navbar() {
                         d="M19 9l-7 7-7-7"
                       />
                     </svg>
-                    <span className="absolute -bottom-2 left-0 h-px w-full origin-left scale-x-0 bg-gradient-to-r from-white/0 via-white/90 to-white/0 transition-transform duration-300 group-hover:scale-x-100" />
                   </button>
 
                   <motion.div
@@ -139,7 +137,7 @@ export function Navbar() {
                       opacity: { duration: 0.15 },
                       scale: { duration: 0.2 }
                     }}
-                    className="absolute top-full left-0 mt-7 w-80 rounded-[20px] border border-white/10 bg-black/95 backdrop-blur-xl shadow-[0_20px_60px_rgba(0,0,0,0.3)]"
+                    className="absolute top-full left-0 mt-7 w-80 rounded-lg border border-white/20 bg-black"
                     onMouseEnter={() => {
                       if (dropdownTimeoutRef.current) {
                         clearTimeout(dropdownTimeoutRef.current);
@@ -156,7 +154,7 @@ export function Navbar() {
                     <div className="p-3">
                       <Link
                         href="/services"
-                        className="block rounded-[12px] px-4 py-3 text-[11px] font-medium uppercase tracking-[0.3em] text-slate-300 transition-all duration-200 hover:bg-white/[0.08] hover:text-white hover:translate-x-1"
+                        className="block rounded-lg px-4 py-3 text-[11px] font-medium uppercase tracking-[0.3em] text-slate-300 transition-all duration-200 hover:bg-white/[0.08] hover:text-white hover:translate-x-1"
                       >
                         All Services
                       </Link>
@@ -180,7 +178,7 @@ export function Navbar() {
                             }, 150);
                           }}
                           >
-                            <div className="flex items-center justify-between rounded-[12px] px-4 py-3 text-[11px] font-medium uppercase tracking-[0.3em] text-slate-300 transition-all duration-200 hover:bg-white/[0.08] hover:text-white hover:translate-x-1">
+                            <div className="flex items-center justify-between rounded-lg px-4 py-3 text-[11px] font-medium uppercase tracking-[0.3em] text-slate-300 transition-all duration-200 hover:bg-white/[0.08] hover:text-white hover:translate-x-1">
                               <span>{category.name}</span>
                               <svg
                                 className="h-3 w-3 text-slate-400 transition-transform duration-200 group-hover:translate-x-1"
@@ -211,7 +209,7 @@ export function Navbar() {
                                 opacity: { duration: 0.12 },
                                 scale: { duration: 0.18 }
                               }}
-                              className="absolute top-0 left-full w-64 rounded-[20px] border border-white/10 bg-black/95 backdrop-blur-xl shadow-[0_20px_60px_rgba(0,0,0,0.3)]"
+                              className="absolute top-0 left-full w-64 rounded-lg border border-white/20 bg-black"
                               onMouseEnter={() => {
                                 if (categoryTimeoutRef.current) {
                                   clearTimeout(categoryTimeoutRef.current);
@@ -234,7 +232,7 @@ export function Navbar() {
                                     <Link
                                       key={service}
                                       href={`/services/${categorySlug}/${serviceSlug}`}
-                                      className="block rounded-[8px] px-3 py-2 text-[10px] font-medium uppercase tracking-[0.3em] text-slate-300 transition-all duration-200 hover:bg-white/[0.08] hover:text-white hover:translate-x-1"
+                                      className="block rounded-lg px-3 py-2 text-[10px] font-medium uppercase tracking-[0.3em] text-slate-300 transition-all duration-200 hover:bg-white/[0.08] hover:text-white hover:translate-x-1"
                                     >
                                       {service}
                                     </Link>
@@ -253,26 +251,24 @@ export function Navbar() {
                   key={item.href}
                   href={item.href}
                   className={cn(
-                    "group relative text-[10px] font-medium uppercase tracking-[0.36em] transition hover:text-white",
-                    pathname === item.href ? "text-white" : "text-slate-400"
+                    "font-mono text-[11px] uppercase tracking-[0.25rem] text-white transition-colors hover:text-gray-400"
                   )}
                 >
                   {item.label}
-                  <span className="absolute -bottom-2 left-0 h-px w-full origin-left scale-x-0 bg-gradient-to-r from-white/0 via-white/90 to-white/0 transition-transform duration-300 group-hover:scale-x-100" />
                 </Link>
               )
             ))}
 
             <Link
               href="/contact"
-              className="inline-flex items-center justify-center rounded-full border border-white/15 bg-white px-5 py-2.5 text-[10px] font-semibold uppercase tracking-[0.28em] text-slate-950 transition hover:shadow-[0_0_30px_rgba(255,255,255,0.1)]"
+              className="inline-flex items-center justify-center rounded-lg border border-white/20 bg-white px-5 py-2.5 text-[10px] font-semibold uppercase tracking-[0.28em] text-slate-950 transition hover:bg-slate-200"
             >
               Free Consultation
             </Link>
 
             <div className="flex items-center gap-2 border-l border-white/10 pl-6">
               <a
-                href="https://x.com/unicx"
+                href="https://x.com/studio.unicx"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-slate-400 transition-all duration-300 ease-out hover:text-white hover:scale-125 hover:rotate-6 active:scale-110"
@@ -283,7 +279,7 @@ export function Navbar() {
                 </svg>
               </a>
               <a
-                href="https://linkedin.com/company/unicx"
+                href="https://linkedin.com/company/studio.unicx"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-slate-400 transition-all duration-300 ease-out hover:text-white hover:scale-125 hover:-rotate-6 active:scale-110"
@@ -294,7 +290,7 @@ export function Navbar() {
                 </svg>
               </a>
               <a
-                href="https://instagram.com/unicx"
+                href="https://instagram.com/studio.unicx"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-slate-400 transition-all duration-300 ease-out hover:text-white hover:scale-125 hover:rotate-12 active:scale-110"
@@ -312,7 +308,7 @@ export function Navbar() {
             aria-label="Toggle navigation menu"
             aria-expanded={isMenuOpen}
             onClick={() => setIsMenuOpen((open) => !open)}
-            className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-white/10 bg-white/[0.02] text-white/85 transition hover:border-white/20 hover:bg-white/[0.05] md:hidden"
+            className="inline-flex h-10 w-10 items-center justify-center rounded-lg border border-white/20 bg-black text-white/85 transition hover:border-white/35 hover:bg-white/[0.025] md:hidden"
           >
             <span className="relative h-3.5 w-4">
               <span
@@ -395,7 +391,7 @@ export function Navbar() {
               <Link
                 href="/contact"
                 onClick={() => setIsMenuOpen(false)}
-                className="inline-flex items-center justify-center rounded-full border border-white/15 bg-white px-5 py-3 text-[10px] font-semibold uppercase tracking-[0.28em] text-slate-950 transition hover:shadow-[0_0_30px_rgba(255,255,255,0.1)]"
+                className="inline-flex items-center justify-center rounded-lg border border-white/20 bg-white px-5 py-3 text-[10px] font-semibold uppercase tracking-[0.28em] text-slate-950 transition hover:bg-slate-200"
               >
                 Start Project
               </Link>

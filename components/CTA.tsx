@@ -29,9 +29,8 @@ export function CTA() {
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, amount: 0.3 }}
         transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
-        className="panel soft-border relative overflow-hidden px-7 py-12 sm:px-12 sm:py-16"
+        className="relative overflow-hidden rounded-lg border border-white/20 bg-black px-7 py-12 sm:px-12 sm:py-16"
       >
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(255,255,255,0.08),transparent_35%)]" />
         <div className="relative flex flex-col gap-10 lg:flex-row lg:items-end lg:justify-between">
           <div className="max-w-3xl">
             <div className="section-label mb-4">Contact</div>

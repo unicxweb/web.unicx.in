@@ -41,7 +41,7 @@ export function WhoItsFor() {
 
         <div className="max-w-2xl lg:justify-self-end">
           <p className="text-[15px] leading-8 text-slate-400 sm:text-[17px]">
-            UNICX is for businesses that need digital work to feel aligned,
+            studio.unicx is for businesses that need digital work to feel aligned,
             credible, and commercially useful across brand, growth, product,
             and web.
           </p>
@@ -60,7 +60,7 @@ export function WhoItsFor() {
               delay: index * 0.08,
               ease: [0.22, 1, 0.36, 1],
             }}
-            className="soft-border rounded-[28px] border border-white/10 bg-white/[0.025] p-8 shadow-[0_18px_60px_rgba(0,0,0,0.14)]"
+            className="rounded-lg border border-white/20 bg-black p-8 transition duration-300 hover:border-white/35 hover:bg-white/[0.025]"
           >
             <div className="text-[10px] font-semibold uppercase tracking-[0.3em] text-slate-500">
               0{index + 1}

@@ -1,8 +1,8 @@
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Terms of Service | UNICX",
-  description: "UNICX terms of service - Legal terms governing our services and website usage.",
+  title: "Terms of Service | studio.unicx",
+  description: "studio.unicx terms of service - Legal terms governing our services and website usage.",
 };
 
 export default function TermsOfService() {
@@ -18,7 +18,7 @@ export default function TermsOfService() {
           <section className="mb-12">
             <h2 className="mb-4 text-2xl font-semibold text-white">1. Acceptance of Terms</h2>
             <p className="mb-4 text-slate-300 leading-relaxed">
-              By accessing and using UNICX's website and services, you accept and agree to be bound 
+              By accessing and using studio.unicx's website and services, you accept and agree to be bound 
               by the terms and provision of this agreement.
             </p>
           </section>
@@ -26,7 +26,7 @@ export default function TermsOfService() {
           <section className="mb-12">
             <h2 className="mb-4 text-2xl font-semibold text-white">2. Services</h2>
             <p className="mb-4 text-slate-300 leading-relaxed">
-              UNICX provides digital services including but not limited to web design, app development, 
+              studio.unicx provides digital services including but not limited to web design, app development, 
               marketing services, and digital consulting. All services are subject to the terms outlined 
               in individual project agreements.
             </p>
@@ -57,7 +57,7 @@ export default function TermsOfService() {
           <section className="mb-12">
             <h2 className="mb-4 text-2xl font-semibold text-white">5. Intellectual Property</h2>
             <p className="mb-4 text-slate-300 leading-relaxed">
-              Upon full payment, clients receive ownership of the final deliverables. UNICX retains 
+              Upon full payment, clients receive ownership of the final deliverables. studio.unicx retains 
               the right to display completed work in our portfolio and marketing materials unless 
               specifically agreed otherwise in writing.
             </p>
@@ -66,7 +66,7 @@ export default function TermsOfService() {
           <section className="mb-12">
             <h2 className="mb-4 text-2xl font-semibold text-white">6. Limitation of Liability</h2>
             <p className="mb-4 text-slate-300 leading-relaxed">
-              UNICX shall not be liable for any indirect, incidental, special, or consequential 
+              studio.unicx shall not be liable for any indirect, incidental, special, or consequential 
               damages resulting from the use or inability to use our services.
             </p>
           </section>
@@ -74,7 +74,7 @@ export default function TermsOfService() {
           <section className="mb-12">
             <h2 className="mb-4 text-2xl font-semibold text-white">7. Termination</h2>
             <p className="mb-4 text-slate-300 leading-relaxed">
-              Either party may terminate the agreement with written notice. UNICX reserves the right 
+              Either party may terminate the agreement with written notice. studio.unicx reserves the right 
               to terminate services for non-payment or breach of terms.
             </p>
           </section>
@@ -93,8 +93,8 @@ export default function TermsOfService() {
               For questions about these Terms of Service, please contact:
             </p>
             <p className="text-slate-300">
-              Email: hello@unicx.in<br />
-              Website: unicx.in
+              Email: hello@studio.unicx.in<br />
+              Website: studio.unicx.in
             </p>
           </section>
         </div>

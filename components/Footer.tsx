@@ -8,7 +8,7 @@ export function Footer() {
       <div className="grid gap-6 md:grid-cols-[minmax(0,1.2fr)_repeat(4,minmax(0,1fr))] md:gap-12">
         <div className="max-w-sm text-center md:text-left">
           <div className="text-[13px] font-semibold uppercase tracking-[0.46em] text-white/90">
-            UNICX
+            studio.unicx
           </div>
           <div className="mt-2 text-[11px] font-medium uppercase tracking-[0.3em] text-slate-400">
             UniConsultX Solutions Private Limited
@@ -52,17 +52,20 @@ export function Footer() {
             Core Services
           </div>
           <div className="mt-5 flex flex-col gap-3 text-[11px] font-medium uppercase tracking-[0.3em] text-slate-400">
-            <Link href="/services/design" className="transition hover:text-white">
-              Design
+            <Link href="/services/graphic-design" className="transition hover:text-white">
+              Graphic Design
             </Link>
-            <Link href="/services/marketing" className="transition hover:text-white">
-              Marketing
+            <Link href="/services/website-development" className="transition hover:text-white">
+              Website Development
             </Link>
             <Link href="/services/app-development" className="transition hover:text-white">
               App Development
             </Link>
-            <Link href="/services/website-development" className="transition hover:text-white">
-              Website Development
+            <Link href="/services/software-development" className="transition hover:text-white">
+              Software Development
+            </Link>
+            <Link href="/services/marketing" className="transition hover:text-white">
+              Marketing
             </Link>
           </div>
         </div>
@@ -72,8 +75,8 @@ export function Footer() {
             Reach Out
           </div>
           <div className="mt-5 flex flex-col gap-3 text-[11px] font-medium uppercase tracking-[0.3em] text-slate-400">
-            <Link href="mailto:hello@unicx.in" className="transition hover:text-white">
-              hello@unicx.in
+            <Link href="mailto:hello@studio.unicx.in" className="transition hover:text-white">
+              hello@studio.unicx.in
             </Link>
             <span>Digital Growth Partner</span>
           </div>
@@ -85,7 +88,7 @@ export function Footer() {
           </div>
           <div className="mt-5 flex flex-col gap-3 text-[11px] font-medium uppercase tracking-[0.3em] text-slate-400">
             <a
-              href="https://instagram.com/unicx"
+              href="https://instagram.com/studio.unicx"
               target="_blank"
               rel="noopener noreferrer"
               className="flex items-center gap-2 transition hover:text-white"
@@ -96,7 +99,7 @@ export function Footer() {
               Instagram
             </a>
             <a
-              href="https://x.com/unicx"
+              href="https://x.com/studio.unicx"
               target="_blank"
               rel="noopener noreferrer"
               className="flex items-center gap-2 transition hover:text-white"
@@ -107,7 +110,7 @@ export function Footer() {
               X
             </a>
             <a
-              href="https://pinterest.com/unicx"
+              href="https://pinterest.com/studio.unicx"
               target="_blank"
               rel="noopener noreferrer"
               className="flex items-center gap-2 transition hover:text-white"
@@ -118,7 +121,7 @@ export function Footer() {
               Pinterest
             </a>
             <a
-              href="https://facebook.com/unicx"
+              href="https://facebook.com/studio.unicx"
               target="_blank"
               rel="noopener noreferrer"
               className="flex items-center gap-2 transition hover:text-white"
@@ -129,7 +132,7 @@ export function Footer() {
               Facebook
             </a>
             <a
-              href="https://linkedin.com/company/unicx"
+              href="https://linkedin.com/company/studio.unicx"
               target="_blank"
               rel="noopener noreferrer"
               className="flex items-center gap-2 transition hover:text-white"
@@ -140,7 +143,7 @@ export function Footer() {
               LinkedIn
             </a>
             <a
-              href="https://github.com/unicx"
+              href="https://github.com/studio.unicx"
               target="_blank"
               rel="noopener noreferrer"
               className="flex items-center gap-2 transition hover:text-white"
@@ -157,7 +160,7 @@ export function Footer() {
       <div className="mt-16 border-t border-white/40 p-6">
         <div className="flex flex-col gap-6 text-center md:flex-row md:justify-between">
           <p className="text-[11px] text-slate-500">
-            © 2026 UNICX. All rights reserved.
+            © 2026 studio.unicx. All rights reserved.
           </p>
           <div className="flex flex-col gap-2 text-center md:flex-row md:gap-4">
               <Link href="/privacy" className="text-[11px] text-slate-500 transition hover:text-white">
@@ -181,6 +184,10 @@ export function Footer() {
               <span className="hidden text-[11px] text-slate-600 md:inline">•</span>
               <Link href="/sitemap" className="text-[11px] text-slate-500 transition hover:text-white">
                 Sitemap
+              </Link>
+              <span className="hidden text-[11px] text-slate-600 md:inline">•</span>
+              <Link href="/404" className="text-[11px] text-slate-500 transition hover:text-white">
+                404 Page
               </Link>
             </div>
         </div>

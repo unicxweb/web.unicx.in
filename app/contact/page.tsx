@@ -108,7 +108,7 @@ export default function ContactPage() {
               <div className="mt-8 flex flex-wrap items-center gap-3">
                 <Link
                   href="mailto:hello@unicx.in"
-                  className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white px-7 py-3.5 text-[11px] font-semibold uppercase tracking-[0.28em] text-slate-950 transition hover:shadow-[0_0_30px_rgba(255,255,255,0.1)]"
+                  className="inline-flex items-center gap-2 rounded-none border border-white/15 bg-white px-7 py-3.5 text-[11px] font-semibold uppercase tracking-[0.28em] text-slate-950 transition hover:shadow-[0_0_30px_rgba(255,255,255,0.1)]"
                 >
                   <ArrowRightIcon />
                   hello@unicx.in

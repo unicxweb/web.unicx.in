@@ -1,7 +1,9 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import { AnimatePresence, motion } from "framer-motion";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 const aboutFaqs = [
   {
@@ -50,38 +52,106 @@ function PlusIcon({ open }: { open: boolean }) {
 
 export function AboutFAQ() {
   const [openIndex, setOpenIndex] = useState(-1);
+  const sectionRef = useRef<HTMLElement>(null);
+  const faqContainerRef = useRef<HTMLDivElement>(null);
+
+  // GSAP scroll effects for FAQ items to replay on scroll
+  useEffect(() => {
+    if (!sectionRef.current || !faqContainerRef.current) return;
+    
+    gsap.registerPlugin(ScrollTrigger);
+    
+    const ctx = gsap.context(() => {
+      const articles = faqContainerRef.current?.querySelectorAll('article');
+      if (!articles) return;
+
+      gsap.set(articles, { opacity: 0, y: 30, scale: 0.95 });
+
+      ScrollTrigger.create({
+        trigger: sectionRef.current,
+        start: "top 80%",
+        end: "bottom 20%",
+        onEnter: () => {
+          gsap.to(articles, {
+            opacity: 1,
+            y: 0,
+            scale: 1,
+            stagger: 0.08,
+            duration: 0.8,
+            ease: "power3.out",
+          });
+        },
+        onLeave: () => {
+          gsap.to(articles, {
+            opacity: 0,
+            y: 30,
+            scale: 0.95,
+            duration: 0.4,
+            ease: "power2.in",
+          });
+        },
+        onEnterBack: () => {
+          gsap.to(articles, {
+            opacity: 1,
+            y: 0,
+            scale: 1,
+            stagger: 0.08,
+            duration: 0.8,
+            ease: "power3.out",
+          });
+        },
+        onLeaveBack: () => {
+          gsap.to(articles, {
+            opacity: 0,
+            y: 30,
+            scale: 0.95,
+            duration: 0.4,
+            ease: "power2.in",
+          });
+        },
+      });
+    }, sectionRef.current);
+
+    return () => ctx.revert();
+  }, []);
 
   return (
-    <section className="pt-24 sm:pt-32 pb-24">
-      <motion.div
-        initial={{ opacity: 0, y: 24 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true, amount: 0.25 }}
-        transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
-        className="grid gap-10 lg:grid-cols-[minmax(0,0.78fr)_minmax(0,1.22fr)]"
-      >
+    <section ref={sectionRef} className="pt-40 sm:pt-56 pb-24">
+      <div className="grid gap-10 lg:grid-cols-[minmax(0,0.78fr)_minmax(0,1.22fr)]">
         <div className="max-w-xl">
-          <div className="section-label">Learn More</div>
-          <h2 className="max-w-[24rem] text-[clamp(2.1rem,4.4vw,3.7rem)] font-semibold uppercase leading-[0.98] tracking-[-0.04em] text-white">
-            Questions about who we are and how we work.
-          </h2>
-          <p className="mt-6 max-w-lg text-[15px] leading-8 text-slate-400 sm:text-[17px]">
+          <motion.div
+            initial={{ opacity: 0, x: -40 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: false, amount: 0.5 }}
+            transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
+            className="section-label"
+          >
+            Learn More
+          </motion.div>
+          <motion.h2
+            initial={{ opacity: 0, y: 60, scale: 0.9 }}
+            whileInView={{ opacity: 1, y: 0, scale: 1 }}
+            viewport={{ once: false, amount: 0.5 }}
+            transition={{ duration: 1, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
+            className="max-w-[24rem] text-[clamp(2.1rem,4.4vw,3.7rem)] font-semibold uppercase leading-[0.98] tracking-[-0.04em] text-white"
+          >
+            Questions about who we are and How We Work.
+          </motion.h2>
+          <motion.p
+            initial={{ opacity: 0, y: 40 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: false, amount: 0.5 }}
+            transition={{ duration: 0.9, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
+            className="mt-6 max-w-lg text-[15px] leading-8 text-slate-400 sm:text-[17px]"
+          >
             Understanding our approach, expertise, and what drives our work to help you make an informed decision.
-          </p>
+          </motion.p>
         </div>
 
-        <div className="border-t border-white/10">
+        <div ref={faqContainerRef} className="border-t border-white/10">
           {aboutFaqs.map((item, index) => (
-            <motion.article
+            <article
               key={item.question}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, amount: 0.2 }}
-              transition={{
-                duration: 0.7,
-                delay: index * 0.06,
-                ease: [0.22, 1, 0.36, 1],
-              }}
               className="border-b border-white/10 py-2"
             >
               <button
@@ -105,7 +175,7 @@ export function AboutFAQ() {
                 </span>
               </button>
 
-              <AnimatePresence initial={false}>
+              <AnimatePresence>
                 {openIndex === index ? (
                   <motion.div
                     initial={{ height: 0, opacity: 0 }}
@@ -122,10 +192,10 @@ export function AboutFAQ() {
                   </motion.div>
                 ) : null}
               </AnimatePresence>
-            </motion.article>
+            </article>
           ))}
         </div>
-      </motion.div>
+      </div>
     </section>
   );
 }

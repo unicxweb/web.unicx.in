@@ -2,9 +2,10 @@
 
 import { motion, AnimatePresence } from "framer-motion";
 import { useState, useEffect, useRef } from "react";
+import { TypewriterEffectSmooth } from "@/components/ui/typewriter-effect";
 
-// Typewriter effect hook
-function useTypewriter(text: string, speed: number = 50) {
+// Testimonial typewriter component for long text with smooth character writing
+function TestimonialTypewriter({ text }: { text: string }) {
   const [displayedText, setDisplayedText] = useState("");
   const [isTyping, setIsTyping] = useState(false);
 
@@ -21,20 +22,13 @@ function useTypewriter(text: string, speed: number = 50) {
         setIsTyping(false);
         clearInterval(interval);
       }
-    }, speed);
+    }, 30); // Original faster speed
 
     return () => clearInterval(interval);
-  }, [text, speed]);
+  }, [text]);
 
-  return { displayedText, isTyping };
-}
-
-// Typewriter text component
-function TypewriterText({ text }: { text: string }) {
-  const { displayedText, isTyping } = useTypewriter(text, 30);
-  
   return (
-    <span>
+    <span className="text-[24px] lg:text-[30px] font-medium leading-tight text-white">
       {displayedText}
       {isTyping && (
         <span className="inline-block w-0.5 h-6 bg-white ml-1 animate-pulse" />
@@ -55,6 +49,7 @@ const caseStudies = [
     metric: "+148% qualified leads",
     imageLabel: "Furnext",
     imageSrc: "https://furnext.in/",
+    backgroundImage: "/images/selected-work-01.jpg",
     description:
       "Rebuilt the acquisition flow into a sharper, faster system with cleaner messaging and conversion paths.",
     link: "https://furnext.in/",
@@ -70,6 +65,7 @@ const caseStudies = [
     metric: "3.2x demo conversion",
     imageLabel: "Paeg",
     imageSrc: "https://paeg.in/",
+    backgroundImage: "/images/selected-work-02.jpg",
     description:
       "Designed a premium product narrative and site architecture that aligned trust, clarity, and growth.",
     link: "https://paeg.in/",
@@ -85,6 +81,7 @@ const caseStudies = [
     metric: "89% user satisfaction",
     imageLabel: "studio.unicx",
     imageSrc: "https://unicx.in/",
+    backgroundImage: "/images/selected-work-03.jpg",
     description:
       "Built a scalable design system that reduced development time while improving user satisfaction metrics.",
     link: "https://unicx.in/",
@@ -289,12 +286,12 @@ export function SelectedWork({ showTitle = true, className = "" }: SelectedWorkP
                             </motion.div>
                           </div>
                           
-                          <blockquote className="text-[24px] lg:text-[30px] font-medium leading-tight text-white mb-12 backdrop-blur-sm">
-                            <TypewriterText 
+                          <div className="text-[24px] lg:text-[30px] font-medium leading-tight text-white mb-12 backdrop-blur-sm">
+                            <TestimonialTypewriter 
                               key={`testimonial-${currentIndex}`}
                               text={`"${caseStudies[currentIndex].testimonial}"`}
                             />
-                          </blockquote>
+                          </div>
                         </div>
                         
                         <motion.div 
@@ -332,22 +329,25 @@ export function SelectedWork({ showTitle = true, className = "" }: SelectedWorkP
                     
                     {/* Right Half - Laptop Screen Preview */}
                     <div className="w-1/2 relative bg-black p-8 lg:p-12 flex items-center justify-center overflow-hidden transition-all duration-500 ease-[cubic-bezier(0.4,0,0.2,1)]">
-                      {/* Background zoom layer */}
+                      {/* Background image layer */}
                       <div className="absolute inset-0 transition-transform duration-500 ease-[cubic-bezier(0.4,0,0.2,1)] group-hover:scale-[1.05]">
-                        {/* High-end floating gradient with auto-changing colors */}
-                        <div className="absolute inset-0 opacity-40">
-                          {/* Floating gradient orbs */}
-                          <div className="absolute top-0 left-0 w-96 h-96 bg-gradient-to-br from-violet-600/30 via-purple-600/25 to-indigo-600/20 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '0s', animationDuration: '4s' }} />
-                          <div className="absolute top-1/4 right-0 w-80 h-80 bg-gradient-to-tr from-cyan-600/30 via-blue-600/25 to-teal-600/20 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '1s', animationDuration: '5s' }} />
-                          <div className="absolute bottom-0 left-1/4 w-72 h-72 bg-gradient-to-bl from-rose-600/30 via-pink-600/25 to-fuchsia-600/20 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '2s', animationDuration: '6s' }} />
-                          <div className="absolute top-1/3 left-1/3 w-64 h-64 bg-gradient-to-r from-emerald-600/25 via-green-600/20 to-teal-600/15 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '1.5s', animationDuration: '4.5s' }} />
-                          <div className="absolute bottom-1/4 right-1/4 w-56 h-56 bg-gradient-to-tl from-amber-600/25 via-orange-600/20 to-yellow-600/15 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '2.5s', animationDuration: '5.5s' }} />
-                          
-                          {/* Animated color shifts */}
-                          <div className="absolute inset-0 bg-gradient-to-br from-blue-600/15 via-purple-600/10 to-pink-600/15 animate-pulse" style={{ animationDelay: '0s', animationDuration: '8s' }} />
-                          <div className="absolute inset-0 bg-gradient-to-tr from-emerald-600/15 via-cyan-600/10 to-teal-600/15 animate-pulse" style={{ animationDelay: '3s', animationDuration: '7s' }} />
-                          <div className="absolute inset-0 bg-gradient-to-bl from-rose-600/15 via-fuchsia-600/10 to-pink-600/15 animate-pulse" style={{ animationDelay: '5s', animationDuration: '6s' }} />
-                        </div>
+                        {caseStudies.map((study, index) => (
+                          <motion.img
+                            key={study.id}
+                            src={study.backgroundImage}
+                            alt=""
+                            loading="eager"
+                            decoding="async"
+                            initial={false}
+                            animate={{
+                              opacity: index === currentIndex ? 1 : 0,
+                              scale: index === currentIndex ? 1 : 1.03,
+                            }}
+                            transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
+                            className="absolute inset-0 h-full w-full object-cover"
+                          />
+                        ))}
+                        <div className="absolute inset-0 bg-black/40" />
                       </div>
                       {/* Stable preview window */}
                       <div className="relative w-full max-w-xl aspect-[16/10] overflow-hidden rounded-lg">

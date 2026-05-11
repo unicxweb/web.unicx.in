@@ -1,7 +1,9 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { useRef, useState } from "react";
+import { useRef, useState, useEffect } from "react";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 const testimonials = [
   {
@@ -81,6 +83,7 @@ function Stars() {
 export function ClientTestimonials() {
   const [activeIndex, setActiveIndex] = useState(0);
   const scrollRef = useRef<HTMLDivElement>(null);
+  const cardsContainerRef = useRef<HTMLDivElement>(null);
 
   const goTo = (index: number) => {
     setActiveIndex(index);
@@ -98,23 +101,38 @@ export function ClientTestimonials() {
     goTo((activeIndex - 1 + testimonials.length) % testimonials.length);
   };
 
+  
   return (
-    <section id="testimonials" className="pt-24 sm:pt-32">
-      <motion.div
-        initial={{ opacity: 0, y: 24 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true, amount: 0.25 }}
-        transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
-        className="mb-12"
-      >
-        <div className="section-label">Testimonials</div>
-        <h2 className="text-[clamp(2.1rem,4vw,3.6rem)] font-semibold uppercase leading-[0.95] tracking-[-0.065em] text-white">
+    <section id="testimonials" className="pt-40 sm:pt-56 pb-24 sm:pb-32">
+      <div className="mb-12">
+        <motion.div
+          initial={{ opacity: 0, x: -40 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          viewport={{ once: false, amount: 0.5 }}
+          transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
+          className="section-label"
+        >
+          Testimonials
+        </motion.div>
+        <motion.h2
+          initial={{ opacity: 0, y: 60, scale: 0.9 }}
+          whileInView={{ opacity: 1, y: 0, scale: 1 }}
+          viewport={{ once: false, amount: 0.5 }}
+          transition={{ duration: 1, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
+          className="text-[clamp(2.1rem,4vw,3.6rem)] font-semibold uppercase leading-[0.95] tracking-[-0.065em] text-white"
+        >
           What clients say
-        </h2>
-        <p className="mt-4 max-w-xl text-[13px] leading-7 text-slate-500 sm:text-[15px]">
+        </motion.h2>
+        <motion.p
+          initial={{ opacity: 0, y: 40 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: false, amount: 0.5 }}
+          transition={{ duration: 0.9, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
+          className="mt-4 max-w-xl text-[13px] leading-7 text-slate-500 sm:text-[15px]"
+        >
           Real work. Real results. Real partnerships.
-        </p>
-      </motion.div>
+        </motion.p>
+      </div>
 
       <div ref={scrollRef} className="overflow-hidden">
         <div className="flex gap-5">

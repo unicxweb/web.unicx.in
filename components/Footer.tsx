@@ -157,6 +157,15 @@ export function Footer() {
         </div>
       </div>
       
+      <div
+        className="pointer-events-none mt-16 select-none overflow-hidden text-center text-[17vw] font-bold leading-none tracking-[-0.09em] text-transparent sm:text-[14vw] lg:text-[10rem]"
+        aria-hidden="true"
+      >
+        <span className="bg-[linear-gradient(to_bottom,rgba(255,255,255,0.015)_0%,rgba(255,255,255,0.035)_33%,rgba(255,255,255,0.09)_66%,rgba(255,255,255,0.18)_100%)] bg-clip-text">
+          Studio.UniCX
+        </span>
+      </div>
+
       <div className="mt-16 border-t border-white/40 p-6">
         <div className="flex flex-col gap-6 text-center md:flex-row md:justify-between">
           <p className="text-[11px] text-slate-500">

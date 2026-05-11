@@ -194,14 +194,14 @@ export function ServiceCatalog() {
         {/* Navigation Controls */}
         <button
           onClick={prevSlide}
-          className="absolute left-4 top-1/2 -translate-y-1/2 rounded-full border border-white/20 bg-white/10 p-3 text-white transition hover:border-white/30 hover:bg-white/20"
+          className="absolute left-4 top-1/2 -translate-y-1/2 rounded-none border border-white/20 bg-white/10 p-3 text-white transition hover:border-white/30 hover:bg-white/20"
           aria-label="Previous service"
         >
           <ChevronLeftIcon />
         </button>
         <button
           onClick={nextSlide}
-          className="absolute right-4 top-1/2 -translate-y-1/2 rounded-full border border-white/20 bg-white/10 p-3 text-white transition hover:border-white/30 hover:bg-white/20"
+          className="absolute right-4 top-1/2 -translate-y-1/2 rounded-none border border-white/20 bg-white/10 p-3 text-white transition hover:border-white/30 hover:bg-white/20"
           aria-label="Next service"
         >
           <ChevronRightIcon />
@@ -213,7 +213,7 @@ export function ServiceCatalog() {
             <button
               key={index}
               onClick={() => goToSlide(index)}
-              className={`h-2 w-2 rounded-full transition ${
+              className={`h-2 w-2 rounded-none transition ${
                 index === currentIndex 
                   ? "bg-white" 
                   : "bg-white/40 hover:bg-white/60"

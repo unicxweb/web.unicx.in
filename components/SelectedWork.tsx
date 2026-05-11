@@ -396,7 +396,7 @@ export function SelectedWork({ showTitle = true, className = "" }: SelectedWorkP
           <div className="flex gap-2">
             <button
               onClick={handlePrev}
-              className="w-8 h-8 rounded-full bg-white/10 backdrop-blur-sm border border-white/20 flex items-center justify-center text-white hover:bg-white/20 transition-all duration-300"
+              className="w-8 h-8 rounded-none bg-white/10 backdrop-blur-sm border border-white/20 flex items-center justify-center text-white hover:bg-white/20 transition-all duration-300"
               aria-label="Previous case study"
             >
               <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -406,7 +406,7 @@ export function SelectedWork({ showTitle = true, className = "" }: SelectedWorkP
             
             <button
               onClick={handleNext}
-              className="w-8 h-8 rounded-full bg-white/10 backdrop-blur-sm border border-white/20 flex items-center justify-center text-white hover:bg-white/20 transition-all duration-300"
+              className="w-8 h-8 rounded-none bg-white/10 backdrop-blur-sm border border-white/20 flex items-center justify-center text-white hover:bg-white/20 transition-all duration-300"
               aria-label="Next case study"
             >
               <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">

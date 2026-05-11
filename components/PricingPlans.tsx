@@ -1,7 +1,8 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { motion, useInView } from "framer-motion";
 import Link from "next/link";
+import { useRef } from "react";
 import { ContactPopup } from "@/components/ContactPopup";
 
 const trustMarks = [
@@ -40,44 +41,75 @@ function CheckIcon() {
 }
 
 export function PricingPlans() {
+  const sectionRef = useRef<HTMLElement>(null);
+  const isInView = useInView(sectionRef, { once: true, amount: 0.2 });
+  
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        duration: 0.6,
+        ease: "easeOut",
+        staggerChildren: 0.1
+      }
+    }
+  };
+  
+  const itemVariants = {
+    hidden: { opacity: 0, y: 20 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        duration: 0.5,
+        ease: "easeOut"
+      }
+    }
+  };
+  
+  const cardVariants = {
+    hidden: { opacity: 0, y: 30 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        duration: 0.7,
+        ease: "easeOut"
+      }
+    }
+  };
   return (
-    <section id="pricing" className="pt-40 pb-24 sm:pt-56 sm:pb-32">
-      <div className="grid gap-12 lg:grid-cols-[0.9fr_1.1fr] lg:items-start">
+    <section id="pricing" ref={sectionRef} className="pt-40 pb-24 sm:pt-56 sm:pb-32">
+      <motion.div 
+        className="grid gap-12 lg:grid-cols-[0.9fr_1.1fr] lg:items-start"
+        variants={containerVariants}
+        initial="hidden"
+        animate={isInView ? "visible" : "hidden"}
+      >
         <div>
           <motion.div
-            initial={{ opacity: 0, x: -40 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: false, amount: 0.5 }}
-            transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
+            variants={itemVariants}
             className="section-label"
           >
             Plans
           </motion.div>
           <motion.h2
-            initial={{ opacity: 0, y: 60, scale: 0.9 }}
-            whileInView={{ opacity: 1, y: 0, scale: 1 }}
-            viewport={{ once: false, amount: 0.5 }}
-            transition={{ duration: 1, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
+            variants={itemVariants}
             className="text-[clamp(2.25rem,5vw,4.35rem)] font-semibold uppercase leading-[0.92] tracking-[-0.07em] text-white"
           >
             Flexible engagement
           </motion.h2>
           <motion.p
-            initial={{ opacity: 0, y: 40 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: false, amount: 0.5 }}
-            transition={{ duration: 0.9, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
+            variants={itemVariants}
             className="mt-6 max-w-xl text-[14px] leading-7 text-slate-400 sm:text-[15px]"
           >
             Pricing is shaped around service mix, scope, and level of execution your project needs.
           </motion.p>
 
           <motion.div 
+            variants={itemVariants}
             className="mt-10"
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: false, amount: 0.5 }}
-            transition={{ duration: 0.8, delay: 0.3, ease: [0.22, 1, 0.36, 1] }}
           >
             <h3 className="text-[13px] font-semibold text-white">
               Trusted by companies that demand results
@@ -97,13 +129,13 @@ export function PricingPlans() {
           </motion.div>
         </div>
 
-        <div className="lg:justify-self-end">
+        <motion.div variants={cardVariants} className="lg:justify-self-end">
           <motion.article 
-            className="group w-full rounded-lg border border-white/20 bg-black p-8 transition duration-300 hover:border-white/35 hover:bg-white/[0.025] lg:w-[560px]"
-            initial={{ opacity: 0, scale: 0.9, y: 40 }}
-            whileInView={{ opacity: 1, scale: 1, y: 0 }}
-            viewport={{ once: false, amount: 0.5 }}
-            transition={{ duration: 1, delay: 0.4, ease: [0.22, 1, 0.36, 1] }}
+            className="group w-full rounded-lg border border-white/20 bg-black p-8 transition-all duration-300 ease-out hover:border-white/35 hover:bg-white/[0.025] hover:transform hover:translate-y-[-2px] lg:w-[560px]"
+            whileHover={{ 
+              y: -4,
+              transition: { duration: 0.2, ease: "easeOut" }
+            }}
           >
             <div className="flex items-start justify-between gap-8">
               <div>
@@ -150,8 +182,8 @@ export function PricingPlans() {
               </Link>
             </div>
           </motion.article>
-        </div>
-      </div>
+        </motion.div>
+      </motion.div>
     </section>
   );
 }

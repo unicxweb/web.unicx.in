@@ -1,6 +1,5 @@
 import { Breadcrumbs } from "@/components/Breadcrumbs";
 import { CTA } from "@/components/CTA";
-import CookieConsent from "@/components/CookieConsent";
 import { Footer } from "@/components/Footer";
 import { HowItWorks } from "@/components/HowItWorks";
 import { Navbar } from "@/components/Navbar";
@@ -10,13 +9,16 @@ import { WorkFAQ } from "@/components/WorkFAQ";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Web Design Portfolio | Case Studies & Projects | studio.unicx",
-  description: "Explore studio.unicx's web design portfolio featuring successful case studies, custom website projects, and digital solutions. See our work in web development, UI/UX design, and digital transformation.",
+  title: "Web Design Portfolio | Case Studies & Projects | Studio UnicX",
+  description: "Explore Studio UnicX's web design portfolio featuring successful case studies, custom website projects, and digital solutions. See our work in web development, UI/UX design, and digital transformation.",
+  alternates: {
+    canonical: "/work",
+  },
   keywords: [
     "web design portfolio",
     "website case studies",
     "web development projects",
-    "studio.unicx portfolio",
+    "Studio UnicX portfolio",
     "web design examples",
     "website design samples",
     "digital projects",
@@ -25,17 +27,25 @@ export const metadata: Metadata = {
     "professional web design work"
   ],
   openGraph: {
-    title: "Web Design Portfolio | Case Studies & Projects | studio.unicx",
-    description: "Explore studio.unicx's web design portfolio featuring successful case studies and custom website projects.",
+    title: "Web Design Portfolio | Case Studies & Projects | Studio UnicX",
+    description: "Explore Studio UnicX's web design portfolio featuring successful case studies and custom website projects.",
     url: "https://studio.unicx.in/work",
+    type: "website",
+    siteName: "Studio UnicX",
     images: [
       {
         url: "/og-work.jpg",
         width: 1200,
         height: 630,
-        alt: "studio.unicx Web Design Portfolio",
+        alt: "Studio UnicX Web Design Portfolio",
       },
     ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Web Design Portfolio | Case Studies & Projects | Studio UnicX",
+    description: "Explore Studio UnicX's web design portfolio featuring successful case studies and custom website projects.",
+    images: ["/og-work.jpg"],
   },
 };
 
@@ -49,22 +59,22 @@ export default function WorkPage() {
       <div className="noise-overlay" />
       <Navbar />
 
-      <div className="relative mx-auto flex w-full max-w-7xl flex-col px-6 pb-2 pt-4 sm:px-8 md:pt-6 lg:px-12">
-        <Breadcrumbs items={[{ label: "Home", href: "/" }, { label: "Work" }]} />
-        <PageIntro
-          eyebrow="Work"
-          title="Selected outcomes shaped through strategy and execution."
-          description="A closer view into how studio.unicx approaches product clarity, marketing performance, and conversion-focused design systems."
-          ctaLabel="Discuss Your Project"
-          ctaHref="/contact"
-        />
-        <SelectedWork />
-        <HowItWorks />
-        <WorkFAQ />
-        <CTA />
-        <Footer />
+      <div className="relative z-10 bg-black w-full">
+        <div className="relative mx-auto flex w-full max-w-7xl flex-col px-6 pb-2 pt-4 sm:px-8 md:pt-6 lg:px-12">
+          <Breadcrumbs items={[{ label: "Home", href: "/" }, { label: "Work" }]} />
+          <PageIntro
+            eyebrow="Work"
+            title="Selected outcomes shaped through strategy and execution."
+            description="A closer view into how studio.unicx approaches product clarity, marketing performance, and conversion-focused design systems."
+            ctaLabel="Discuss Your Project"
+            ctaHref="/contact"
+          />
+          <SelectedWork />
+          <HowItWorks />
+          <WorkFAQ />
+        </div>
       </div>
-      <CookieConsent />
+      <Footer />
     </main>
   );
 }

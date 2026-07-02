@@ -14,7 +14,7 @@ RewriteCond %{REQUEST_FILENAME} -d
 RewriteRule ^ - [L]
 
 # Handle specific app routes
-RewriteCond %{REQUEST_URI} ^/(about|careers|contact|privacy|terms|work|services|sitemap)/?$
+RewriteCond %{REQUEST_URI} ^/(studio|careers|contact|privacy|terms|work|services|sitemap)/?$
 RewriteRule ^(.*)$ /index.html [L]
 
 # Handle 404 page specifically

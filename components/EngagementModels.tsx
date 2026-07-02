@@ -51,13 +51,13 @@ export function EngagementModels() {
       <motion.div
         initial={{ opacity: 0, y: 24 }}
         whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true, amount: 0.25 }}
+        viewport={{ once: false, amount: 0.25 }}
         transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
         className="grid gap-10 lg:grid-cols-[minmax(0,0.78fr)_minmax(0,1.22fr)] lg:items-end"
       >
         <div className="max-w-xl">
           <div className="section-label">Engagement Models</div>
-          <h2 className="max-w-[24rem] text-[clamp(2.1rem,4.4vw,3.7rem)] font-semibold uppercase leading-[0.98] tracking-[-0.04em] text-white">
+          <h2 className="max-w-[24rem] text-[clamp(2.1rem,4.4vw,3.7rem)] font-semibold uppercase leading-[0.98] tracking-[-0.02em] text-white">
             Different ways to work together, depending on the stage you are in.
           </h2>
         </div>
@@ -86,7 +86,7 @@ export function EngagementModels() {
             key={model.title}
             initial={{ opacity: 0, y: 24 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, amount: 0.2 }}
+            viewport={{ once: false, amount: 0.2 }}
             transition={{
               duration: 0.75,
               delay: index * 0.08,
@@ -97,7 +97,7 @@ export function EngagementModels() {
             <div className="text-[10px] font-semibold uppercase tracking-[0.3em] text-slate-500">
               {model.label}
             </div>
-            <h3 className="mt-6 text-[1.9rem] font-semibold tracking-[-0.05em] text-white">
+            <h3 className="mt-6 text-[1.9rem] font-semibold tracking-[-0.025em] text-white">
               {model.title}
             </h3>
             <p className="mt-5 text-[15px] leading-7 text-slate-400">

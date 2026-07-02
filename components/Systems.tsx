@@ -77,13 +77,13 @@ export function Systems() {
       <motion.div
         initial={{ opacity: 0, y: 24 }}
         whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true, amount: 0.25 }}
+        viewport={{ once: false, amount: 0.25 }}
         transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
         className="grid gap-10 lg:grid-cols-[minmax(0,0.8fr)_minmax(0,1.2fr)] lg:items-end"
       >
         <div className="max-w-xl">
           <div className="section-label">Services</div>
-          <h2 className="max-w-[25rem] text-[clamp(2.15rem,4.6vw,3.8rem)] font-semibold uppercase leading-[0.98] tracking-[-0.04em] text-white">
+          <h2 className="max-w-[25rem] text-[clamp(2.15rem,4.6vw,3.8rem)] font-semibold uppercase leading-[0.98] tracking-[-0.02em] text-white">
             Four service pillars. One connected digital partner.
           </h2>
         </div>
@@ -91,7 +91,7 @@ export function Systems() {
         <div className="max-w-2xl lg:justify-self-end">
           <p className="text-[15px] leading-8 text-slate-400 sm:text-[17px]">
             From brand identity and growth marketing to apps and websites,
-            studio.unicx brings strategy, execution, and polish into one clear delivery
+            Studio UnicX brings strategy, execution, and polish into one clear delivery
             model.
           </p>
           <div className="mt-8">
@@ -113,7 +113,7 @@ export function Systems() {
             key={system.title}
             initial={{ opacity: 0, y: 28 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, amount: 0.2 }}
+            viewport={{ once: false, amount: 0.2 }}
             transition={{
               duration: 0.75,
               delay: index * 0.08,
@@ -133,7 +133,7 @@ export function Systems() {
                     </span>
                   </div>
 
-                  <h3 className="mt-6 text-[2rem] font-semibold tracking-[-0.05em] text-white">
+                  <h3 className="mt-6 text-[2rem] font-semibold tracking-[-0.025em] text-white">
                     {system.title}
                   </h3>
                   <p className="mt-4 max-w-xl text-[15px] leading-7 text-slate-400">

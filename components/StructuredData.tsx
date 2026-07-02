@@ -1,9 +1,9 @@
 export default function StructuredData() {
   const businessSchema = {
     "@context": "https://schema.org",
-    "@type": "ProfessionalService",
-    "name": "studio.unicx Web Graphic Design",
-    "description": "Professional web graphic design and development services. We create custom, responsive websites that drive business growth.",
+    "@type": "Organization",
+    "name": "Studio UnicX",
+    "description": "Studio UnicX is a creative digital agency specializing in website development, UI/UX design, branding, SEO, and software solutions.",
     "url": "https://studio.unicx.in",
     "logo": "https://studio.unicx.in/logo.png",
     "image": "https://studio.unicx.in/og-image.jpg",
@@ -14,7 +14,7 @@ export default function StructuredData() {
     ],
     "contactPoint": {
       "@type": "ContactPoint",
-      "telephone": "+91-XXXXXXXXXX",
+      "telephone": "+91 90099 80049",
       "contactType": "customer service",
       "email": "hello@studio.unicx.in",
       "availableLanguage": ["English"]
@@ -22,13 +22,13 @@ export default function StructuredData() {
     "address": {
       "@type": "PostalAddress",
       "addressCountry": "IN",
-      "addressLocality": "Your City",
-      "addressRegion": "Your State"
+      "addressLocality": "Indore",
+      "addressRegion": "Madhya Pradesh"
     },
     "geo": {
       "@type": "GeoCoordinates",
-      "latitude": "XX.XXXX",
-      "longitude": "XX.XXXX"
+      "latitude": "22.7533",
+      "longitude": "75.8937"
     },
     "openingHours": [
       "Mo-Fr 09:00-18:00",
@@ -94,9 +94,9 @@ export default function StructuredData() {
   const websiteSchema = {
     "@context": "https://schema.org",
     "@type": "WebSite",
-    "name": "studio.unicx Web Graphic Design",
+    "name": "Studio UnicX",
     "url": "https://studio.unicx.in",
-    "description": "Professional web graphic design and development services",
+    "description": "Studio UnicX is a creative digital agency specializing in website development, UI/UX design, branding, SEO, and software solutions.",
     "potentialAction": {
       "@type": "SearchAction",
       "target": {

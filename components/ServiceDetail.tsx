@@ -274,7 +274,7 @@ export function ServiceDetail({ service, category }: ServiceDetailProps) {
       <section className="pt-10 sm:pt-12 lg:pt-14">
         <div className="max-w-5xl">
           <div className="section-label">{category.name}</div>
-          <h1 className="max-w-4xl text-[clamp(3rem,7vw,5.2rem)] font-semibold uppercase leading-[0.92] tracking-[-0.065em] text-white">
+          <h1 className="max-w-4xl text-[clamp(3rem,7vw,5.2rem)] font-semibold uppercase leading-[0.92] tracking-[-0.03em] text-white">
             {service}
           </h1>
           <p className="mt-8 max-w-2xl text-[15px] leading-8 text-slate-400 sm:text-lg">
@@ -303,7 +303,7 @@ export function ServiceDetail({ service, category }: ServiceDetailProps) {
       {/* Features Section */}
       <section>
         <div className="section-label">Features</div>
-        <h2 className="mt-4 text-3xl font-semibold tracking-[-0.05em] text-white sm:text-4xl">
+        <h2 className="mt-4 text-3xl font-semibold tracking-[-0.025em] text-white sm:text-4xl">
           What's Included
         </h2>
         <div className="mt-8 grid gap-4 md:grid-cols-2">
@@ -324,7 +324,7 @@ export function ServiceDetail({ service, category }: ServiceDetailProps) {
       {/* Process Section */}
       <section>
         <div className="section-label">Process</div>
-        <h2 className="mt-4 text-3xl font-semibold tracking-[-0.05em] text-white sm:text-4xl">
+        <h2 className="mt-4 text-3xl font-semibold tracking-[-0.025em] text-white sm:text-4xl">
           How We Work
         </h2>
         <div className="mt-8 space-y-4">
@@ -348,7 +348,7 @@ export function ServiceDetail({ service, category }: ServiceDetailProps) {
       {/* Benefits Section */}
       <section>
         <div className="section-label">Benefits</div>
-        <h2 className="mt-4 text-3xl font-semibold tracking-[-0.05em] text-white sm:text-4xl">
+        <h2 className="mt-4 text-3xl font-semibold tracking-[-0.025em] text-white sm:text-4xl">
           Why Choose Our {service} Services
         </h2>
         <div className="mt-8 grid gap-4 md:grid-cols-2">
@@ -369,7 +369,7 @@ export function ServiceDetail({ service, category }: ServiceDetailProps) {
       {/* Pricing Section */}
       <section>
         <div className="section-label">Investment</div>
-        <h2 className="mt-4 text-3xl font-semibold tracking-[-0.05em] text-white sm:text-4xl">
+        <h2 className="mt-4 text-3xl font-semibold tracking-[-0.025em] text-white sm:text-4xl">
           Pricing & Timeline
         </h2>
         <div className="mt-8 grid gap-6 md:grid-cols-3">
@@ -378,7 +378,7 @@ export function ServiceDetail({ service, category }: ServiceDetailProps) {
               <DollarIcon />
               Starting From
             </div>
-            <div className="mt-3 text-3xl font-semibold tracking-[-0.06em] text-white">
+            <div className="mt-3 text-3xl font-semibold tracking-[-0.03em] text-white">
               {details.pricing.starting}
             </div>
           </div>
@@ -388,7 +388,7 @@ export function ServiceDetail({ service, category }: ServiceDetailProps) {
               <ClockIcon />
               Timeframe
             </div>
-            <div className="mt-3 text-3xl font-semibold tracking-[-0.06em] text-white">
+            <div className="mt-3 text-3xl font-semibold tracking-[-0.03em] text-white">
               {details.pricing.timeframe}
             </div>
           </div>
@@ -398,7 +398,7 @@ export function ServiceDetail({ service, category }: ServiceDetailProps) {
               <UsersIcon />
               Delivery
             </div>
-            <div className="mt-3 text-3xl font-semibold tracking-[-0.06em] text-white">
+            <div className="mt-3 text-3xl font-semibold tracking-[-0.03em] text-white">
               {details.pricing.delivery}
             </div>
           </div>
@@ -408,7 +408,7 @@ export function ServiceDetail({ service, category }: ServiceDetailProps) {
       {/* Related Services */}
       <section>
         <div className="section-label">Related Services</div>
-        <h2 className="mt-4 text-3xl font-semibold tracking-[-0.05em] text-white sm:text-4xl">
+        <h2 className="mt-4 text-3xl font-semibold tracking-[-0.025em] text-white sm:text-4xl">
           Other {category.name} Services
         </h2>
         <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
@@ -418,7 +418,7 @@ export function ServiceDetail({ service, category }: ServiceDetailProps) {
             .map((relatedService) => (
               <Link
                 key={relatedService}
-                href={`/services/${category.name.toLowerCase().replace(/\s+/g, '-')}/${relatedService.toLowerCase().replace(/\s+/g, '-').replace(/[^\w\-]/g, '')}`}
+                href={`/services/${category.name.toLowerCase().replace(/\s+/g, '-')}/${relatedService.toLowerCase().replace(/&/g, 'and').replace(/\s+/g, '-').replace(/[^\w\-]/g, '').replace(/-+/g, '-')}`}
                 className="flex items-center gap-3 rounded-[18px] border border-white/10 bg-white/[0.03] px-4 py-4 text-[13px] font-medium text-slate-200 transition hover:border-white/20 hover:bg-white/[0.05]"
               >
                 <span className="text-slate-500">

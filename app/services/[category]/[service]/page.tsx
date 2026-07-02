@@ -1,118 +1,201 @@
 import { notFound } from "next/navigation";
-import { Breadcrumbs } from "@/components/Breadcrumbs";
-import { Footer } from "@/components/Footer";
 import { Navbar } from "@/components/Navbar";
-import { ServiceDetail } from "@/components/ServiceDetail";
+import { ServiceCategoryClient } from "@/components/services/ServiceCategoryClient";
 import { serviceCategories } from "@/lib/site-data";
+
+const serviceRouteSlugs: Record<string, string[]> = {
+  "graphic-design": ["uiux-design", "logo-design", "marketing-creatives", "illustration", "motion-and-video"],
+  "website-development": [
+    "business-websites",
+    "ecommerce-websites",
+    "landing-pages",
+    "custom-web-solutions",
+    "performance-and-seo",
+  ],
+  "app-development": ["android-apps", "ios-apps", "hybrid-apps", "progressive-web-apps", "product-prototypes"],
+  "software-development": [
+    "crm-and-erp-solutions",
+    "custom-software",
+    "saas-applications",
+    "enterprise-solutions",
+  ],
+  marketing: ["on-page-seo", "technical-seo", "social-media-marketing", "paid-advertising", "analytics-and-reporting"],
+};
+
+function slugify(value: string) {
+  return value
+    .toLowerCase()
+    .replace(/&/g, "and")
+    .replace(/\s+/g, "-")
+    .replace(/[^\w-]/g, "")
+    .replace(/-+/g, "-");
+}
 
 export async function generateStaticParams(): Promise<{ category: string; service: string }[]> {
   const params: { category: string; service: string }[] = [];
-  
+
   serviceCategories.forEach((category) => {
-    const categorySlug = category.name.toLowerCase().replace(/\s+/g, '-');
-    
-    category.items.forEach((service) => {
-      const serviceSlug = service.toLowerCase().replace(/\s+/g, '-').replace(/[^\w\-]/g, '');
-      params.push({
-        category: categorySlug,
-        service: serviceSlug,
-      });
+    const categorySlug = slugify(category.name);
+    const services = new Set([
+      ...category.items.map((service) => slugify(service)),
+      ...(serviceRouteSlugs[categorySlug] ?? []),
+    ]);
+
+    services.forEach((service) => {
+      params.push({ category: categorySlug, service });
     });
   });
-  
+
   return params;
 }
 
-export async function generateMetadata({ params }: { params: Promise<{ category: string; service: string }> }) {
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ category: string; service: string }>;
+}) {
   const resolvedParams = await params;
   const category = serviceCategories.find(
-    (cat) => cat.name.toLowerCase().replace(/\s+/g, '-') === resolvedParams.category.toLowerCase()
+    (cat) => slugify(cat.name) === resolvedParams.category.toLowerCase()
   );
 
   if (!category) {
     return {
-      title: "Service Not Found | UNICX",
+      title: "Service Not Found | Studio UnicX",
       description: "The requested service could not be found.",
     };
   }
 
-  const service = category.items.find(
-    (item) => item.toLowerCase().replace(/\s+/g, '-').replace(/[^\w\-]/g, '') === resolvedParams.service.toLowerCase()
-  );
+  const serviceTitle = resolvedParams.service
+    .split("-")
+    .filter(Boolean)
+    .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+    .join(" ");
 
-  if (!service) {
-    return {
-      title: "Service Not Found | UNICX",
-      description: "The requested service could not be found.",
-    };
-  }
+  const serviceUrl = `https://studio.unicx.in/services/${resolvedParams.category}/${resolvedParams.service}`;
 
   return {
-    title: `${service} | ${category.name} Services | UNICX`,
-    description: `Professional ${service} services by UNICX. ${category.description}`,
-    keywords: [
-      `${service.toLowerCase()} services`,
-      `professional ${service.toLowerCase()}`,
-      `${category.name.toLowerCase()} services`,
-      "business services",
-      "digital solutions",
-      "UNICX services"
-    ],
+    title: `${serviceTitle} | ${category.name} Services | Studio UnicX`,
+    description: `Professional ${serviceTitle} services by Studio UnicX. ${category.description}`,
+    alternates: {
+      canonical: `/services/${resolvedParams.category}/${resolvedParams.service}`,
+    },
     openGraph: {
-      title: `${service} | ${category.name} Services | UNICX`,
-      description: `Professional ${service} services by UNICX. ${category.description}`,
-      url: `https://web.unicx.in/services/${resolvedParams.category}/${resolvedParams.service}`,
+      title: `${serviceTitle} | ${category.name} Services | Studio UnicX`,
+      description: `Professional ${serviceTitle} services by Studio UnicX. ${category.description}`,
+      url: serviceUrl,
+      type: "website",
+      siteName: "Studio UnicX",
       images: [
         {
-          url: `/og-${resolvedParams.service}.jpg`,
+          url: `/og-${resolvedParams.category}.jpg`,
           width: 1200,
           height: 630,
-          alt: `UNICX ${service} Services`,
+          alt: `Studio UnicX ${serviceTitle} Services`,
         },
       ],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: `${serviceTitle} | Studio UnicX`,
+      description: `Professional ${serviceTitle} services by Studio UnicX. ${category.description}`,
+      images: [`/og-${resolvedParams.category}.jpg`],
     },
   };
 }
 
-export default async function ServicePage({ params }: { params: Promise<{ category: string; service: string }> }) {
+export default async function ServicePage({
+  params,
+}: {
+  params: Promise<{ category: string; service: string }>;
+}) {
   const resolvedParams = await params;
   const category = serviceCategories.find(
-    (cat) => cat.name.toLowerCase().replace(/\s+/g, '-') === resolvedParams.category.toLowerCase()
+    (cat) => slugify(cat.name) === resolvedParams.category.toLowerCase()
   );
 
   if (!category) {
     notFound();
   }
 
-  const service = category.items.find(
-    (item) => item.toLowerCase().replace(/\s+/g, '-').replace(/[^\w\-]/g, '') === resolvedParams.service.toLowerCase()
-  );
+  const allowedServices = new Set([
+    ...category.items.map((service) => slugify(service)),
+    ...(serviceRouteSlugs[resolvedParams.category] ?? []),
+  ]);
 
-  if (!service) {
+  if (!allowedServices.has(resolvedParams.service.toLowerCase())) {
     notFound();
   }
 
-  return (
-    <main className="relative min-h-screen overflow-x-clip bg-black">
-      <div className="pointer-events-none absolute inset-x-0 top-0 h-[420px] opacity-20">
-        <div className="absolute inset-x-0 top-0 h-full bg-[radial-gradient(circle_at_top,rgba(255,255,255,0.06),transparent_58%)]" />
-        <div className="absolute left-[-8%] top-24 h-[320px] w-[320px] rounded-full bg-white/5 blur-3xl" />
-      </div>
-      <div className="noise-overlay" />
-      <Navbar />
+  const serviceTitle = resolvedParams.service
+    .split("-")
+    .filter(Boolean)
+    .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+    .join(" ");
 
-      <div className="relative mx-auto flex w-full max-w-7xl flex-col px-6 pb-2 pt-4 sm:px-8 md:pt-6 lg:px-12">
-        <Breadcrumbs 
-          items={[
-            { label: "Home", href: "/" }, 
-            { label: "Services", href: "/services" },
-            { label: category.name, href: `/services/${resolvedParams.category}` },
-            { label: service }
-          ]} 
-        />
-        <ServiceDetail service={service} category={category} />
-        <Footer />
+  // Schema: BreadcrumbList
+  const breadcrumbListSchema = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Home",
+        "item": "https://studio.unicx.in"
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": "Services",
+        "item": "https://studio.unicx.in/services"
+      },
+      {
+        "@type": "ListItem",
+        "position": 3,
+        "name": category.name,
+        "item": `https://studio.unicx.in/services/${resolvedParams.category.toLowerCase()}`
+      },
+      {
+        "@type": "ListItem",
+        "position": 4,
+        "name": serviceTitle,
+        "item": `https://studio.unicx.in/services/${resolvedParams.category}/${resolvedParams.service}`
+      }
+    ]
+  };
+
+  // Schema: Service
+  const serviceSchema = {
+    "@context": "https://schema.org",
+    "@type": "Service",
+    "name": serviceTitle,
+    "description": `Professional ${serviceTitle} services by Studio UnicX. ${category.description}`,
+    "provider": {
+      "@type": "Organization",
+      "name": "Studio UnicX",
+      "url": "https://studio.unicx.in",
+      "logo": "https://studio.unicx.in/logo.png"
+    }
+  };
+
+  return (
+    <main className="relative bg-[#060608] font-sans">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbListSchema) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceSchema) }}
+      />
+      <div className="fixed inset-x-0 top-0 z-[60]">
+        <Navbar />
       </div>
+      <ServiceCategoryClient
+        categoryName={category.name.toLowerCase()}
+        initialServiceId={resolvedParams.service}
+      />
     </main>
   );
 }

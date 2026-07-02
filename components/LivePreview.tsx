@@ -21,7 +21,7 @@ export function LivePreview({
       onClick={(e) => e.stopPropagation()}
     >
       <div className="relative h-full w-full overflow-hidden">
-        <div className="absolute inset-0 transition-filter duration-500 ease-in-out group-hover:filter-none grayscale">
+        <div className="absolute inset-0 transition-filter duration-500 ease-in-out">
           <iframe
             src={src}
             className="h-full w-full border-0"

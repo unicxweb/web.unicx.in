@@ -1,187 +1,80 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { useRef, useState } from "react";
+import { AnimatedTestimonials } from "@/components/ui/animated-testimonials";
 
 const testimonials = [
   {
     quote:
-      "They delivered exactly what we needed without the noise. The software runs clean and scales without breaking.",
-    name: "Marcus Chen",
-    role: "CTO, Velocity Labs",
-    initials: "MC",
+      "The attention to detail and innovative features have completely transformed our workflow. This is exactly what we've been looking for.",
+    name: "Sarah Chen",
+    designation: "Product Manager at TechFlow",
+    src: "https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?q=80&w=3560&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
   },
   {
     quote:
-      "They understood the problem before we finished explaining it, built the system without cutting corners, and delivered on time.",
-    name: "Sarah Mitchell",
-    role: "VP Engineering, Nexust",
-    initials: "SM",
+      "Implementation was seamless and the results exceeded our expectations. The platform's flexibility is remarkable.",
+    name: "Michael Rodriguez",
+    designation: "CTO at InnovateSphere",
+    src: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?q=80&w=3540&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
   },
   {
     quote:
-      "They built our platform right the first time, no shortcuts, no excuses.",
-    name: "James Rivera",
-    role: "Founder, Catalyst",
-    initials: "JR",
+      "This solution has significantly improved our team's productivity. The intuitive interface makes complex tasks simple.",
+    name: "Emily Watson",
+    designation: "Operations Director at CloudScale",
+    src: "https://images.unsplash.com/photo-1623582854588-d60de57fa33f?q=80&w=3540&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
   },
   {
     quote:
-      "Their design process brought clarity to a messy product and helped our team make decisions faster.",
-    name: "Anika Rao",
-    role: "Product Lead, Northstar",
-    initials: "AR",
+      "Outstanding support and robust features. It's rare to find a product that delivers on all its promises.",
+    name: "James Kim",
+    designation: "Engineering Lead at DataPro",
+    src: "https://images.unsplash.com/photo-1636041293178-808a6762ab39?q=80&w=3464&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
   },
   {
     quote:
-      "The handoff was as strong as the build. We knew exactly how to run the system after launch.",
-    name: "Dev Patel",
-    role: "Operations, Gridline",
-    initials: "DP",
+      "The scalability and performance have been game-changing for our organization. Highly recommend to any growing business.",
+    name: "Lisa Thompson",
+    designation: "VP of Technology at FutureNet",
+    src: "https://images.unsplash.com/photo-1624561172888-ac93c696e10c?q=80&w=2592&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
   },
 ];
 
-function ArrowIcon({ direction = "next" }: { direction?: "prev" | "next" }) {
-  return (
-    <svg
-      aria-hidden="true"
-      viewBox="0 0 24 24"
-      className="h-4 w-4"
-      fill="none"
-      stroke="currentColor"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-      strokeWidth="1.8"
-    >
-      {direction === "prev" ? (
-        <>
-          <path d="M19 12H5" />
-          <path d="m11 5-7 7 7 7" />
-        </>
-      ) : (
-        <>
-          <path d="M5 12h14" />
-          <path d="m13 5 7 7-7 7" />
-        </>
-      )}
-    </svg>
-  );
-}
-
-function Stars() {
-  return (
-    <div className="flex gap-1 text-sm leading-none text-white" aria-label="5 star rating">
-      {Array.from({ length: 5 }).map((_, index) => (
-        <span key={index}>*</span>
-      ))}
-    </div>
-  );
-}
-
 export function ClientTestimonials() {
-  const [activeIndex, setActiveIndex] = useState(0);
-  const scrollRef = useRef<HTMLDivElement>(null);
-
-  const goTo = (index: number) => {
-    setActiveIndex(index);
-    scrollRef.current?.scrollTo({
-      left: index * 340,
-      behavior: "smooth",
-    });
-  };
-
-  const next = () => {
-    goTo((activeIndex + 1) % testimonials.length);
-  };
-
-  const previous = () => {
-    goTo((activeIndex - 1 + testimonials.length) % testimonials.length);
-  };
-
   return (
-    <section id="testimonials" className="pt-24 sm:pt-32">
-      <motion.div
-        initial={{ opacity: 0, y: 24 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true, amount: 0.25 }}
-        transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
-        className="mb-12"
-      >
-        <div className="section-label">Testimonials</div>
-        <h2 className="text-[clamp(2.1rem,4vw,3.6rem)] font-semibold uppercase leading-[0.95] tracking-[-0.065em] text-white">
+    <section id="testimonials" className="py-10 md:py-16">
+      <div className="mb-2">
+        <motion.div
+          initial={{ opacity: 0, x: -40 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          viewport={{ once: false, amount: 0.5 }}
+          transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
+          className="mb-3 md:mb-7 inline-flex items-center gap-2 text-[10px] font-semibold uppercase tracking-[0.42em] text-slate-500"
+        >
+          <span className="section-dot" />
+          <span>Testimonials</span>
+        </motion.div>
+        <motion.h2
+          initial={{ opacity: 0, y: 60, scale: 0.9 }}
+          whileInView={{ opacity: 1, y: 0, scale: 1 }}
+          viewport={{ once: false, amount: 0.5 }}
+          transition={{ duration: 1, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
+          className="text-[clamp(1.75rem,4vw,3.6rem)] font-semibold uppercase leading-[0.95] tracking-[-0.03em] text-white"
+        >
           What clients say
-        </h2>
-        <p className="mt-4 max-w-xl text-[13px] leading-7 text-slate-500 sm:text-[15px]">
+        </motion.h2>
+        <motion.p
+          initial={{ opacity: 0, y: 40 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: false, amount: 0.5 }}
+          transition={{ duration: 0.9, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
+          className="mt-2 md:mt-4 max-w-xl text-[13px] leading-7 text-slate-500 sm:text-[15px]"
+        >
           Real work. Real results. Real partnerships.
-        </p>
-      </motion.div>
-
-      <div ref={scrollRef} className="overflow-hidden">
-        <div className="flex gap-5">
-          {testimonials.map((testimonial) => (
-            <article
-              key={testimonial.name}
-              className="flex min-h-[210px] w-[320px] shrink-0 flex-col justify-between rounded-lg border border-white/20 bg-black p-6"
-            >
-              <div>
-                <Stars />
-                <blockquote className="mt-6 text-[14px] font-medium leading-7 text-slate-200">
-                  "{testimonial.quote}"
-                </blockquote>
-              </div>
-
-              <div className="mt-8 flex items-center gap-3">
-                <div className="flex h-9 w-9 items-center justify-center rounded-full border border-white/10 bg-white/[0.04] text-[10px] font-semibold uppercase tracking-[0.18em] text-slate-500">
-                  {testimonial.initials}
-                </div>
-                <div>
-                  <div className="text-[12px] font-semibold text-white">
-                    {testimonial.name}
-                  </div>
-                  <div className="mt-1 text-[11px] text-slate-500">
-                    {testimonial.role}
-                  </div>
-                </div>
-              </div>
-            </article>
-          ))}
-        </div>
+        </motion.p>
       </div>
-
-      <div className="mt-9 flex items-center justify-between gap-4">
-        <div className="flex gap-2">
-          {testimonials.map((testimonial, index) => (
-            <button
-              key={testimonial.name}
-              type="button"
-              onClick={() => goTo(index)}
-              className={`h-1.5 rounded-full transition-all ${
-                activeIndex === index ? "w-6 bg-white" : "w-1.5 bg-white/30 hover:bg-white/50"
-              }`}
-              aria-label={`Show testimonial ${index + 1}`}
-            />
-          ))}
-        </div>
-
-        <div className="flex gap-2">
-          <button
-            type="button"
-            onClick={previous}
-            className="flex h-9 w-9 items-center justify-center rounded-full border border-white/20 text-slate-300 transition hover:bg-white hover:text-black"
-            aria-label="Previous testimonial"
-          >
-            <ArrowIcon direction="prev" />
-          </button>
-          <button
-            type="button"
-            onClick={next}
-            className="flex h-9 w-9 items-center justify-center rounded-full border border-white/20 text-slate-300 transition hover:bg-white hover:text-black"
-            aria-label="Next testimonial"
-          >
-            <ArrowIcon />
-          </button>
-        </div>
-      </div>
+      <AnimatedTestimonials testimonials={testimonials} />
     </section>
   );
 }

@@ -86,7 +86,7 @@ export function Capabilities() {
       >
         <div className="max-w-xl">
           <div className="section-label">What You Get</div>
-          <h2 className="max-w-[24rem] text-[clamp(2.1rem,4.4vw,3.7rem)] font-semibold uppercase leading-[0.98] tracking-[-0.04em] text-white">
+          <h2 className="max-w-[24rem] text-[clamp(2.1rem,4.4vw,3.7rem)] font-semibold uppercase leading-[0.98] tracking-[-0.02em] text-white">
             More than services. A clearer system for growth.
           </h2>
         </div>
@@ -109,7 +109,7 @@ export function Capabilities() {
         </div>
       </motion.div>
 
-      <div className="mt-16 border-t border-white/10">
+      <div className="mt-16 border-t border-white/30">
         {deliveryTracks.map((track, index) => (
           <motion.article
             key={track.eyebrow}
@@ -121,14 +121,14 @@ export function Capabilities() {
               delay: index * 0.08,
               ease: [0.22, 1, 0.36, 1],
             }}
-            className="border-b border-white/10 py-10 sm:py-12"
+            className="border-b border-white/30 py-10 sm:py-12"
           >
             <div className="grid gap-8 lg:grid-cols-[minmax(220px,0.7fr)_minmax(0,1.3fr)] lg:items-start">
               <div>
                 <div className="text-[10px] font-semibold uppercase tracking-[0.3em] text-slate-500">
                   {track.eyebrow}
                 </div>
-                <h3 className="mt-4 max-w-md text-[2rem] font-semibold tracking-[-0.05em] text-white">
+                <h3 className="mt-4 max-w-md text-[2rem] font-semibold tracking-[-0.025em] text-white">
                   {track.title}
                 </h3>
               </div>
@@ -141,7 +141,7 @@ export function Capabilities() {
                   {track.outcomes.map((outcome) => (
                     <div
                       key={outcome}
-                      className="border-l border-white/10 pl-4 text-[13px] font-medium leading-6 text-slate-200 flex items-start gap-2"
+                      className="border-l border-white/30 pl-4 text-[13px] font-medium leading-6 text-slate-200 flex items-start gap-2"
                     >
                       <span className="text-slate-500 mt-0.5">
                         <CheckIcon />

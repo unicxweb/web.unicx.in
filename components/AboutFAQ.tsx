@@ -1,7 +1,9 @@
 "use client";
 
-import { useState } from "react";
-import { AnimatePresence, motion } from "framer-motion";
+import { useState, useEffect, useRef } from "react";
+import { AnimatePresence, motion, useTransform, useMotionValue } from "framer-motion";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 const aboutFaqs = [
   {
@@ -48,40 +50,121 @@ function PlusIcon({ open }: { open: boolean }) {
   );
 }
 
-export function AboutFAQ() {
+interface AboutFAQProps {
+  scrollYProgress?: any;
+  isDesktop?: boolean;
+}
+
+export function AboutFAQ({ scrollYProgress, isDesktop = false }: AboutFAQProps) {
   const [openIndex, setOpenIndex] = useState(-1);
+  const sectionRef = useRef<HTMLElement>(null);
+  const faqContainerRef = useRef<HTMLDivElement>(null);
+
+  // GSAP scroll effects for FAQ items (only on mobile/no scroll progress)
+  useEffect(() => {
+    if (isDesktop && scrollYProgress) return;
+    if (!sectionRef.current || !faqContainerRef.current) return;
+    
+    gsap.registerPlugin(ScrollTrigger);
+    
+    const ctx = gsap.context(() => {
+      const articles = faqContainerRef.current?.querySelectorAll('article');
+      if (!articles) return;
+
+      gsap.set(articles, { opacity: 0, y: 30, scale: 0.95 });
+
+      ScrollTrigger.create({
+        trigger: sectionRef.current,
+        start: "top 80%",
+        end: "bottom 20%",
+        onEnter: () => {
+          gsap.to(articles, {
+            opacity: 1,
+            y: 0,
+            scale: 1,
+            stagger: 0.08,
+            duration: 0.8,
+            ease: "power3.out",
+          });
+        },
+        onLeave: () => {
+          gsap.to(articles, {
+            opacity: 0,
+            y: 30,
+            scale: 0.95,
+            duration: 0.4,
+            ease: "power2.in",
+          });
+        },
+        onEnterBack: () => {
+          gsap.to(articles, {
+            opacity: 1,
+            y: 0,
+            scale: 1,
+            stagger: 0.08,
+            duration: 0.8,
+            ease: "power3.out",
+          });
+        },
+        onLeaveBack: () => {
+          gsap.to(articles, {
+            opacity: 0,
+            y: 30,
+            scale: 0.95,
+            duration: 0.4,
+            ease: "power2.in",
+          });
+        },
+      });
+    }, sectionRef.current);
+
+    return () => ctx.revert();
+  }, [isDesktop, scrollYProgress]);
+
+  const fallbackValue = useMotionValue(0);
+  const activeScrollProgress = scrollYProgress || fallbackValue;
+  const showScrollAnimation = !!scrollYProgress && isDesktop;
+
+  // Left column transforms
+  const leftX = useTransform(activeScrollProgress, [0, 0.45], [-200, 0]);
+  const leftOpacity = useTransform(activeScrollProgress, [0, 0.45], [0, 1]);
+
+  // Right column transforms
+  const rightX = useTransform(activeScrollProgress, [0, 0.45], [200, 0]);
+  const rightOpacity = useTransform(activeScrollProgress, [0, 0.45], [0, 1]);
 
   return (
-    <section className="pt-24 sm:pt-32 pb-24">
-      <motion.div
-        initial={{ opacity: 0, y: 24 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true, amount: 0.25 }}
-        transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
-        className="grid gap-10 lg:grid-cols-[minmax(0,0.78fr)_minmax(0,1.22fr)]"
-      >
-        <div className="max-w-xl">
+    <section ref={sectionRef} className={showScrollAnimation ? "w-full" : "pt-40 sm:pt-56 pb-24"}>
+      <div className="grid gap-10 lg:grid-cols-[minmax(0,0.78fr)_minmax(0,1.22fr)]">
+        <motion.div
+          style={showScrollAnimation ? { x: leftX, opacity: leftOpacity } : {}}
+          initial={!showScrollAnimation ? { opacity: 0, x: -40 } : undefined}
+          whileInView={!showScrollAnimation ? { opacity: 1, x: 0 } : undefined}
+          viewport={{ once: false, amount: 0.5 }}
+          transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
+          className="max-w-xl"
+        >
           <div className="section-label">Learn More</div>
-          <h2 className="max-w-[24rem] text-[clamp(2.1rem,4.4vw,3.7rem)] font-semibold uppercase leading-[0.98] tracking-[-0.04em] text-white">
-            Questions about who we are and how we work.
+          <h2 className="max-w-[24rem] text-[clamp(2.1rem,4.4vw,3.7rem)] font-semibold uppercase leading-[0.98] tracking-[-0.02em] text-white">
+            Questions about who we are and How We Work.
           </h2>
           <p className="mt-6 max-w-lg text-[15px] leading-8 text-slate-400 sm:text-[17px]">
             Understanding our approach, expertise, and what drives our work to help you make an informed decision.
           </p>
-        </div>
+        </motion.div>
 
-        <div className="border-t border-white/10">
+        <motion.div
+          ref={faqContainerRef}
+          style={showScrollAnimation ? { x: rightX, opacity: rightOpacity } : {}}
+          initial={!showScrollAnimation ? { opacity: 0 } : undefined}
+          whileInView={!showScrollAnimation ? { opacity: 1 } : undefined}
+          viewport={{ once: false, amount: 0.5 }}
+          transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
+          className="border-t border-white/10"
+        >
           {aboutFaqs.map((item, index) => (
-            <motion.article
+            <article
               key={item.question}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, amount: 0.2 }}
-              transition={{
-                duration: 0.7,
-                delay: index * 0.06,
-                ease: [0.22, 1, 0.36, 1],
-              }}
               className="border-b border-white/10 py-2"
             >
               <button
@@ -105,7 +188,7 @@ export function AboutFAQ() {
                 </span>
               </button>
 
-              <AnimatePresence initial={false}>
+              <AnimatePresence>
                 {openIndex === index ? (
                   <motion.div
                     initial={{ height: 0, opacity: 0 }}
@@ -122,10 +205,10 @@ export function AboutFAQ() {
                   </motion.div>
                 ) : null}
               </AnimatePresence>
-            </motion.article>
+            </article>
           ))}
-        </div>
-      </motion.div>
+        </motion.div>
+      </div>
     </section>
   );
 }

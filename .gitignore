@@ -1,5 +1,17 @@
 node_modules
 .env
+.env*.local
 dist
 build
 out
+.next/
+*.tsbuildinfo
+raw-images/
+*.js
+!next.config.ts
+!postcss.config.js
+!tailwind.config.ts
+*.html
+*.spline
+asset-scan-result.json
+unoptimized-images-summary.json

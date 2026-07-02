@@ -19,14 +19,48 @@ export default function CookieConsent() {
   });
 
   useEffect(() => {
+    let timer: ReturnType<typeof setTimeout> | undefined;
+    
+    const startTimer = () => {
+      // Delay showing the banner by 8 seconds after the site is loaded/visible
+      timer = setTimeout(() => {
+        setShowBanner(true);
+      }, 8000);
+    };
+
+    const handlePreloaderComplete = () => {
+      startTimer();
+      window.removeEventListener("preloader-complete", handlePreloaderComplete);
+    };
+
     const consent = localStorage.getItem("cookie-consent");
     if (!consent) {
-      setShowBanner(true);
+      const isPreloaderActive = document.documentElement.classList.contains("preloader-active") || 
+                                document.body.classList.contains("preloader-active");
+      
+      if (isPreloaderActive) {
+        window.addEventListener("preloader-complete", handlePreloaderComplete);
+      } else {
+        startTimer();
+      }
     } else {
       const savedPreferences = JSON.parse(consent);
       setPreferences(savedPreferences);
       applyCookies(savedPreferences);
     }
+
+    const handleOpenSettings = () => {
+      if (timer) clearTimeout(timer);
+      setShowSettings(true);
+      setShowBanner(true);
+    };
+
+    window.addEventListener("open-cookie-settings", handleOpenSettings);
+    return () => {
+      if (timer) clearTimeout(timer);
+      window.removeEventListener("open-cookie-settings", handleOpenSettings);
+      window.removeEventListener("preloader-complete", handlePreloaderComplete);
+    };
   }, []);
 
   const applyCookies = (prefs: CookiePreferences) => {
@@ -85,6 +119,10 @@ export default function CookieConsent() {
         initial={{ opacity: 0, y: 100 }}
         animate={{ opacity: 1, y: 0 }}
         exit={{ opacity: 0, y: 100 }}
+        transition={{
+          duration: 1.2,
+          ease: [0.16, 1, 0.3, 1] // Smooth easeOutExpo transition
+        }}
         className="fixed bottom-0 left-0 right-0 z-50 bg-black/95 backdrop-blur-lg border-t border-white/10"
       >
         {!showSettings ? (

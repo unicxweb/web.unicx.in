@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import { useState } from "react";
+import { ScrollReveal } from "@/components/ui/scroll-reveal";
 
 const faqs = [
   {
@@ -68,71 +69,97 @@ export function ServicesFAQ() {
   };
 
   return (
-    <section className="pt-24 sm:pt-32">
-      <motion.div
-        initial={{ opacity: 0, y: 24 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true, amount: 0.25 }}
-        transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
-        className="text-center"
-      >
-        <div className="section-label">Frequently Asked Questions</div>
-        <h2 className="mx-auto max-w-3xl text-[clamp(2.1rem,4.4vw,3.7rem)] font-semibold uppercase leading-[0.98] tracking-[-0.04em] text-white">
+    <section className="pt-20 sm:pt-28 lg:pt-36 2xl:pt-40">
+      <ScrollReveal className="text-left" amount={0.24}>
+        <div className="mb-7 inline-flex items-center gap-2 text-[10px] font-semibold uppercase tracking-[0.42em] text-slate-500">
+          <span className="section-dot" />
+          <span>Frequently Asked Questions</span>
+        </div>
+        <h2 className="max-w-3xl text-[clamp(2.1rem,4.4vw,3.7rem)] font-semibold uppercase leading-[0.98] tracking-[-0.02em] text-white">
           Everything you need to know about our web graphic design services
         </h2>
-        <p className="mx-auto mt-5 max-w-2xl text-[15px] leading-7 text-slate-400 sm:text-[17px] sm:leading-8">
+        <p className="mt-5 max-w-2xl text-[15px] leading-7 text-slate-400 sm:text-[17px] sm:leading-8">
           Get answers to common questions about our web graphic design and development process, 
           technologies, and how we can help your business grow online.
         </p>
-      </motion.div>
+      </ScrollReveal>
 
-      <div className="mx-auto mt-16 max-w-3xl">
-        {faqs.map((faq, index) => (
-          <motion.div
-            key={index}
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, amount: 0.1 }}
-            transition={{
-              duration: 0.6,
-              delay: index * 0.1,
-              ease: [0.22, 1, 0.36, 1],
-            }}
-            className="border-b border-white/10 last:border-b-0"
-          >
-            <button
-              onClick={() => toggleFAQ(index)}
-              className="w-full py-6 text-left transition hover:text-white"
-            >
-              <div className="flex items-center justify-between gap-4">
-                <h3 className="text-[17px] font-medium leading-7 text-white sm:text-[19px]">
-                  {faq.question}
-                </h3>
-                <span className="flex items-start justify-start pt-1 text-slate-500">
-                  <span className="inline-flex">
-                    <PlusIcon open={openIndex === index} />
-                  </span>
-                </span>
-              </div>
-            </button>
-            
+      <div className="mt-12 grid gap-8 sm:mt-14 lg:mt-16 lg:grid-cols-[minmax(0,1.05fr)_minmax(340px,0.95fr)] lg:items-start">
+        <div>
+          {faqs.map((faq, index) => (
             <motion.div
-              initial={{ height: 0, opacity: 0 }}
-              animate={{
-                height: openIndex === index ? "auto" : 0,
-                opacity: openIndex === index ? 1 : 0,
+              key={index}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: false, amount: 0.1, margin: "0px 0px -10% 0px" }}
+              transition={{
+                duration: 0.6,
+                delay: index * 0.1,
+                ease: [0.22, 1, 0.36, 1],
               }}
-              transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
-              className="overflow-hidden"
+              className="border-b border-white/30 last:border-b-0"
             >
-              <div className="pb-6 pr-12">
-                <p className="text-[15px] leading-7 text-slate-400 sm:text-[16px]">
-                  {faq.answer}
-                </p>
-              </div>
+              <button
+                onClick={() => toggleFAQ(index)}
+                className="w-full py-5 sm:py-6 text-left transition hover:text-white focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-white/50 rounded"
+              >
+                <div className="flex items-center justify-between gap-4">
+                  <h3 className="text-[17px] font-medium leading-7 text-white sm:text-[19px]">
+                    {faq.question}
+                  </h3>
+                  <span className="flex items-start justify-start pt-1 text-slate-500">
+                    <span className="inline-flex">
+                      <PlusIcon open={openIndex === index} />
+                    </span>
+                  </span>
+                </div>
+              </button>
+              
+              <motion.div
+                initial={{ height: 0, opacity: 0 }}
+                animate={{
+                  height: openIndex === index ? "auto" : 0,
+                  opacity: openIndex === index ? 1 : 0,
+                }}
+                transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
+                className="overflow-hidden"
+              >
+                <div className="pb-5 sm:pb-6 pr-4 sm:pr-10">
+                  <p className="text-[15px] leading-7 text-slate-400 sm:text-[16px]">
+                    {faq.answer}
+                  </p>
+                </div>
+              </motion.div>
             </motion.div>
-          </motion.div>
-        ))}
+          ))}
+        </div>
+
+        <ScrollReveal delay={0.08} distance={28} amount={0.18}>
+          <div className="relative mx-auto w-full max-w-[28rem] overflow-hidden rounded-lg border border-white/30 bg-white/[0.02] shadow-[0_18px_60px_rgba(0,0,0,0.22)] lg:sticky lg:top-28 lg:mr-0">
+            <div className="h-[20rem] sm:h-[26rem] lg:h-[32rem]">
+              <img
+                src="https://images.unsplash.com/photo-1557804506-669a67965ba0?w=900&h=1100&fit=crop&q=80"
+                alt="UNICX consultation and project support"
+                className="h-full w-full object-cover object-center"
+                loading="lazy"
+                decoding="async"
+              />
+            </div>
+            <div className="absolute inset-0 bg-gradient-to-t from-black via-black/45 to-transparent" />
+            <div className="absolute inset-x-0 bottom-0 p-5 sm:p-6">
+              <div className="text-[10px] font-semibold uppercase tracking-[0.34em] text-white/45">
+                Support
+              </div>
+              <h3 className="mt-3 max-w-sm text-[1.65rem] font-semibold leading-tight tracking-[-0.02em] text-white">
+                Answers before the work begins.
+              </h3>
+              <p className="mt-4 max-w-sm text-sm leading-6 text-white/58">
+                Clear scope, timelines, tools, and support expectations from
+                the first conversation.
+              </p>
+            </div>
+          </div>
+        </ScrollReveal>
       </div>
     </section>
   );

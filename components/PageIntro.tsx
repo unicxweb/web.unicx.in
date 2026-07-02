@@ -19,7 +19,7 @@ export function PageIntro({
     <section className="pt-10 sm:pt-12 lg:pt-14">
       <div className="max-w-4xl">
         <div className="section-label">{eyebrow}</div>
-        <h1 className="max-w-4xl text-[clamp(3rem,8vw,6rem)] font-semibold uppercase leading-[0.9] tracking-[-0.07em] text-white">
+        <h1 className="max-w-4xl text-[clamp(3rem,8vw,6rem)] font-semibold uppercase leading-[0.9] tracking-[-0.03em] text-white">
           {title}
         </h1>
         <p className="mt-8 max-w-2xl text-[15px] leading-8 text-slate-400 sm:text-lg">

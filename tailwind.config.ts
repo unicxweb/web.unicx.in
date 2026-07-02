@@ -29,6 +29,7 @@ const config: Config = {
       animation: {
         float: "float 8s ease-in-out infinite",
         pulseGlow: "pulseGlow 6s ease-in-out infinite",
+        marquee: "marquee var(--duration,40s) linear infinite",
       },
       keyframes: {
         float: {
@@ -39,6 +40,14 @@ const config: Config = {
           "0%, 100%": { opacity: "0.55", transform: "scale(1)" },
           "50%": { opacity: "0.85", transform: "scale(1.08)" },
         },
+        marquee: {
+          from: { transform: "translateX(0)" },
+          to: { transform: "translateX(calc(-100% - var(--gap, 1rem)))" },
+        },
+      },
+      fontFamily: {
+        serif: ["'Playfair Display'", "Georgia", "serif"],
+        sans: ["'Plus Jakarta Sans'", "Inter", "sans-serif"],
       },
     },
   },

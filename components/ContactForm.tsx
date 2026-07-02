@@ -1,6 +1,7 @@
 "use client";
 
 import { FormEvent, useState, useRef, useCallback, useEffect } from "react";
+import Link from "next/link";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 import {
@@ -101,6 +102,7 @@ interface FormErrors {
   phone?: string;
   service?: string;
   budget?: string;
+  agreeToTerms?: string;
 }
 
 export function ContactForm() {
@@ -113,6 +115,7 @@ export function ContactForm() {
     budget: budgetOptions[1],
     timeline: "",
     details: "",
+    agreeToTerms: false,
   });
 
   const [errors, setErrors] = useState<FormErrors>({});
@@ -150,19 +153,19 @@ export function ContactForm() {
     }
   }, [submitStatus]);
 
-  const validateField = (field: keyof typeof form, value: string): string | undefined => {
+  const validateField = (field: keyof typeof form, value: string | boolean): string | undefined => {
     switch (field) {
       case 'name':
-        if (!value.trim()) return 'Name is required';
+        if (typeof value !== 'string' || !value.trim()) return 'Name is required';
         if (value.trim().length < 2) return 'Name must be at least 2 characters';
         if (value.trim().length > 100) return 'Name must be less than 100 characters';
         break;
       case 'email':
-        if (!value.trim()) return 'Email is required';
+        if (typeof value !== 'string' || !value.trim()) return 'Email is required';
         if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value)) return 'Please enter a valid email address';
         break;
       case 'phone':
-        if (value && !/^[\d\s\-\+\(\)]+$/.test(value)) return 'Please enter a valid phone number';
+        if (typeof value === 'string' && value && !/^[\d\s\-\+\(\)]+$/.test(value)) return 'Please enter a valid phone number';
         break;
       case 'service':
         if (!value || value === serviceOptions[0]) return 'Please select a service';
@@ -171,9 +174,12 @@ export function ContactForm() {
         if (!value || value === budgetOptions[0]) return 'Please select a budget range';
         break;
       case 'details':
-        if (!value.trim()) return 'Project details are required';
+        if (typeof value !== 'string' || !value.trim()) return 'Project details are required';
         if (value.trim().length < 10) return 'Please provide at least 10 characters';
         if (value.trim().length > 1000) return 'Project details must be less than 1000 characters';
+        break;
+      case 'agreeToTerms':
+        if (!value) return 'You must agree to the terms and conditions';
         break;
     }
     return undefined;
@@ -200,6 +206,9 @@ export function ContactForm() {
 
     const detailsError = validateField('details', form.details);
     if (detailsError) newErrors.details = detailsError;
+
+    const agreeToTermsError = validateField('agreeToTerms', form.agreeToTerms);
+    if (agreeToTermsError) newErrors.agreeToTerms = agreeToTermsError;
 
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
@@ -239,6 +248,7 @@ export function ContactForm() {
           budget: budgetOptions[1],
           timeline: "",
           details: "",
+          agreeToTerms: false,
         });
         setErrors({});
         setSubmitStatus('success');
@@ -267,7 +277,7 @@ export function ContactForm() {
       <div className="text-[10px] font-semibold uppercase tracking-[0.34em] text-slate-500">
         Contact form
       </div>
-      <h2 className="mt-4 max-w-xl text-[clamp(1.9rem,3vw,2.7rem)] font-semibold leading-[1] tracking-[-0.04em] text-white">
+      <h2 className="mt-4 max-w-xl text-[clamp(1.9rem,3vw,2.7rem)] font-semibold leading-[1] tracking-[-0.02em] text-white">
         Share the essentials and we will shape the next step clearly.
       </h2>
       <p className="mt-4 max-w-xl text-[14px] leading-7 text-slate-400">
@@ -534,6 +544,45 @@ export function ContactForm() {
           </div>
         </div>
 
+        {/* Terms and Conditions */}
+        <div className="space-y-3">
+          <label className="flex items-start gap-3 cursor-pointer">
+            <input
+              type="checkbox"
+              checked={form.agreeToTerms}
+              onChange={(event) => {
+                const value = event.target.checked;
+                setForm((current) => ({ ...current, agreeToTerms: value }));
+                
+                // Clear error if checkbox is checked
+                if (value && errors.agreeToTerms) {
+                  setErrors((current) => ({ ...current, agreeToTerms: undefined }));
+                }
+              }}
+              className={`mt-1 w-4 h-4 rounded border-white/20 bg-white/10 text-white focus:ring-white/30 focus:ring-offset-0 ${errors.agreeToTerms ? 'border-red-500' : ''}`}
+              aria-invalid={!!errors.agreeToTerms}
+              aria-describedby={errors.agreeToTerms ? 'terms-error' : undefined}
+            />
+            <span className="text-[13px] leading-6 text-slate-300">
+              I agree to the terms and conditions and privacy policy
+              {' '}
+              <Link 
+                href="/privacy" 
+                className="text-white underline hover:text-slate-300 transition-colors"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                (read terms)
+              </Link>
+            </span>
+          </label>
+          {errors.agreeToTerms && (
+            <p id="terms-error" className="text-red-400 text-xs mt-1" role="alert">
+              {errors.agreeToTerms}
+            </p>
+          )}
+        </div>
+
         <div className="space-y-4 pt-2">
           {submitStatus !== 'idle' && (
             <div
@@ -554,7 +603,7 @@ export function ContactForm() {
               type="submit"
               id="contact-submit-btn-13"
               disabled={isSubmitting}
-              className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white px-7 py-3.5 text-[11px] font-semibold uppercase tracking-[0.28em] text-slate-950 transition hover:shadow-[0_0_30px_rgba(255,255,255,0.1)] disabled:opacity-50 disabled:cursor-not-allowed"
+              className="inline-flex items-center gap-2 rounded-none border border-white/15 bg-white px-7 py-3.5 text-[11px] font-semibold uppercase tracking-[0.28em] text-slate-950 transition hover:shadow-[0_0_30px_rgba(255,255,255,0.1)] disabled:opacity-50 disabled:cursor-not-allowed"
               aria-label={isSubmitting ? 'Submitting form...' : 'Send inquiry'}
             >
               {isSubmitting ? (

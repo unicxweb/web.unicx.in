@@ -34,7 +34,7 @@ export function CaseStudies() {
       >
         <div className="max-w-3xl">
           <div className="section-label">Selected Work</div>
-          <h2 className="text-4xl font-semibold uppercase tracking-[-0.06em] text-white sm:text-5xl md:text-6xl">
+          <h2 className="text-4xl font-semibold uppercase tracking-[-0.03em] text-white sm:text-5xl md:text-6xl">
             Proof that clarity compounds.
           </h2>
         </div>
@@ -75,7 +75,7 @@ export function CaseStudies() {
               </div>
 
               <div>
-                <h3 className="text-[2rem] font-semibold tracking-[-0.06em] text-white">
+                <h3 className="text-[2rem] font-semibold tracking-[-0.03em] text-white">
                   {study.title}
                 </h3>
                 <div className="mt-6 text-[11px] font-medium uppercase tracking-[0.34em] text-slate-300">

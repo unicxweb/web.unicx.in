@@ -35,11 +35,11 @@ export function Hero() {
         className="relative z-10 max-w-[44rem] md:max-w-[40rem]"
       >
         <div className="section-label">UNIFY</div>
-        <h1 className="max-w-4xl text-[clamp(2.3rem,5.3vw,4.35rem)] font-semibold uppercase leading-[0.98] tracking-[-0.04em] text-white md:max-w-[36rem]">
+        <h1 className="max-w-4xl text-[clamp(2.3rem,5.3vw,4.35rem)] font-semibold uppercase leading-[0.98] tracking-[-0.02em] text-white md:max-w-[36rem]">
           Where Design, Marketing, Apps, and Web Work Together.
         </h1>
         <p className="mt-5 max-w-[38rem] text-[14px] leading-6 text-slate-400 sm:text-[16px] sm:leading-7">
-          studio.unicx brings strategy, design, marketing, app development, and
+          Studio UnicX brings strategy, design, marketing, app development, and
           website execution into one connected system for modern growth-focused
           brands.
         </p>
@@ -65,8 +65,8 @@ export function Hero() {
         transition={{ duration: 0.9, delay: 0.12, ease: [0.22, 1, 0.36, 1] }}
         className="relative mx-auto flex w-full max-w-[500px] items-center justify-center md:max-w-[360px] lg:max-w-[470px]"
       >
-        <div className="absolute h-64 w-64 rounded-full bg-white/8 blur-[130px]" />
-        <div className="absolute right-10 top-10 h-32 w-32 rounded-full bg-white/6 blur-[110px]" />
+        <div className="absolute h-64 w-64 rounded-full bg-white/8 blur-[130px] will-change-transform" />
+        <div className="absolute right-10 top-10 h-32 w-32 rounded-full bg-white/6 blur-[110px] will-change-transform" />
 
         <motion.div
           animate={{ y: [0, -10, 0], rotate: [0, -2, 0] }}
@@ -74,7 +74,7 @@ export function Hero() {
           className="relative w-full max-w-[460px] md:max-w-[340px] lg:max-w-[440px]"
         >
           <MediaFrame
-            alt="studio.unicx hero visual"
+            alt="Studio UnicX hero visual"
             label="System Preview"
             aspectClassName="aspect-[1.08]"
             className="rounded-[32px] shadow-card"

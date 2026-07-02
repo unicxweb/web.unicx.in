@@ -34,7 +34,7 @@ export function HowItWorks() {
         className="mx-auto max-w-3xl text-center"
       >
         <div className="section-label justify-center">How It Works</div>
-        <h2 className="text-4xl font-semibold uppercase tracking-[-0.06em] text-white sm:text-5xl md:text-6xl">
+        <h2 className="text-4xl font-semibold uppercase tracking-[-0.03em] text-white sm:text-5xl md:text-6xl">
           A focused path from idea to scale.
         </h2>
         <p className="mt-6 max-w-2xl text-[15px] leading-8 text-slate-400 sm:text-base">

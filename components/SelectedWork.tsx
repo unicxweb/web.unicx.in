@@ -1,45 +1,21 @@
 "use client";
 
-import { motion, AnimatePresence } from "framer-motion";
+import { motion, AnimatePresence, useScroll, useTransform } from "framer-motion";
 import { useState, useEffect, useRef } from "react";
+import { TypewriterEffectSmooth } from "@/components/ui/typewriter-effect";
 
-// Typewriter effect hook
-function useTypewriter(text: string, speed: number = 50) {
-  const [displayedText, setDisplayedText] = useState("");
-  const [isTyping, setIsTyping] = useState(false);
-
-  useEffect(() => {
-    setDisplayedText("");
-    setIsTyping(true);
-    
-    let currentIndex = 0;
-    const interval = setInterval(() => {
-      if (currentIndex < text.length) {
-        setDisplayedText(text.slice(0, currentIndex + 1));
-        currentIndex++;
-      } else {
-        setIsTyping(false);
-        clearInterval(interval);
-      }
-    }, speed);
-
-    return () => clearInterval(interval);
-  }, [text, speed]);
-
-  return { displayedText, isTyping };
-}
-
-// Typewriter text component
-function TypewriterText({ text }: { text: string }) {
-  const { displayedText, isTyping } = useTypewriter(text, 30);
-  
+// Testimonial typewriter component for long text with smooth character writing
+// Testimonial typewriter component simplified to smooth block fade-in for performance
+function TestimonialTypewriter({ text }: { text: string }) {
   return (
-    <span>
-      {displayedText}
-      {isTyping && (
-        <span className="inline-block w-0.5 h-6 bg-white ml-1 animate-pulse" />
-      )}
-    </span>
+    <motion.span
+      initial={{ opacity: 0, y: 8 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
+      className="text-[18px] sm:text-[24px] lg:text-[30px] font-medium leading-tight text-white block"
+    >
+      {text}
+    </motion.span>
   );
 }
 
@@ -55,6 +31,8 @@ const caseStudies = [
     metric: "+148% qualified leads",
     imageLabel: "Furnext",
     imageSrc: "https://furnext.in/",
+    backgroundImage: "/images/optimized/BG%20IMAGES%20(2).webp",
+    screenshot: "/images/optimized/screenshot-3.webp",
     description:
       "Rebuilt the acquisition flow into a sharper, faster system with cleaner messaging and conversion paths.",
     link: "https://furnext.in/",
@@ -70,130 +48,30 @@ const caseStudies = [
     metric: "3.2x demo conversion",
     imageLabel: "Paeg",
     imageSrc: "https://paeg.in/",
+    backgroundImage: "/images/optimized/BG%20IMAGES%20(3).webp",
+    screenshot: "/images/optimized/screenshot-1.webp",
     description:
       "Designed a premium product narrative and site architecture that aligned trust, clarity, and growth.",
     link: "https://paeg.in/",
   },
   {
     id: 3,
-    company: "studio.unicx",
+    company: "Studio UnicX",
     logo: "UX",
     testimonial: "The attention to detail and user experience excellence exceeded our expectations completely.",
     author: "Emily Watson",
-    authorTitle: "CTO, studio.unicx",
+    authorTitle: "CTO, Studio UnicX",
     authorAvatar: "EW",
     metric: "89% user satisfaction",
-    imageLabel: "studio.unicx",
+    imageLabel: "Studio UnicX",
     imageSrc: "https://unicx.in/",
+    backgroundImage: "/images/optimized/BG%20IMAGES.webp",
+    screenshot: "/images/optimized/screenshot-2.webp",
     description:
       "Built a scalable design system that reduced development time while improving user satisfaction metrics.",
     link: "https://unicx.in/",
   },
 ];
-
-const PREVIEW_VIEWPORT = {
-  width: 1440,
-  height: 900,
-};
-
-function LiveSitePreview({
-  src,
-  title,
-}: {
-  src: string;
-  title: string;
-}) {
-  const frameRef = useRef<HTMLDivElement>(null);
-  const [scale, setScale] = useState(0.5);
-
-  useEffect(() => {
-    const frame = frameRef.current;
-    if (!frame) return;
-
-    const updateScale = () => {
-      const { width, height } = frame.getBoundingClientRect();
-      const nextScale = Math.min(
-        width / PREVIEW_VIEWPORT.width,
-        height / PREVIEW_VIEWPORT.height,
-      );
-
-      setScale(nextScale);
-    };
-
-    updateScale();
-
-    const resizeObserver = new ResizeObserver(updateScale);
-    resizeObserver.observe(frame);
-
-    return () => resizeObserver.disconnect();
-  }, []);
-
-  return (
-    <div
-      ref={frameRef}
-      className="relative w-full aspect-[16/10] overflow-hidden rounded-lg border border-white/20 bg-black"
-    >
-      {src ? (
-        <div className="absolute inset-0 flex items-center justify-center">
-          <div
-            style={{
-              width: PREVIEW_VIEWPORT.width,
-              height: PREVIEW_VIEWPORT.height,
-              transform: `scale(${scale})`,
-              transformOrigin: "center",
-              flex: "0 0 auto",
-            }}
-          >
-            <iframe
-              src={src}
-              className="h-full w-full border-0"
-              title={title}
-              sandbox="allow-same-origin allow-scripts allow-popups allow-forms allow-top-navigation"
-            />
-          </div>
-        </div>
-      ) : (
-        <div className="absolute inset-0 bg-[linear-gradient(135deg,rgba(255,255,255,0.08),rgba(255,255,255,0.02)_45%,rgba(255,255,255,0.04))]">
-          <div className="absolute left-6 top-6 h-16 w-16 rounded-full border border-white/10 bg-white/[0.04]" />
-          <div className="absolute inset-x-[12%] bottom-[18%] h-20 rounded-[999px] border border-white/10 bg-white/[0.04]" />
-          <div className="absolute inset-x-[18%] bottom-[26%] h-px bg-gradient-to-r from-transparent via-white/30 to-transparent" />
-          <div className="absolute inset-x-[22%] top-[56%] h-px bg-white/10" />
-          <div className="absolute inset-x-[30%] top-[64%] h-px bg-white/10" />
-          <div className="absolute inset-x-[38%] top-[72%] h-px bg-white/10" />
-          <div className="absolute bottom-6 left-6 text-[10px] font-medium uppercase tracking-[0.34em] text-slate-500">
-            Preview Pending
-          </div>
-        </div>
-      )}
-
-          </div>
-  );
-}
-
-function LivePreviewStack({ activeIndex }: { activeIndex: number }) {
-  return (
-    <div className="relative w-full max-w-xl aspect-[16/10]">
-      {caseStudies.map((study, index) => (
-        <motion.div
-          key={study.id}
-          initial={{ opacity: 0, x: 24 }}
-          animate={{ 
-            opacity: index === activeIndex ? 1 : 0,
-            x: index === activeIndex ? 0 : (index < activeIndex ? -24 : 24),
-            transition: { duration: 0.28, ease: [0.22, 1, 0.36, 1] }
-          }}
-          className="absolute inset-0"
-          style={{ 
-            pointerEvents: index === activeIndex ? 'auto' : 'none',
-            zIndex: index === activeIndex ? 10 : 1
-          }}
-        >
-          <LiveSitePreview src={study.imageSrc} title={study.company} />
-        </motion.div>
-      ))}
-    </div>
-  );
-}
 
 interface SelectedWorkProps {
   showTitle?: boolean;
@@ -203,6 +81,26 @@ interface SelectedWorkProps {
 export function SelectedWork({ showTitle = true, className = "" }: SelectedWorkProps) {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isAutoPlaying, setIsAutoPlaying] = useState(true);
+  const [mounted, setMounted] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+    const checkMobile = () => setIsMobile(window.innerWidth < 768);
+    checkMobile();
+    window.addEventListener("resize", checkMobile);
+    return () => window.removeEventListener("resize", checkMobile);
+  }, []);
+
+  const carouselRef = useRef<HTMLDivElement>(null);
+  const { scrollYProgress } = useScroll({
+    target: carouselRef,
+    offset: ["start end", "center center"]
+  });
+
+  const scale = useTransform(scrollYProgress, [0, 1], [0.85, 1]);
+  const opacity = useTransform(scrollYProgress, [0, 1], [0.2, 1]);
+  const y = useTransform(scrollYProgress, [0, 1], [100, 0]);
 
   const nextSlide = () => {
     setCurrentIndex((prev) => (prev + 1) % caseStudies.length);
@@ -235,66 +133,73 @@ export function SelectedWork({ showTitle = true, className = "" }: SelectedWorkP
 
   const handlePrev = () => {
     setDirection(-1);
-    prevSlide();
+    goToSlide((currentIndex - 1 + caseStudies.length) % caseStudies.length);
   };
 
   return (
-    <section id="selected-work" className={`pt-24 sm:pt-32 ${className}`}>
+    <section id="selected-work" className={`mt-48 mb-12 md:my-24 ${className}`}>
       {showTitle && (
         <motion.div
           initial={{ opacity: 0, y: 24 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, amount: 0.25 }}
+          viewport={{ once: false, amount: 0.25 }}
           transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
-          className="flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between mb-16"
+          className="flex flex-col gap-4 md:gap-6 lg:flex-row lg:items-end lg:justify-between mb-8 md:mb-16"
         >
           <div className="max-w-3xl">
-            <div className="section-label">Selected Work</div>
-            <h2 className="text-4xl font-semibold uppercase tracking-[-0.06em] text-white sm:text-5xl md:text-6xl">
+            <div className="mb-7 inline-flex items-center gap-2 text-[10px] font-semibold uppercase tracking-[0.42em] text-slate-500">
+              <span className="section-dot" />
+              <span>Case Studies</span>
+            </div>
+            <h2 className="text-3xl sm:text-4xl font-semibold uppercase tracking-[-0.03em] text-white md:text-5xl lg:text-6xl">
               Case Studies.
             </h2>
           </div>
-          <p className="max-w-lg text-[15px] leading-8 text-slate-400 sm:text-base">
-            See how we turn ideas into high-performance digital products.
+          <p className="max-w-lg text-[14px] sm:text-[15px] leading-7 sm:leading-8 text-slate-400">
+             See how we turn ideas into high-performance digital products.
           </p>
         </motion.div>
       )}
 
-      <div className="relative overflow-hidden">
+      <motion.div 
+        ref={carouselRef}
+        style={{ scale, opacity, y }}
+        className="relative overflow-hidden"
+      >
         {/* Carousel Container */}
         <div className="relative mx-auto max-w-7xl">
-          <div className="relative h-[550px] md:h-[500px] lg:h-[550px]">
+          <div className="relative min-h-[480px] sm:h-[550px] md:h-[500px] lg:h-[550px]">
             <div
               className="absolute inset-0"
               onMouseEnter={() => setIsAutoPlaying(false)}
               onMouseLeave={() => setIsAutoPlaying(true)}
             >
-                {/* Two-Column Hero Card with Glassmorphism */}
-                <div className="group relative h-full overflow-hidden rounded-lg border border-white/20 bg-black">
+                {/* Hero Card — stacks vertically on mobile */}
+                <div className="group relative h-full overflow-hidden rounded-none border border-white/20 bg-black">
                   
-                  <div className="relative flex h-full">
-                    {/* Left Half - Testimonial with Glassmorphism */}
-                    <div className="w-1/2 p-12 lg:p-16 flex flex-col justify-between bg-black border-r border-white/10 relative">
+                  <div className="relative flex flex-col md:flex-row h-full">
+                    {/* Left Half - Testimonial */}
+                    <div className="w-full md:w-1/2 p-6 sm:p-8 md:p-12 lg:p-16 flex flex-col justify-between bg-black md:border-r border-b md:border-b-0 border-white/10 relative min-h-[280px] md:min-h-0">
                       <div className="flex h-full flex-col justify-between">
                         <div className="relative z-10">
-                          <div className="flex items-center gap-4 mb-8">
+                          <div className="flex items-center gap-4 mb-4 sm:mb-8">
                             <motion.div 
                               key={`logo-${currentIndex}`}
                               initial={{ opacity: 0, scale: 0.8 }}
                               animate={{ opacity: 1, scale: 1 }}
                               transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
-                              className="w-12 h-12 rounded-full bg-gradient-to-br from-white/20 to-white/10 backdrop-blur-md border border-white/30 flex items-center justify-center text-white font-bold text-lg drop-shadow-lg"
+                              className="w-10 h-10 sm:w-12 sm:h-12 rounded-none bg-gradient-to-br from-white/20 to-white/10 backdrop-blur-md border border-white/30 flex items-center justify-center text-white font-bold text-base sm:text-lg drop-shadow-lg"
                             >
                               {caseStudies[currentIndex].logo}
                             </motion.div>
                           </div>
                           
-                          <blockquote className="text-[24px] lg:text-[30px] font-medium leading-tight text-white mb-12 backdrop-blur-sm">
-                            <TypewriterText 
+                          <div className="text-[18px] sm:text-[24px] lg:text-[30px] font-medium leading-tight text-white mb-6 sm:mb-12 backdrop-blur-sm">
+                            <TestimonialTypewriter 
                               key={`testimonial-${currentIndex}`}
                               text={`"${caseStudies[currentIndex].testimonial}"`}
                             />
-                          </blockquote>
+                          </div>
                         </div>
                         
                         <motion.div 
@@ -304,67 +209,106 @@ export function SelectedWork({ showTitle = true, className = "" }: SelectedWorkP
                           transition={{ duration: 0.3, delay: 0.5, ease: [0.22, 1, 0.36, 1] }}
                           className="relative z-10 flex items-center gap-3 mt-auto"
                         >
-                          <div className="w-10 h-10 rounded-full bg-gradient-to-br from-white/20 to-white/10 backdrop-blur-md border border-white/30 flex items-center justify-center text-white font-semibold">
+                          <div className="w-8 h-8 sm:w-10 sm:h-10 rounded-none bg-gradient-to-br from-white/20 to-white/10 backdrop-blur-md border border-white/30 flex items-center justify-center text-white text-sm sm:text-base font-semibold">
                             {caseStudies[currentIndex].authorAvatar}
                           </div>
                           <div>
-                            <div className="text-white text-[14px] font-medium leading-tight">{caseStudies[currentIndex].author}</div>
-                            <div className="text-[#888888] text-[13px] leading-tight">{caseStudies[currentIndex].authorTitle}</div>
+                            <div className="text-white text-[13px] sm:text-[14px] font-medium leading-tight">{caseStudies[currentIndex].author}</div>
+                            <div className="text-[#888888] text-[12px] sm:text-[13px] leading-tight">{caseStudies[currentIndex].authorTitle}</div>
                           </div>
                         </motion.div>
                       </div>
                       
                       {/* Read More Link */}
-                      <div className="absolute bottom-8 right-8 z-20">
+                      <div className="absolute bottom-4 right-4 sm:bottom-8 sm:right-8 z-20">
                         <a
                           href={caseStudies[currentIndex].link}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="group inline-flex items-center text-white font-medium text-[14px] transition-all duration-400 ease-[cubic-bezier(0.4,0,0.2,1)] hover:underline opacity-0 translate-y-[10px] group-hover:opacity-100 group-hover:translate-y-0"
+                          className="group inline-flex items-center text-white font-medium text-[13px] sm:text-[14px] transition-all duration-400 ease-[cubic-bezier(0.4,0,0.2,1)] hover:underline opacity-100"
                         >
                           Read more
-                          <span className="inline-block ml-2 opacity-0 transition-all duration-400 ease-[cubic-bezier(0.4,0,0.2,1)] group-hover:opacity-100 group-hover:translate-x-[5px]">
+                          <span className="inline-block ml-2 transition-all duration-400 ease-[cubic-bezier(0.4,0,0.2,1)] group-hover:translate-x-[5px]">
                             →
                           </span>
                         </a>
                       </div>
                     </div>
                     
-                    {/* Right Half - Laptop Screen Preview */}
-                    <div className="w-1/2 relative bg-black p-8 lg:p-12 flex items-center justify-center overflow-hidden transition-all duration-500 ease-[cubic-bezier(0.4,0,0.2,1)]">
-                      {/* Background zoom layer */}
-                      <div className="absolute inset-0 transition-transform duration-500 ease-[cubic-bezier(0.4,0,0.2,1)] group-hover:scale-[1.05]">
-                        {/* High-end floating gradient with auto-changing colors */}
-                        <div className="absolute inset-0 opacity-40">
-                          {/* Floating gradient orbs */}
-                          <div className="absolute top-0 left-0 w-96 h-96 bg-gradient-to-br from-violet-600/30 via-purple-600/25 to-indigo-600/20 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '0s', animationDuration: '4s' }} />
-                          <div className="absolute top-1/4 right-0 w-80 h-80 bg-gradient-to-tr from-cyan-600/30 via-blue-600/25 to-teal-600/20 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '1s', animationDuration: '5s' }} />
-                          <div className="absolute bottom-0 left-1/4 w-72 h-72 bg-gradient-to-bl from-rose-600/30 via-pink-600/25 to-fuchsia-600/20 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '2s', animationDuration: '6s' }} />
-                          <div className="absolute top-1/3 left-1/3 w-64 h-64 bg-gradient-to-r from-emerald-600/25 via-green-600/20 to-teal-600/15 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '1.5s', animationDuration: '4.5s' }} />
-                          <div className="absolute bottom-1/4 right-1/4 w-56 h-56 bg-gradient-to-tl from-amber-600/25 via-orange-600/20 to-yellow-600/15 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '2.5s', animationDuration: '5.5s' }} />
-                          
-                          {/* Animated color shifts */}
-                          <div className="absolute inset-0 bg-gradient-to-br from-blue-600/15 via-purple-600/10 to-pink-600/15 animate-pulse" style={{ animationDelay: '0s', animationDuration: '8s' }} />
-                          <div className="absolute inset-0 bg-gradient-to-tr from-emerald-600/15 via-cyan-600/10 to-teal-600/15 animate-pulse" style={{ animationDelay: '3s', animationDuration: '7s' }} />
-                          <div className="absolute inset-0 bg-gradient-to-bl from-rose-600/15 via-fuchsia-600/10 to-pink-600/15 animate-pulse" style={{ animationDelay: '5s', animationDuration: '6s' }} />
+                    {/* Right Half - Case Study Image Link */}
+                    <a
+                      href={caseStudies[currentIndex].link}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="w-full md:w-1/2 relative bg-black flex items-center justify-center overflow-hidden min-h-[260px] md:min-h-0 cursor-pointer group/image p-4 sm:p-6 md:p-8"
+                    >
+                      {/* Background image layer */}
+                      <div className="absolute inset-0 transition-transform duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover/image:scale-[1.02]">
+                        {caseStudies.map((study, index) => (
+                          <motion.img
+                            key={study.id}
+                            src={study.backgroundImage}
+                            alt=""
+                            loading="eager"
+                            decoding="async"
+                            initial={false}
+                            animate={{
+                              opacity: index === currentIndex ? 0.95 : 0,
+                              scale: index === currentIndex ? 1 : 1.03,
+                            }}
+                            transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
+                            className="absolute inset-0 h-full w-full object-cover transition-all duration-500"
+                          />
+                        ))}
+                        <div className="absolute inset-0 bg-black/35 transition-colors duration-300 group-hover/image:bg-black/15" />
+                      </div>
+                      
+                      {/* Premium Browser Window Mockup containing the website screenshot */}
+                      <div className="relative z-10 w-[76%] sm:w-[80%] h-[70%] sm:h-[75%] max-h-[220px] sm:max-h-[260px] md:max-h-[280px] lg:max-h-[320px] rounded-none border border-white/15 bg-zinc-950/80 shadow-2xl shadow-black/90 flex flex-col overflow-hidden transition-all duration-500 ease-[cubic-bezier(0.25,1,0.5,1)] group-hover/image:border-white/25">
+                        {/* Browser Header Bar */}
+                        <div className="h-6 sm:h-8 border-b border-white/10 bg-zinc-900/90 px-3 sm:px-4 flex items-center justify-between shrink-0">
+                          {/* Left: Window Controls */}
+                          <div className="flex gap-1.5 sm:gap-2">
+                            <span className="w-2 h-2 rounded-full bg-[#ff5f56]" />
+                            <span className="w-2 h-2 rounded-full bg-[#ffbd2e]" />
+                            <span className="w-2 h-2 rounded-full bg-[#27c93f]" />
+                          </div>
+                          {/* Center: Fake URL Bar */}
+                          <div className="h-4 sm:h-5 w-1/2 rounded-none bg-white/[0.04] border border-white/5 flex items-center justify-center text-[8px] sm:text-[10px] text-zinc-500 font-mono select-none">
+                            {caseStudies[currentIndex].link.replace('https://', '').replace(/\/$/, '')}
+                          </div>
+                          {/* Right: Dummy Space */}
+                          <div className="w-6 sm:w-8" />
+                        </div>
+                        {/* Browser Content Area showing Screenshot */}
+                        <div className="relative flex-1 bg-zinc-900 overflow-hidden">
+                          {caseStudies.map((study, index) => (
+                            <motion.img
+                              key={`ss-${study.id}`}
+                              src={study.screenshot}
+                              alt={study.imageLabel}
+                              initial={false}
+                              animate={{
+                                opacity: index === currentIndex ? 1 : 0,
+                                y: index === currentIndex ? 0 : 10,
+                              }}
+                              transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
+                              className="absolute inset-0 h-full w-full object-cover object-top transition-all duration-500"
+                            />
+                          ))}
                         </div>
                       </div>
-                      {/* Stable preview window */}
-                      <div className="relative w-full max-w-xl aspect-[16/10] overflow-hidden rounded-lg">
-                        <LivePreviewStack activeIndex={currentIndex} />
-                      </div>
-                    </div>
+                    </a>
                   </div>
-                                  </div>
+                </div>
             </div>
           </div>
-
-                  </div>
+        </div>
 
         {/* Progress Indicators */}
-        <div className="flex justify-between items-center mt-8">
+        <div className="flex flex-col sm:flex-row justify-between items-center mt-6 sm:mt-8 gap-4">
           {/* Left: Dots and Progress */}
-          <div className="flex items-center gap-8">
+          <div className="flex items-center gap-4 sm:gap-8">
             {/* Dots */}
             <div className="flex gap-3">
               {caseStudies.map((_, index) => (
@@ -382,7 +326,7 @@ export function SelectedWork({ showTitle = true, className = "" }: SelectedWorkP
             </div>
             
             {/* Progress Bar */}
-            <div className="w-32 h-1 bg-white/20 rounded-full overflow-hidden">
+            <div className="w-24 sm:w-32 h-1 bg-white/20 rounded-full overflow-hidden">
               <motion.div
                 className="h-full bg-white"
                 initial={{ width: 0 }}
@@ -396,7 +340,7 @@ export function SelectedWork({ showTitle = true, className = "" }: SelectedWorkP
           <div className="flex gap-2">
             <button
               onClick={handlePrev}
-              className="w-8 h-8 rounded-full bg-white/10 backdrop-blur-sm border border-white/20 flex items-center justify-center text-white hover:bg-white/20 transition-all duration-300"
+              className="w-8 h-8 rounded-full bg-slate-800 flex items-center justify-center text-white transition-all duration-300"
               aria-label="Previous case study"
             >
               <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -406,7 +350,7 @@ export function SelectedWork({ showTitle = true, className = "" }: SelectedWorkP
             
             <button
               onClick={handleNext}
-              className="w-8 h-8 rounded-full bg-white/10 backdrop-blur-sm border border-white/20 flex items-center justify-center text-white hover:bg-white/20 transition-all duration-300"
+              className="w-8 h-8 rounded-full bg-slate-800 flex items-center justify-center text-white transition-all duration-300"
               aria-label="Next case study"
             >
               <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -416,8 +360,8 @@ export function SelectedWork({ showTitle = true, className = "" }: SelectedWorkP
           </div>
         </div>
 
-        {/* Enhanced Peripheral Cards Preview with Glassmorphism */}
-        <div className="absolute inset-0 pointer-events-none">
+        {/* Enhanced Peripheral Cards Preview with Glassmorphism — hidden on mobile */}
+        <div className="absolute inset-0 pointer-events-none hidden md:block">
           {/* Previous card preview */}
           <div className="absolute left-0 top-1/2 -translate-y-1/2 w-1/3 opacity-20 blur-md">
             <div className="h-[350px] rounded-lg border border-white/20 bg-black" />
@@ -428,7 +372,7 @@ export function SelectedWork({ showTitle = true, className = "" }: SelectedWorkP
             <div className="h-[350px] rounded-lg border border-white/20 bg-black" />
           </div>
         </div>
-      </div>
+      </motion.div>
     </section>
   );
 }

@@ -1,88 +1,26 @@
-import Link from "next/link";
+"use client";
 
-const plans = [
-  {
-    name: "Starter",
-    price: "₹49,999",
-    note: "per project",
-    cta: "Get Started",
-    href: "/contact",
-    icon: "arrow",
-    features: [
-      "Single pillar focus",
-      "Up to three months",
-      "Standard support",
-    ],
-  },
-  {
-    name: "Professional",
-    price: "₹1,29,999",
-    note: "per project",
-    cta: "Get Started",
-    href: "/contact",
-    icon: "user",
-    features: [
-      "Two to three pillars",
-      "Four to six months",
-      "Priority support",
-      "Post-launch optimization",
-    ],
-  },
-  {
-    name: "Enterprise",
-    price: "Custom",
-    note: "tailored pricing",
-    cta: "Contact Us",
-    href: "/contact",
-    icon: "briefcase",
-    features: [
-      "All five pillars",
-      "Ongoing development",
-      "Dedicated team",
-      "24/7 support",
-      "Scalability planning",
-    ],
-  },
+import { motion } from "framer-motion";
+import Link from "next/link";
+import { ContactPopup } from "@/components/ContactPopup";
+
+const trustMarks = [
+  { label: "Strategy", mark: "ST" },
+  { label: "Design", mark: "DS" },
+  { label: "Websites", mark: "WB" },
+  { label: "Software", mark: "SW" },
 ];
 
-function PlanIcon({ icon }: { icon: string }) {
-  const commonProps = {
-    "aria-hidden": true,
-    viewBox: "0 0 24 24",
-    className: "h-7 w-7",
-    fill: "none",
-    stroke: "currentColor",
-    strokeLinecap: "round" as const,
-    strokeLinejoin: "round" as const,
-    strokeWidth: "1.8",
-  };
-
-  if (icon === "user") {
-    return (
-      <svg {...commonProps}>
-        <circle cx="12" cy="8" r="3" />
-        <path d="M5 20c1.2-4 12.8-4 14 0" />
-      </svg>
-    );
-  }
-
-  if (icon === "briefcase") {
-    return (
-      <svg {...commonProps}>
-        <path d="M8 7V5.5A1.5 1.5 0 0 1 9.5 4h5A1.5 1.5 0 0 1 16 5.5V7" />
-        <rect x="4" y="7" width="16" height="13" rx="2" />
-        <path d="M9 12h6" />
-      </svg>
-    );
-  }
-
-  return (
-    <svg {...commonProps}>
-      <path d="M5 12h14" />
-      <path d="m13 5 7 7-7 7" />
-    </svg>
-  );
-}
+const pricingFactors = [
+  "Service pillar",
+  "Timeline",
+  "Project complexity",
+  "Integrations",
+  "Ongoing support",
+  "Content and assets",
+  "Platform requirements",
+  "Launch needs",
+];
 
 function CheckIcon() {
   return (
@@ -103,70 +41,138 @@ function CheckIcon() {
 
 export function PricingPlans() {
   return (
-    <section id="pricing" className="pt-24 sm:pt-32">
-      <div className="mx-auto max-w-3xl text-center">
-        <div className="section-label justify-center">
-          Plans
-        </div>
-        <h2 className="text-[clamp(2.25rem,5vw,4.35rem)] font-semibold uppercase leading-[0.92] tracking-[-0.07em] text-white">
-          Simple pricing
-        </h2>
-        <p className="mx-auto mt-5 max-w-xl text-[14px] leading-7 text-slate-400 sm:text-[15px]">
-          Choose the engagement model that fits your scope, timeline, and level of support.
-        </p>
-      </div>
+    <section id="pricing" className="pt-10 pb-20 md:py-16 border-0">
+      <div className="grid gap-4 lg:grid-cols-[0.9fr_1.1fr] lg:items-start lg:gap-12">
 
-      <div className="mt-16 grid gap-6 lg:grid-cols-3">
-        {plans.map((plan) => (
-          <article
-            key={plan.name}
-            className="group flex min-h-[560px] flex-col rounded-lg border border-white/20 bg-black p-8 transition duration-300 hover:border-white/35 hover:bg-white/[0.025] hover:shadow-[0_18px_60px_rgba(255,255,255,0.045)]"
+        {/* Left — heading block */}
+        <div>
+          <motion.div
+            className="mb-3 md:mb-7 inline-flex items-center gap-2 text-[10px] font-semibold uppercase tracking-[0.42em] text-slate-500"
+            initial={{ opacity: 0, x: -30 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: false, amount: 0.5 }}
+            transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
           >
-            <div className="flex items-start justify-between gap-6">
-              <h3 className="text-lg font-semibold text-white">
-                {plan.name}
-              </h3>
-              <div className="text-white">
-                <PlanIcon icon={plan.icon} />
+            <span className="section-dot" />
+            <span>Pricing</span>
+          </motion.div>
+
+          <motion.h2
+            className="text-[clamp(1.75rem,5vw,4.35rem)] font-semibold uppercase leading-[0.92] tracking-[-0.03em] text-zinc-950"
+            initial={{ opacity: 0, y: 60, scale: 0.92 }}
+            whileInView={{ opacity: 1, y: 0, scale: 1 }}
+            viewport={{ once: false, amount: 0.5 }}
+            transition={{ duration: 1, delay: 0.08, ease: [0.22, 1, 0.36, 1] }}
+          >
+            Flexible engagement
+          </motion.h2>
+
+          <motion.p
+            className="mt-2 md:mt-6 max-w-xl text-[14px] leading-7 text-zinc-600 sm:text-[15px]"
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: false, amount: 0.5 }}
+            transition={{ duration: 0.85, delay: 0.16, ease: [0.22, 1, 0.36, 1] }}
+          >
+            Pricing is shaped around service mix, scope, and level of execution your project needs.
+          </motion.p>
+
+          <motion.div
+            className="mt-4 md:mt-10"
+            initial={{ opacity: 0, y: 24 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: false, amount: 0.4 }}
+            transition={{ duration: 0.8, delay: 0.24, ease: [0.22, 1, 0.36, 1] }}
+          >
+            <h3 className="text-[13px] font-semibold text-zinc-950">
+              Trusted by companies that demand results
+            </h3>
+            <div className="mt-3 md:mt-6 flex flex-wrap items-center gap-x-6 md:gap-x-8 gap-y-2 md:gap-y-4">
+              {trustMarks.map((mark, i) => (
+                <motion.div
+                  key={mark.label}
+                  className="flex items-center gap-3 text-zinc-950"
+                  initial={{ opacity: 0, y: 16 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: false, amount: 0.4 }}
+                  transition={{ duration: 0.6, delay: 0.32 + i * 0.07, ease: [0.22, 1, 0.36, 1] }}
+                >
+                  <div className="flex h-8 w-8 items-center justify-center rounded-none border border-white/20 bg-white text-[10px] font-bold uppercase tracking-[-0.03em] text-black">
+                    {mark.mark}
+                  </div>
+                  <span className="text-sm font-semibold tracking-[-0.02em]">
+                    {mark.label}
+                  </span>
+                </motion.div>
+              ))}
+            </div>
+          </motion.div>
+        </div>
+
+        {/* Right — pricing card */}
+        <motion.div
+          className="lg:justify-self-end"
+          initial={{ opacity: 0, x: 60 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          viewport={{ once: false, amount: 0.3 }}
+          transition={{ duration: 1, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
+        >
+          <article className="w-full rounded-none border border-white/20 bg-[#1A3DE8] p-4 sm:p-8 transition-all duration-300 ease-out hover:border-white/35 lg:w-[560px] shadow-[0_30px_90px_rgba(26,61,232,0.25)]">
+            <div className="flex items-start justify-between gap-8">
+              <div>
+                <h3 className="text-lg font-semibold text-white">
+                  Scope-based pricing
+                </h3>
+                <p className="mt-2 text-[12px] text-blue-200/80">
+                  after discovery
+                </p>
+              </div>
+              <div className="text-right text-[clamp(2.5rem,5vw,4rem)] font-semibold leading-none tracking-[-0.03em] text-white">
+                Custom Quote
               </div>
             </div>
 
-            <div className="mt-8">
-              <div className="text-[clamp(2.6rem,5vw,4.15rem)] font-semibold leading-none tracking-[-0.08em] text-white">
-                {plan.price}
-              </div>
-              <p className="mt-3 text-[13px] text-slate-500">
-                {plan.note}
-              </p>
-            </div>
+            <div className="my-3 md:my-5 h-px bg-white/20" />
 
-            <div className="my-8 h-px bg-white/20" />
+            <p className="text-[12px] text-blue-100/70">Pricing depends on:</p>
+            <ul className="mt-2 md:mt-4 grid grid-cols-2 gap-x-6 gap-y-1.5 md:gap-y-2">
+              {pricingFactors.map((factor, i) => (
+                <motion.li
+                  key={factor}
+                  className="flex items-start gap-2.5 text-[12.5px] md:text-[13px] leading-5 md:leading-6 text-white/90"
+                  initial={{ opacity: 0, x: -12 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  viewport={{ once: false, amount: 0.2 }}
+                  transition={{ duration: 0.5, delay: 0.2 + i * 0.05, ease: [0.22, 1, 0.36, 1] }}
+                >
+                  <CheckIcon />
+                  <span>{factor}</span>
+                </motion.li>
+              ))}
+            </ul>
 
-            <div>
-              <div className="mb-5 text-[12px] text-slate-400">
-                Includes:
-              </div>
-              <ul className="space-y-4">
-                {plan.features.map((feature) => (
-                  <li
-                    key={feature}
-                    className="flex items-start gap-3 text-[13px] leading-6 text-slate-300"
-                  >
-                    <CheckIcon />
-                    <span>{feature}</span>
-                  </li>
-                ))}
-              </ul>
-            </div>
-
-            <Link
-              href={plan.href}
-              className="mt-auto inline-flex w-full items-center justify-center bg-white px-5 py-3 text-[12px] font-semibold text-black transition group-hover:bg-slate-200"
+            <motion.div
+              className="mt-4 md:mt-6 grid grid-cols-2 gap-2.5"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: false, amount: 0.3 }}
+              transition={{ duration: 0.7, delay: 0.3, ease: [0.22, 1, 0.36, 1] }}
             >
-              {plan.cta}
-            </Link>
+              <ContactPopup>
+                <span className="inline-flex w-full items-center justify-center bg-white px-3 py-2 md:py-3 text-[11px] sm:text-[12px] font-semibold text-[#1A3DE8] transition hover:bg-slate-200">
+                  Request Quote
+                </span>
+              </ContactPopup>
+              <Link
+                href="/services"
+                className="inline-flex w-full items-center justify-center border border-white/30 px-3 py-2 md:py-3 text-[11px] sm:text-[12px] font-semibold text-white transition hover:border-white/50 hover:bg-white/10"
+              >
+                Explore Services
+              </Link>
+            </motion.div>
           </article>
-        ))}
+        </motion.div>
+
       </div>
     </section>
   );

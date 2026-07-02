@@ -62,7 +62,7 @@ export function WorkFAQ() {
       >
         <div className="max-w-xl">
           <div className="section-label">Project Insights</div>
-          <h2 className="max-w-[24rem] text-[clamp(2.1rem,4.4vw,3.7rem)] font-semibold uppercase leading-[0.98] tracking-[-0.04em] text-white">
+          <h2 className="max-w-[24rem] text-[clamp(2.1rem,4.4vw,3.7rem)] font-semibold uppercase leading-[0.98] tracking-[-0.02em] text-white">
             Common questions about our work process.
           </h2>
           <p className="mt-6 max-w-lg text-[15px] leading-8 text-slate-400 sm:text-[17px]">

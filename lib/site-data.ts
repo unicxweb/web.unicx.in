@@ -7,11 +7,10 @@ export const serviceCategories = [
     imageSrc: "",
     items: [
       "UI/UX Design",
-      "Logo & Branding",
-      "Social Media Creatives",
-      "Company Profiles & Presentations",
-      "Motion Graphics & Video",
-      "Infographics",
+      "Logo Design",
+      "Marketing Creatives",
+      "Illustration",
+      "Motion & Video",
     ],
   },
   {
@@ -21,11 +20,11 @@ export const serviceCategories = [
     imageLabel: "Website Preview",
     imageSrc: "",
     items: [
-      "Static Websites",
-      "Dynamic Websites",
-      "Custom Web Solutions",
+      "Business Websites",
       "Ecommerce Websites",
       "Landing Pages",
+      "Custom Web Solutions",
+      "Performance & SEO",
     ],
   },
   {
@@ -34,7 +33,13 @@ export const serviceCategories = [
       "Mobile-first product development across native and hybrid experiences with strong usability foundations.",
     imageLabel: "App Preview",
     imageSrc: "",
-    items: ["Android Apps", "iOS Apps", "Hybrid Apps", "Progressive Web Apps (PWA)"],
+    items: [
+      "Android Apps",
+      "iOS Apps",
+      "Hybrid Apps",
+      "Progressive Web Apps",
+      "Product Prototypes",
+    ],
   },
   {
     name: "Software Development",
@@ -44,10 +49,9 @@ export const serviceCategories = [
     imageSrc: "",
     items: [
       "CRM & ERP Solutions",
-      "Custom Software Development",
-      "Desktop Applications",
-      "Enterprise Solutions",
+      "Custom Software",
       "SaaS Applications",
+      "Enterprise Solutions",
     ],
   },
   {
@@ -58,10 +62,10 @@ export const serviceCategories = [
     imageSrc: "",
     items: [
       "On-Page SEO",
-      "Off-Page SEO",
       "Technical SEO",
       "Social Media Marketing",
-      "Paid Advertising (Google, Facebook, Instagram)",
+      "Paid Advertising",
+      "Analytics & Reporting",
     ],
   },
 ];

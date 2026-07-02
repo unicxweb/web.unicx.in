@@ -2,31 +2,42 @@ import { serviceCategories } from '@/lib/site-data'
 
 export const dynamic = 'force-static'
 
+const baseUrl = 'https://studio.unicx.in'
+
+const staticRoutes = [
+  { path: '', changefreq: 'weekly', priority: '1.0' },
+  { path: '/services', changefreq: 'monthly', priority: '0.8' },
+  { path: '/studio', changefreq: 'monthly', priority: '0.6' },
+  { path: '/careers', changefreq: 'monthly', priority: '0.6' },
+  { path: '/contact', changefreq: 'monthly', priority: '0.8' },
+  { path: '/sitemap', changefreq: 'monthly', priority: '0.4' },
+  { path: '/privacy', changefreq: 'yearly', priority: '0.3' },
+  { path: '/terms', changefreq: 'yearly', priority: '0.3' },
+]
+
+function urlEntry(path: string, lastmod: string, changefreq: string, priority: string): string {
+  return `
+  <url>
+    <loc>${baseUrl}${path}</loc>
+    <lastmod>${lastmod}</lastmod>
+    <changefreq>${changefreq}</changefreq>
+    <priority>${priority}</priority>
+  </url>`
+}
+
 function generateServiceUrls(): string {
-  const baseUrl = 'https://studio.unicx.in'
   const urls: string[] = []
+  const lastmod = new Date().toISOString()
   
   // Add service category pages
   serviceCategories.forEach(category => {
     const categorySlug = category.name.toLowerCase().replace(/\s+/g, '-')
-    urls.push(`
-  <url>
-    <loc>${baseUrl}/services/${categorySlug}</loc>
-    <lastmod>${new Date().toISOString()}</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>`)
+    urls.push(urlEntry(`/services/${categorySlug}`, lastmod, 'monthly', '0.8'))
     
     // Add individual service pages
     category.items.forEach(service => {
-      const serviceSlug = service.toLowerCase().replace(/\s+/g, '-').replace(/[^\w\-]/g, '')
-      urls.push(`
-  <url>
-    <loc>${baseUrl}/services/${categorySlug}/${serviceSlug}</loc>
-    <lastmod>${new Date().toISOString()}</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>`)
+      const serviceSlug = service.toLowerCase().replace(/&/g, 'and').replace(/\s+/g, '-').replace(/[^\w\-]/g, '').replace(/-+/g, '-')
+      urls.push(urlEntry(`/services/${categorySlug}/${serviceSlug}`, lastmod, 'monthly', '0.7'))
     })
   })
   
@@ -34,53 +45,15 @@ function generateServiceUrls(): string {
 }
 
 export function GET() {
-  const baseUrl = 'https://studio.unicx.in'
+  const lastmod = new Date().toISOString()
+  const staticUrls = staticRoutes
+    .map((route) => urlEntry(route.path, lastmod, route.changefreq, route.priority))
+    .join('')
   const serviceUrls = generateServiceUrls()
   
   const sitemap = `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url>
-    <loc>${baseUrl}</loc>
-    <lastmod>${new Date().toISOString()}</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>1.0</priority>
-  </url>
-  <url>
-    <loc>${baseUrl}/services</loc>
-    <lastmod>${new Date().toISOString()}</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>${serviceUrls}
-  <url>
-    <loc>${baseUrl}/work</loc>
-    <lastmod>${new Date().toISOString()}</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>${baseUrl}/about</loc>
-    <lastmod>${new Date().toISOString()}</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>${baseUrl}/contact</loc>
-    <lastmod>${new Date().toISOString()}</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>${baseUrl}/privacy</loc>
-    <lastmod>${new Date().toISOString()}</lastmod>
-    <changefreq>yearly</changefreq>
-    <priority>0.3</priority>
-  </url>
-  <url>
-    <loc>${baseUrl}/terms</loc>
-    <lastmod>${new Date().toISOString()}</lastmod>
-    <changefreq>yearly</changefreq>
-    <priority>0.3</priority>
-  </url>
+${staticUrls}${serviceUrls}
 </urlset>`
 
   return new Response(sitemap, {

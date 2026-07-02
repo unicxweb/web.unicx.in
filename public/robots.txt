@@ -9,7 +9,5 @@ Disallow: /api/
 Disallow: /_next/
 Disallow: /_error/
 Disallow: /404
-Disallow: /favicon.ico
-
 # Allow search engines to crawl the site
 Crawl-delay: 1

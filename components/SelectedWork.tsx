@@ -361,7 +361,7 @@ export function SelectedWork({ showTitle = true, className = "" }: SelectedWorkP
         </div>
 
         {/* Enhanced Peripheral Cards Preview with Glassmorphism — hidden on mobile */}
-        <div className="absolute inset-0 pointer-events-none hidden md:block">
+        <div className="absolute inset-0 pointer-events-none hidden xl:block">
           {/* Previous card preview */}
           <div className="absolute left-0 top-1/2 -translate-y-1/2 w-1/3 opacity-20 blur-md">
             <div className="h-[350px] rounded-lg border border-white/20 bg-black" />

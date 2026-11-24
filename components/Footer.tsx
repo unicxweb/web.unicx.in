@@ -134,8 +134,8 @@ export function Footer({ className, sticky = true, ...props }: FooterProps) {
 
 	const footerContent = (
 		<div className="relative z-10 mx-auto w-full max-w-none px-6 pt-10 pb-6 sm:pt-24 sm:pb-12 sm:px-16 lg:px-24 flex flex-col justify-between h-full gap-4 md:gap-12">
-			<div className="grid gap-x-6 gap-y-6 grid-cols-2 md:grid-cols-5">
-				<AnimatedContainer className="col-span-2 space-y-4 md:space-y-6">
+			<div className="grid gap-x-6 gap-y-6 grid-cols-2 md:grid-cols-3 lg:grid-cols-5">
+				<AnimatedContainer className="col-span-2 md:col-span-3 lg:col-span-2 space-y-4 md:space-y-6">
 					<div className="flex items-center gap-3">
 						<img src="/images/optimized/US.3.webp" alt="UniCX Logo" className="h-7 w-7 object-contain brightness-0 invert" />
 						<div className="flex flex-col">
@@ -175,7 +175,7 @@ export function Footer({ className, sticky = true, ...props }: FooterProps) {
 						delay={0.1 + index * 0.1}
 						className={cn(
 							"space-y-3",
-							group.label === 'Connect' && "col-span-2 md:col-span-1"
+							group.label === 'Connect' && "col-span-2 md:col-span-1 lg:col-span-1"
 						)}
 					>
 						<h3 className="text-xs font-semibold uppercase tracking-widest text-white/50">{group.label}</h3>

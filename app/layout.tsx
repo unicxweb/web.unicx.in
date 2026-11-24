@@ -8,6 +8,7 @@ import StructuredData from "@/components/StructuredData";
 import Preloader from "@/components/Preloader";
 import CookieConsent from "@/components/CookieConsent";
 import { PageTransitionProvider } from "@/components/ui/page-transition";
+import SmoothScroll from "@/components/SmoothScroll";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -142,7 +143,9 @@ export default function RootLayout({ children }: { children: ReactNode }) {
         <CookieProvider>
           <PageTransitionProvider>
             <GoogleAnalytics />
-            {children}
+            <SmoothScroll>
+              {children}
+            </SmoothScroll>
             <CookieConsent />
           </PageTransitionProvider>
         </CookieProvider>

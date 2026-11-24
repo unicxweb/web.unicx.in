@@ -71,7 +71,7 @@ export function Navbar() {
 
   useEffect(() => {
     const onResize = () => {
-      if (window.innerWidth >= 768) {
+      if (window.innerWidth >= 1024) {
         setIsMenuOpen(false);
       }
     };
@@ -128,7 +128,7 @@ export function Navbar() {
               data-navbar-logo
               className={cn(
                 "relative block h-9 w-24 shrink-0 transition-all duration-300 hover:opacity-85",
-                isMenuOpen && "opacity-0 pointer-events-none md:opacity-100 md:pointer-events-auto"
+                isMenuOpen && "opacity-0 pointer-events-none lg:opacity-100 lg:pointer-events-auto"
               )}
               aria-label="Studio UnicX home"
             >
@@ -144,7 +144,7 @@ export function Navbar() {
           </div>
 
           {/* Column 2: Nav Links Centered in Middle */}
-          <div className="hidden items-center gap-8 md:flex justify-center z-50 md:absolute md:left-1/2 md:-translate-x-1/2 md:transform">
+          <div className="hidden items-center gap-8 lg:flex justify-center z-50 lg:absolute lg:left-1/2 lg:-translate-x-1/2 lg:transform">
             {navItems.map((item) => (
               item.label === "Services" ? (
                 <div
@@ -260,7 +260,7 @@ export function Navbar() {
 
             {/* Column 3: Actions on the Right */}
             <div className="flex flex-1 items-center justify-end gap-8">
-              <div className="hidden items-center gap-8 md:flex">
+              <div className="hidden items-center gap-8 lg:flex">
                 <ContactPopup>
                   <MarqueeCTA />
                 </ContactPopup>
@@ -275,7 +275,7 @@ export function Navbar() {
                 aria-label="Toggle navigation menu"
                 aria-expanded={isMenuOpen}
                 onClick={() => setIsMenuOpen((open) => !open)}
-                className="relative z-50 inline-flex h-10 w-10 items-center justify-end transition-all duration-300 md:hidden"
+                className="relative z-50 inline-flex h-10 w-10 items-center justify-end transition-all duration-300 lg:hidden"
               >
             <div className="relative w-5 h-4 flex flex-col justify-between items-start">
               <span

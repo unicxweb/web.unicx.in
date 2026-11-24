@@ -17,7 +17,7 @@ const pages = [
         </>
       ),
       headingClassName: 'font-bold leading-[0.85] tracking-tight text-right text-white',
-      headingStyle: { fontSize: 'clamp(2.5rem, 6.5vw, 9rem)' },
+      headingStyle: { fontSize: 'clamp(1.75rem, 4.5vw, 9rem)' },
       description: '',
     },
   },
@@ -31,7 +31,7 @@ const pages = [
         </>
       ),
       headingClassName: 'font-bold leading-[0.85] tracking-tight text-left text-white',
-      headingStyle: { fontSize: 'clamp(2.5rem, 6.5vw, 9rem)' },
+      headingStyle: { fontSize: 'clamp(1.75rem, 4.5vw, 9rem)' },
       description: 'Founders who need to move fast. We build high-performance MVPs and scalable platforms that secure funding and capture market share.',
     },
     rightContent: null,
@@ -47,7 +47,7 @@ const pages = [
         </>
       ),
       headingClassName: 'font-bold leading-[0.85] tracking-tight text-right text-white',
-      headingStyle: { fontSize: 'clamp(2.5rem, 6.5vw, 9rem)' },
+      headingStyle: { fontSize: 'clamp(1.75rem, 4.5vw, 9rem)' },
       description: 'Industry leaders ready to evolve. We modernize legacy architectures and design complex enterprise systems that keep you ahead of the curve.',
     },
   },
@@ -61,7 +61,7 @@ const pages = [
         </>
       ),
       headingClassName: 'font-bold leading-[0.85] tracking-tight text-left text-white',
-      headingStyle: { fontSize: 'clamp(2.5rem, 6.5vw, 9rem)' },
+      headingStyle: { fontSize: 'clamp(1.75rem, 4.5vw, 9rem)' },
       description: 'E-commerce brands focused on growth. From lightning-fast product pages to seamless checkouts, we engineer storefronts that maximize revenue.',
     },
     rightContent: null,
@@ -77,7 +77,7 @@ const pages = [
         </>
       ),
       headingClassName: 'font-bold leading-[0.85] tracking-tight text-right text-white',
-      headingStyle: { fontSize: 'clamp(2.5rem, 6.5vw, 9rem)' },
+      headingStyle: { fontSize: 'clamp(1.75rem, 4.5vw, 9rem)' },
       description: (
         <div className="flex flex-col items-end gap-6 md:gap-8 pointer-events-auto">
           <p>
@@ -243,7 +243,7 @@ function DesktopWhoItsFor() {
                             className={cn("mb-2 md:mb-4 uppercase transition-all duration-500", page.leftContent.headingClassName || "text-2xl", isActive ? 'translate-y-0 opacity-100' : 'translate-y-4 opacity-0')}
                             style={{
                               lineHeight: '0.9',
-                              fontSize: leftFontSize || 'clamp(2.5rem, 6.5vw, 9rem)',
+                              fontSize: leftFontSize || 'clamp(1.75rem, 4.5vw, 9rem)',
                               ...leftRestStyle
                             }}
                           >
@@ -284,7 +284,7 @@ function DesktopWhoItsFor() {
                             className={cn("mb-2 md:mb-4 uppercase transition-all duration-500", page.rightContent.headingClassName || "text-2xl", isActive ? 'translate-y-0 opacity-100' : 'translate-y-4 opacity-0')}
                             style={{
                               lineHeight: '0.9',
-                              fontSize: rightFontSize || 'clamp(2.5rem, 6.5vw, 9rem)',
+                              fontSize: rightFontSize || 'clamp(1.75rem, 4.5vw, 9rem)',
                               ...rightRestStyle
                             }}
                           >

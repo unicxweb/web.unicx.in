@@ -180,7 +180,7 @@ function DesktopAccordion() {
 
       mm = gsap.matchMedia();
 
-      mm.add("(min-width: 768px)", () => {
+      mm.add("(min-width: 1024px)", () => {
         const panels = panelsRef.current.filter(Boolean) as HTMLButtonElement[];
         const contents = contentsRef.current.filter(Boolean) as HTMLDivElement[];
 
@@ -340,7 +340,7 @@ function MobileScrollCards() {
 
       mm = gsap.matchMedia();
 
-      mm.add("(max-width: 767px)", () => {
+      mm.add("(max-width: 1023px)", () => {
         const trackWidth = track.scrollWidth;
         const viewportWidth = window.innerWidth;
         // Total horizontal distance to travel
@@ -367,7 +367,7 @@ function MobileScrollCards() {
   }, []);
 
   return (
-    <div ref={sectionRef} className="relative h-[400vh] w-full bg-[#fafafa] md:hidden">
+    <div ref={sectionRef} className="relative h-[400vh] w-full bg-[#fafafa] lg:hidden">
       <div className="sticky top-0 flex h-screen w-full flex-col justify-center overflow-hidden bg-[#fafafa] pt-16 pb-12">
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(255,59,0,0.015),transparent_70%)] pointer-events-none" />
         <PillarsHeader />
@@ -451,7 +451,7 @@ export function Pillars() {
         <MobileScrollCards />
 
         {/* Desktop View: Interactive Horizontal Accordion — hidden on mobile via CSS */}
-        <div className="hidden md:block">
+        <div className="hidden lg:block">
           <DesktopAccordion />
         </div>
       </section>

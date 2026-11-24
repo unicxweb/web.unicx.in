@@ -4,7 +4,7 @@ import { ClientTestimonials } from "@/components/ClientTestimonials";
 import CookieConsent from "@/components/CookieConsent";
 import { Footer } from "@/components/Footer";
 import { FoundationStatement } from "@/components/FoundationStatement";
-import { HeroMinimal } from "@/components/HeroMinimal";
+import { HeroSectionFresh } from "@/components/HeroSectionFresh";
 import { HomeFAQ } from "@/components/HomeFAQ";
 import { Navbar } from "@/components/Navbar";
 import { Pillars } from "@/components/Pillars";
@@ -49,7 +49,7 @@ export default function HomePage() {
       <Navbar />
 
       <div className="relative mx-auto flex w-full max-w-7xl flex-col px-6 pb-2 pt-4 sm:px-8 md:pt-6 lg:px-12">
-        <HeroMinimal />
+        <HeroSectionFresh />
         <WhoItsFor />
         <Pillars />
         <HowWeBuild />

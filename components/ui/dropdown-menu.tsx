@@ -106,7 +106,7 @@ export function DropdownMenuTrigger({ children, asChild }: DropdownMenuTriggerPr
       onKeyDown={handleKeyDown}
       aria-expanded={isOpen}
       aria-haspopup="listbox"
-      className="inline-flex items-center justify-center rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50"
+      className="inline-flex items-center justify-center rounded-none text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50"
     >
       {children}
     </button>
@@ -185,7 +185,7 @@ export function DropdownMenuItem({ children, className, disabled, onSelect }: Dr
       disabled={disabled}
       role="option"
       className={cn(
-        "relative flex cursor-default select-none items-center rounded-sm px-3 py-2 text-sm outline-none transition-colors w-full text-left hover:bg-white/10 hover:text-white focus:bg-white/20 focus:text-white disabled:pointer-events-none disabled:opacity-50",
+        "relative flex cursor-default select-none items-center rounded-none px-3 py-2 text-sm outline-none transition-colors w-full text-left hover:bg-white/10 hover:text-white focus:bg-white/20 focus:text-white disabled:pointer-events-none disabled:opacity-50",
         disabled && "opacity-50 cursor-not-allowed",
         className
       )}
@@ -237,7 +237,7 @@ export function DropdownMenuSubTrigger({ children, className }: DropdownMenuSubT
       type="button"
       onClick={() => setIsOpen(!isOpen)}
       className={cn(
-        "relative flex cursor-default select-none items-center rounded-sm px-2 py-1.5 text-sm outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground w-full justify-between",
+        "relative flex cursor-default select-none items-center rounded-none px-2 py-1.5 text-sm outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground w-full justify-between",
         className
       )}
     >

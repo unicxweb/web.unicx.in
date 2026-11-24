@@ -1,6 +1,7 @@
 "use client";
 
 import { FormEvent, useState, useRef, useCallback, useEffect } from "react";
+import Link from "next/link";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 import {
@@ -101,6 +102,7 @@ interface FormErrors {
   phone?: string;
   service?: string;
   budget?: string;
+  agreeToTerms?: string;
 }
 
 export function ContactForm() {
@@ -113,6 +115,7 @@ export function ContactForm() {
     budget: budgetOptions[1],
     timeline: "",
     details: "",
+    agreeToTerms: false,
   });
 
   const [errors, setErrors] = useState<FormErrors>({});
@@ -150,7 +153,7 @@ export function ContactForm() {
     }
   }, [submitStatus]);
 
-  const validateField = (field: keyof typeof form, value: string): string | undefined => {
+  const validateField = (field: keyof typeof form, value: string | boolean): string | undefined => {
     switch (field) {
       case 'name':
         if (!value.trim()) return 'Name is required';
@@ -174,6 +177,9 @@ export function ContactForm() {
         if (!value.trim()) return 'Project details are required';
         if (value.trim().length < 10) return 'Please provide at least 10 characters';
         if (value.trim().length > 1000) return 'Project details must be less than 1000 characters';
+        break;
+      case 'agreeToTerms':
+        if (!value) return 'You must agree to the terms and conditions';
         break;
     }
     return undefined;
@@ -200,6 +206,9 @@ export function ContactForm() {
 
     const detailsError = validateField('details', form.details);
     if (detailsError) newErrors.details = detailsError;
+
+    const agreeToTermsError = validateField('agreeToTerms', form.agreeToTerms);
+    if (agreeToTermsError) newErrors.agreeToTerms = agreeToTermsError;
 
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
@@ -239,6 +248,7 @@ export function ContactForm() {
           budget: budgetOptions[1],
           timeline: "",
           details: "",
+          agreeToTerms: false,
         });
         setErrors({});
         setSubmitStatus('success');
@@ -532,6 +542,45 @@ export function ContactForm() {
               <div>• Any specific design preferences?</div>
             </div>
           </div>
+        </div>
+
+        {/* Terms and Conditions */}
+        <div className="space-y-3">
+          <label className="flex items-start gap-3 cursor-pointer">
+            <input
+              type="checkbox"
+              checked={form.agreeToTerms}
+              onChange={(event) => {
+                const value = event.target.checked;
+                setForm((current) => ({ ...current, agreeToTerms: value }));
+                
+                // Clear error if checkbox is checked
+                if (value && errors.agreeToTerms) {
+                  setErrors((current) => ({ ...current, agreeToTerms: undefined }));
+                }
+              }}
+              className={`mt-1 w-4 h-4 rounded border-white/20 bg-white/10 text-white focus:ring-white/30 focus:ring-offset-0 ${errors.agreeToTerms ? 'border-red-500' : ''}`}
+              aria-invalid={!!errors.agreeToTerms}
+              aria-describedby={errors.agreeToTerms ? 'terms-error' : undefined}
+            />
+            <span className="text-[13px] leading-6 text-slate-300">
+              I agree to the terms and conditions and privacy policy
+              {' '}
+              <Link 
+                href="/privacy" 
+                className="text-white underline hover:text-slate-300 transition-colors"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                (read terms)
+              </Link>
+            </span>
+          </label>
+          {errors.agreeToTerms && (
+            <p id="terms-error" className="text-red-400 text-xs mt-1" role="alert">
+              {errors.agreeToTerms}
+            </p>
+          )}
         </div>
 
         <div className="space-y-4 pt-2">

@@ -108,7 +108,7 @@ export default function ContactPage() {
               <div className="mt-8 flex flex-wrap items-center gap-3">
                 <Link
                   href="mailto:hello@unicx.in"
-                  className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white px-7 py-3.5 text-[11px] font-semibold uppercase tracking-[0.28em] text-slate-950 transition hover:shadow-[0_0_30px_rgba(255,255,255,0.1)]"
+                  className="inline-flex items-center gap-2 rounded-none border border-white/15 bg-white px-7 py-3.5 text-[11px] font-semibold uppercase tracking-[0.28em] text-slate-950 transition hover:shadow-[0_0_30px_rgba(255,255,255,0.1)]"
                 >
                   <ArrowRightIcon />
                   hello@unicx.in
@@ -148,46 +148,48 @@ export default function ContactPage() {
 
         <section className="pt-24 sm:pt-32 pb-24">
           <div className="grid gap-14 lg:grid-cols-[minmax(0,0.8fr)_minmax(0,1.2fr)] lg:gap-16">
-            <div className="space-y-12">
-              <div>
-                <div className="text-[10px] font-semibold uppercase tracking-[0.34em] text-slate-500">
-                  What to include
-                </div>
-                <div className="mt-6 space-y-4">
-                  {projectInputs.map((item, index) => (
-                    <div
-                      key={item}
-                      className="grid grid-cols-[44px_minmax(0,1fr)] gap-4 border-t border-white/10 pt-4 first:border-t-0 first:pt-0"
-                    >
-                      <div className="text-[10px] font-semibold uppercase tracking-[0.3em] text-slate-500">
-                        0{index + 1}
+            <div className="sticky top-[200px] h-fit self-start">
+              <div className="space-y-12">
+                <div>
+                  <div className="text-[10px] font-semibold uppercase tracking-[0.34em] text-slate-500">
+                    What to include
+                  </div>
+                  <div className="mt-6 space-y-4">
+                    {projectInputs.map((item, index) => (
+                      <div
+                        key={item}
+                        className="grid grid-cols-[44px_minmax(0,1fr)] gap-4 border-t border-white/10 pt-4 first:border-t-0 first:pt-0"
+                      >
+                        <div className="text-[10px] font-semibold uppercase tracking-[0.3em] text-slate-500">
+                          0{index + 1}
+                        </div>
+                        <p className="text-[15px] leading-7 text-slate-200">{item}</p>
                       </div>
-                      <p className="text-[15px] leading-7 text-slate-200">{item}</p>
-                    </div>
-                  ))}
+                    ))}
+                  </div>
                 </div>
-              </div>
 
-              <div className="border-t border-white/10 pt-8">
-                <div className="text-[10px] font-semibold uppercase tracking-[0.34em] text-slate-500">
-                  What happens next
-                </div>
-                <div className="mt-6 space-y-5">
-                  {nextSteps.map((step, index) => (
-                    <div key={step} className="grid grid-cols-[44px_minmax(0,1fr)] gap-4">
-                      <div className="text-[10px] font-semibold uppercase tracking-[0.3em] text-slate-500">
-                        0{index + 1}
+                <div className="border-t border-white/10 pt-8">
+                  <div className="text-[10px] font-semibold uppercase tracking-[0.34em] text-slate-500">
+                    What happens next
+                  </div>
+                  <div className="mt-6 space-y-5">
+                    {nextSteps.map((step, index) => (
+                      <div key={step} className="grid grid-cols-[44px_minmax(0,1fr)] gap-4">
+                        <div className="text-[10px] font-semibold uppercase tracking-[0.3em] text-slate-500">
+                          0{index + 1}
+                        </div>
+                        <p className="max-w-md text-[14px] leading-6 text-slate-300">
+                          {step}
+                        </p>
                       </div>
-                      <p className="max-w-md text-[14px] leading-6 text-slate-300">
-                        {step}
-                      </p>
-                    </div>
-                  ))}
+                    ))}
+                  </div>
                 </div>
               </div>
             </div>
 
-            <div className="border-t border-white/10 pt-8 lg:pt-0 lg:border-t-0 lg:border-l lg:border-white/10 lg:pl-12">
+            <div data-right-side className="border-t border-white/10 pt-8 lg:pt-0 lg:border-t-0 lg:border-l lg:border-white/10 lg:pl-12">
               <ContactForm />
             </div>
           </div>
